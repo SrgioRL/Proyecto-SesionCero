@@ -13,7 +13,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity // Indica que esta clase es una entidad JPA
-@Table(name="Personajes") // Especifica el nombre de la tabla en la base de datos
+@Table(name="PersonajesC") // Especifica el nombre de la tabla en la base de datos
 @Data // Anotación de Lombok para generar automáticamente getters, setters, toString, etc.
 @NoArgsConstructor // Constructor sin argumentos generado automáticamente por Lombok
 @AllArgsConstructor
