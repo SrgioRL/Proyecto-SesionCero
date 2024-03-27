@@ -8,39 +8,57 @@ import org.springframework.stereotype.Service;
 import sesioncero.modelo.entities.Caracteristica;
 import sesioncero.modelo.entities.Clase;
 import sesioncero.repository.CaracteristicaRepository;
+import sesioncero.repository.ClaseRepository;
 
 @Service
 public class ClaseServiceImplMy8 implements ClaseService{
 
+	@Autowired
+	private ClaseRepository claseRepository;
+	
 	@Override
 	public Clase findById(int idClase) {
-		// TODO Auto-generated method stub
-		return null;
+		return claseRepository.findById(idClase).orElse(null);
 	}
 
 	@Override
 	public List<Clase> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return claseRepository.findAll();
 	}
 
 	@Override
 	public Clase insertOne(Clase clase) {
-		// TODO Auto-generated method stub
-		return null;
+		return claseRepository.save(clase);
 	}
 
 	@Override
 	public boolean deleteOne(int idClase) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			if (findById(idClase) != null) {
+				claseRepository.deleteById(idClase);
+				return true;
+			}else
+				return false;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 	@Override
 	public Clase updateOne(Clase clase) {
-		// TODO Auto-generated method stub
-		return null;
+        try {
+			
+			if (findById(clase.getIdClase()) != null) {	
+				return claseRepository.save(clase);
+			}
+			else {
+				return null;
+			}
+			
+		} catch (Exception e) {
+			
+			return null;
+		}
 	}
 
-	
 }

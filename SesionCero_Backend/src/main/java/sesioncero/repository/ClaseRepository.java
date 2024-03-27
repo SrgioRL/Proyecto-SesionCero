@@ -3,7 +3,8 @@ package sesioncero.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import sesioncero.modelo.entities.Caracteristica;
+import sesioncero.modelo.entities.Clase;
 
-public interface ClaseRepository extends JpaRepository<Caracteristica, Integer>{
+public interface ClaseRepository extends JpaRepository<Clase, Integer>{
 
 }
