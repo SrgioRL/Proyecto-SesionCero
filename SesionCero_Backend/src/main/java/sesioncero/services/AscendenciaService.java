@@ -1,14 +1,14 @@
-package sesioncero.modelo.dao;
+package sesioncero.services;
 
 import java.util.List;
 import sesioncero.modelo.entities.Ascendencia;
 
-public interface AscendenciaDao {
+public interface AscendenciaService {
 
 	    Ascendencia findById (int idAscendencia);
 		List<Ascendencia> findAll();
 		Ascendencia insertOne(Ascendencia ascendencia);
-		int deleteOne(int idAscendencia);
-		int updateOne(Ascendencia ascendencia);
+		boolean deleteOne(int idAscendencia);
+		Ascendencia updateOne(Ascendencia ascendencia);
 		
 }

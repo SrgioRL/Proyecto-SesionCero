@@ -1,15 +1,15 @@
-package sesioncero.modelo.dao;
+package sesioncero.services;
 
 import java.util.List;
 
 import sesioncero.modelo.entities.Caracteristica;
 
-public interface CaracteristicaDao {
+public interface CaracteristicaService {
 	
 	    Caracteristica findById (int idCaracteristica);
 		List<Caracteristica> findAll();
 		Caracteristica insertOne(Caracteristica caracteristica);
-		int deleteOne(int idCaracteristica);
-		int updateOne(Caracteristica caracteristica);
+		boolean deleteOne(int idCaracteristica);
+		Caracteristica updateOne(Caracteristica caracteristica);
 
 }

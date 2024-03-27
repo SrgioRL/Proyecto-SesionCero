@@ -1,15 +1,15 @@
-package sesioncero.modelo.dao;
+package sesioncero.services;
 
 import java.util.List;
 
 import sesioncero.modelo.entities.Habilidad;
 
-public interface HabilidadDao {
+public interface HabilidadService {
 	
 	    Habilidad findById (int idHabilidad);
 		List<Habilidad> findAll();
 		Habilidad insertOne(Habilidad habilidad);
-		int deleteOne(int idHabilidad);
-		int updateOne(Habilidad habilidad);
+		boolean deleteOne(int idHabilidad);
+		Habilidad updateOne(Habilidad habilidad);
 
 }
