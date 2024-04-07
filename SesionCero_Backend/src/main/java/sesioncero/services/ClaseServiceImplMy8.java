@@ -5,9 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import sesioncero.modelo.entities.Caracteristica;
 import sesioncero.modelo.entities.Clase;
-import sesioncero.repository.CaracteristicaRepository;
 import sesioncero.repository.ClaseRepository;
 
 @Service
