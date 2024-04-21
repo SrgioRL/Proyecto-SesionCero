@@ -1,4 +1,4 @@
-package sesioncero.configuration;
+/*package sesioncero.configuration;
 
 import java.io.IOException;
 import java.util.Date;
@@ -27,12 +27,12 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
 
-@Configuration
+/*@Configuration
 public class TokenManagement {
 
 	/*---------------GENERACIÓN DEL TOKEN---------------*/
 	
-	@Bean
+/*	@Bean
 	JwtTokenProvider jwtTokenProvider() {
 		return new JwtTokenProvider();
 	}
@@ -54,7 +54,7 @@ class JwtTokenProvider {
 
 /*---------------VALIDACIÓN DEL TOKEN---------------*/
 
-	@Component
+	/*@Component
 	public class JwtTokenFilter extends OncePerRequestFilter {
 
 		@Autowired
@@ -113,4 +113,4 @@ class JwtTokenProvider {
 	public String getUsernameFromToken(String token) {
 		return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
 	}
-}
+}*/

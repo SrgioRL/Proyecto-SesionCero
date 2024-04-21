@@ -26,7 +26,7 @@ public class Habilidad {
     private int idHabilidad; // Identificador único de la habilidad
     @ManyToOne
 	@JoinColumn(name="id_personaje")
-    private Personaje idPersonaje;
+    private Personaje personaje;
     private String atletismo;
     private String acrobacias;
     @Column(name="juego_de_manos")

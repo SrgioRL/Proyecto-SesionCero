@@ -26,7 +26,7 @@ public class Salvacion {
     private int idSalvacion; // Identificador único de la salvación
     @ManyToOne
 	@JoinColumn(name="id_personaje")
-    private Personaje idPersonaje;
+    private Personaje personaje;
     @Column(name="salvacion_fuerza")
     private String salvacionFuerza;
     @Column(name="salvacion_destreza")

@@ -59,4 +59,11 @@ public class CaracteristicaServiceMyImpl8 implements CaracteristicaService {
 		}
 	}
 
+	@Override
+	public List<Caracteristica> obtenerCaracteristicasDePersonaje(int idPersonaje) {
+	return caracteristicaRepository.obtenerCaracteristicasDePersonaje(idPersonaje);
+	}
+
+	
+
 }

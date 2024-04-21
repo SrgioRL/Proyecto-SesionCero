@@ -27,16 +27,16 @@ public class Personaje {
     private String nombre;
     @ManyToOne
 	@JoinColumn(name="id_clase")
-    private Clase idClase;
+    private Clase clase;
     @ManyToOne
 	@JoinColumn(name="id_ascendencia")
-    private Ascendencia idAscendencia;
+    private Ascendencia ascendencia;
     @ManyToOne
 	@JoinColumn(name="id_alineamiento")
-    private Alineamiento idAlineamiento;
+    private Alineamiento alineamiento;
     @ManyToOne
 	@JoinColumn(name="id_jugador")
-    private Jugador idJugador;
+    private Jugador jugador;
     private int nivel;
     @Column(name="CA")
     private int ca;
