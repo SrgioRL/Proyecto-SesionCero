@@ -1,0 +1,62 @@
+
+
+body {
+    font-family: 'Roboto', sans-serif !important;
+    background-color: #222831 !important;
+}
+
+.form-label {
+    font-weight: 500 !important;
+    font-size: large;
+    color: #ffffff;
+}
+
+.form-control {
+    border-radius: 25px !important;
+    border: 2px solid #ffffff !important;
+    width: 400px;
+    margin: auto; 
+}
+
+.btn {
+    color: #ffffff !important;
+    background-color: #2d8a9c !important;
+    border-radius: 25px !important;
+    padding: 10px 20px !important;
+    font-weight: 500 !important;
+    transition: all 0.3s ease !important;
+    font-family: 'Roboto', sans-serif !important;
+}
+
+.btn:hover {
+    background-color: #ce8821 !important;
+}
+
+.small {
+    font-size: 1rem !important;
+}
+
+.small a {
+    color: #2d8a9c !important;
+    text-decoration: none !important;
+}
+
+.small a:hover {
+    text-decoration: underline !important;
+    color: #ce8821 !important;
+}
+
+#logoLogin {
+    width: 200px;
+    height: auto;
+}
+
+p {
+    font-weight: 500 !important;
+    font-size: 1.5rem !important;
+    color: white;
+}
+
+#iniciar {
+    color: #ffffff;
+}
