@@ -10,6 +10,8 @@ import { LoginComponent } from './login/login.component';
 import { FooterComponent } from './footer/footer.component';
 import { SignupComponent } from './signup/signup.component';
 import { AllpjComponent } from './allpj/allpj.component'; // Importar FormsModule
+import { HttpClientModule } from '@angular/common/http';
+import { JugadorComponent } from './jugador/jugador.component';
 
 @NgModule({
   declarations: [
@@ -19,11 +21,14 @@ import { AllpjComponent } from './allpj/allpj.component'; // Importar FormsModul
     LoginComponent,
     FooterComponent,
     SignupComponent,
-    AllpjComponent
+    AllpjComponent,
+    JugadorComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
+    
     FormsModule // Agregar FormsModule aquí
   ],
   providers: [
