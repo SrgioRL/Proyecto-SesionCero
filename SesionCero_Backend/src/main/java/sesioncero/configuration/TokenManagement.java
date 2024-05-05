@@ -27,23 +27,42 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
 
+/**
+ * Clase de configuración que define beans para el manejo de JWT.
+ */
 @Configuration
 public class TokenManagement {
 
 	/*---------------GENERACIÓN DEL TOKEN---------------*/
-	
+
+	/**
+	 * Bean que proporciona una instancia de JwtTokenProvider.
+	 * 
+	 * @return JwtTokenProvider una instancia del proveedor de token.
+	 */
 	@Bean
 	JwtTokenProvider jwtTokenProvider() {
 		return new JwtTokenProvider();
 	}
 }
 
+/**
+ * Componente que provee la funcionalidad para la creación y validación de JWT.
+ */
 @Component
 class JwtTokenProvider {
 
-	private final String secretKey = "secretKey"; // TODO: HAY QUE OCULTAR ESTE VALOR EN EL APPLICATION PROPERTIES; QUE  NO SE NOS OLVIDE :) <3<3
-	private final long expirationMs = 3600000; // TODO: HAY QUE OCULTAR ESTE VALOR EN EL APPLICATION PROPERTIES; QUE NO SE NOS OLVIDE :) <3<3
+	private final String secretKey = "secretKey"; // TODO: HAY QUE OCULTAR ESTE VALOR EN EL APPLICATION PROPERTIES; QUE
+													// NO SE NOS OLVIDE :) <3<3
+	private final long expirationMs = 3600000; // TODO: HAY QUE OCULTAR ESTE VALOR EN EL APPLICATION PROPERTIES; QUE NO
+												// SE NOS OLVIDE :) <3<3
 
+	/**
+	 * Crea un token JWT para un usuario especificado.
+	 * 
+	 * @param username El nombre de usuario para el cual se crea el token.
+	 * @return String El token JWT generado.
+	 */
 	public String createToken(String username) {
 		Date now = new Date();
 		Date validity = new Date(now.getTime() + expirationMs);
@@ -52,8 +71,22 @@ class JwtTokenProvider {
 				.signWith(SignatureAlgorithm.HS256, secretKey).compact();
 	}
 
-/*---------------VALIDACIÓN DEL TOKEN---------------*/
+	/*---------------VALIDACIÓN DEL TOKEN---------------*/
 
+	/**
+	 * Filtro que se ejecuta en cada solicitud HTTP para autenticar usuarios mediante JWT. 
+	 * Este filtro verifica la presencia de un token JWT en la cabecera "Authorization". 
+	 * Si el token es válido: 
+	 * 1. Extrae el nombre de usuario del token. 
+	 * 2. Carga y verifica los detalles del usuario mediante UserDetailsService. 
+	 * 3. Configura el contexto de seguridad con la autenticación del usuario, permitiendo que la solicitud proceda. 
+	 *
+	 * @param request     La solicitud HTTP entrante.
+	 * @param response    La respuesta HTTP.
+	 * @param filterChain La cadena de filtros de seguridad.
+	 * @throws ServletException Si ocurre un error al procesar la solicitud.
+	 * 
+	 */
 	@Component
 	public class JwtTokenFilter extends OncePerRequestFilter {
 
@@ -83,6 +116,12 @@ class JwtTokenProvider {
 			filterChain.doFilter(request, response);
 		}
 
+		/**
+		 * Extrae el token JWT de la cabecera Authorization del request HTTP.
+		 * 
+		 * @param request El request HTTP desde el cual extraer el token.
+		 * @return String El token JWT o null si no se encuentra.
+		 */
 		private String getTokenFromRequest(HttpServletRequest request) {
 			String bearerToken = request.getHeader("Authorization");
 			if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
@@ -92,6 +131,12 @@ class JwtTokenProvider {
 		}
 	}
 
+	/**
+	 * Valida un token JWT.
+	 * 
+	 * @param token El token JWT a validar.
+	 * @return boolean true si el token es válido, false en caso contrario.
+	 */
 	public boolean validateToken(String token) {
 		try {
 			Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
@@ -110,6 +155,12 @@ class JwtTokenProvider {
 		return false;
 	}
 
+	/**
+	 * Obtiene el nombre de usuario del token JWT.
+	 * 
+	 * @param token El token JWT del que se quiere obtener el nombre de usuario.
+	 * @return String El nombre de usuario contenido en el token.
+	 */
 	public String getUsernameFromToken(String token) {
 		return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
 	}
