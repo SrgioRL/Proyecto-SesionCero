@@ -11,5 +11,7 @@ public interface CaracteristicaService {
 		Caracteristica insertOne(Caracteristica caracteristica);
 		boolean deleteOne(int idCaracteristica);
 		Caracteristica updateOne(Caracteristica caracteristica);
+		List<Caracteristica> obtenerCaracteristicasDePersonaje(int idPersonaje);
+		
 
 }

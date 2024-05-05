@@ -26,7 +26,7 @@ public class Caracteristica {
     private int idCaracteristica; // Identificador único de la característica
 	@ManyToOne
 	@JoinColumn(name="id_personaje")
-    private Personaje idPersonaje;
+    private Personaje personaje;
 	private int fuerza;
 	@Column(name="fuerza_mod")
 	private String fuerzaMod;
@@ -39,8 +39,8 @@ public class Caracteristica {
 	private int inteligencia;
 	@Column(name="inteligencia_mod")
 	private String inteligenciaMod;
-	private int sabidura;
-	@Column(name="sabidura_mod")
+	private int sabiduria;
+	@Column(name="sabiduria_mod")
 	private String sabiduriaMod;
 	private int carisma;
 	@Column(name="carisma_mod")

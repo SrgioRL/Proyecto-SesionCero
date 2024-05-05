@@ -20,14 +20,16 @@ import { AllpjComponent } from './allpj/allpj.component';
     FooterComponent,
     SignupComponent,
     AllpjComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule // Agregar HttpClientModule aquí
+    HttpClientModule,
+    FormsModule 
   ],
-  providers: [],
+ 
   bootstrap: [AppComponent]
 })
 export class AppModule { }
