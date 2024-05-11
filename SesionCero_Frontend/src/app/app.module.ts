@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http'; 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormComponent } from './form/form.component';
@@ -9,9 +9,7 @@ import { NavComponent } from './nav/nav.component';
 import { LoginComponent } from './login/login.component';
 import { FooterComponent } from './footer/footer.component';
 import { SignupComponent } from './signup/signup.component';
-import { AllpjComponent } from './allpj/allpj.component'; // Importar FormsModule
-import { HttpClientModule } from '@angular/common/http';
-import { JugadorComponent } from './jugador/jugador.component';
+import { AllpjComponent } from './allpj/allpj.component';
 
 @NgModule({
   declarations: [
@@ -22,18 +20,16 @@ import { JugadorComponent } from './jugador/jugador.component';
     FooterComponent,
     SignupComponent,
     AllpjComponent,
-    JugadorComponent
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     HttpClientModule,
-    
-    FormsModule // Agregar FormsModule aquí
+    FormsModule 
   ],
-  providers: [
-    provideClientHydration()
-  ],
+ 
   bootstrap: [AppComponent]
 })
 export class AppModule { }
