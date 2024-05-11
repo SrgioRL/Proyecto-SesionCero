@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { FooterComponent } from './footer/footer.component';
 import { SignupComponent } from './signup/signup.component';
 import { AllpjComponent } from './allpj/allpj.component';
+import { JugadorComponent } from './jugador/jugador.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { AllpjComponent } from './allpj/allpj.component';
     FooterComponent,
     SignupComponent,
     AllpjComponent,
+    JugadorComponent
 
   ],
   imports: [
