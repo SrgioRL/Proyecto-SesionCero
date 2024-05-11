@@ -1,5 +1,5 @@
 
-import { Alineamiento } from "./alineamiento.service";
+import { Alineamiento } from "./alineamiento.interface";
 import { Ascendencia } from "./ascendencia.interface";
 import { Clase } from "./clase.interface";
 import { Jugador } from "./jugador.interface";

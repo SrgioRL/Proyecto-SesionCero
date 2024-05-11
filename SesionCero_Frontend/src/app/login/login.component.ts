@@ -3,12 +3,10 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css'] // Usa 'styleUrls' en lugar de 'styleUrl'
 })
 export class LoginComponent {
- 
-  
   ngOnInit(): void {
-  
-}
+    // Código de inicialización
+  }
 }

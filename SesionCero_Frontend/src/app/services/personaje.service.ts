@@ -8,7 +8,7 @@ import { Personaje } from '../interfaces/personaje.interface';
 })
 export class PersonajeService {
 
-  private baseUrl = 'http://localhost:8080/personaje';
+  private baseUrl = 'http://localhost:8087/personaje';
 
   constructor(private http: HttpClient) { }
 

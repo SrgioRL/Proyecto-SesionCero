@@ -9,7 +9,7 @@ import { Jugador } from '../interfaces/jugador.interface';
 })
 export class JugadorService {
 
-  private baseUrl = 'http://localhost:8080/jugador'; // URL base del backend
+  private baseUrl = 'http://localhost:8087/jugador'; // URL base del backend
 
   constructor(private http: HttpClient) { }
 
