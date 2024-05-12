@@ -1,103 +1,61 @@
-  <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-    />
-
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
 <div class="body">
-    <div class="container ">
-
-          
-           
-            <!-- <form method="POST" action="/tu/endpoint/de/destino">  DESCOMENTAR CUANDO FUNCIONAMIENTO -->
-              <div class="row gap-5 todo"> 
-              <div class="col-md-6 col-lg-6 columna1">
-              <h2 class="title">DETALLES</h2>
-              <div class="form-group">
-                <label for="nombre">Nombre:</label>
-                <input type="text" class="form-control form-control-sm" id="nombre" [(ngModel)]="nombre" name="nombre">
-              </div>
-              <div class="form-group">
-                <label for="raza">Raza:</label>
-                <select class="form-control form-control-sm" id="raza" [(ngModel)]="raza" name="raza">
-                  <!-- Hay que añadir de BBDD -->
-                  <option value="humano">Humano</option>
-                  <option value="elfo">Elfo</option>
-                  <option value="enano">Enano</option>
-                   <!-- Hay que añadir de BBDD -->
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="clase">Clase:</label>
-                <select class="form-control form-control-sm" id="clase" [(ngModel)]="clase" name="clase">
-                  <!-- Hay que añadir de BBDD -->
-                  <option value="guerrero">Guerrero</option>
-                  <option value="mago">Mago</option>
-                  <option value="pícaro">Pícaro</option>
-                  <!-- Hay que añadir de BBDD -->
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="clase">Trasfondo:</label>
-                <select class="form-control form-control-sm" id="trasfondo" [(ngModel)]="trasfondo" name="trasfondo">
-                  <!-- Hay que añadir de BBDD -->
-                  <option value="guerrero">Acólito</option>
-                  <option value="mago">Fronterizo</option>
-                  <option value="pícaro">Soldado</option>
-                  <!-- Hay que añadir de BBDD -->
-                </select>
-              </div>
-              <label for="nombre">Imagen:</label>
-              <div class="form-group">
-              
-                <label for="retrato" class="file-upload">
-
-                  <i class="fas fa-upload"></i> - Subir archivo
-                </label>
-                <input type="file" id="retrato" class="form-control-file" style="display: none;" (change)="onFileSelected($event)">
-              </div>
-
-              <h2 class="title">DESCRIPCIÓN</h2>
-              <textarea class="form-control textarea" rows="2" placeholder="Escribe aquí la descripción de tu personaje"></textarea>
-            </div>
-
-            <div class="col-md-4 col-lg-4 columna2">
-              <h2 class="title">CARACTERISTICAS</h2>
-              <div class="form-group" *ngFor="let caracteristica of caracteristicas">
-                <label class="tituloCaract">{{ caracteristica }}</label>
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <button class="btn btn-outline-secondary botonmenos" type="button" (click)="decreaseModifier(caracteristica)">-</button>
-                  </div>
-                  <input type="text" class="form-control modificador" [(ngModel)]="valoresBase[caracteristica]" disabled>
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-secondary botonmas" type="button" (click)="increaseModifier(caracteristica)">+</button>
-                  </div>
-                  <span class="input-group-text modificador">Mod: {{ calcularModificador(valoresBase[caracteristica]) }}</span>
+    <div class="container">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="row gap-5 todo">
+                <div class="col-md-6 col-lg-6 columna1">
+                    <h2 class="title">DETALLES</h2>
+                    <div class="form-group">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" class="form-control form-control-sm" id="nombre" formControlName="nombre">
+                    </div>
+                    <div class="form-group">
+                        <label for="id_ascendencia">Ascendencia:</label>
+                        <select class="form-control form-control-sm" id="id_ascendencia" formControlName="id_ascendencia">
+                            <option *ngFor="let asc of ascendencias" [value]="asc.id">{{ asc.name }}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="id_clase">Clase:</label>
+                        <select class="form-control form-control-sm" id="id_clase" formControlName="id_clase">
+                            <option *ngFor="let cl of clases" [value]="cl.id">{{ cl.name }}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="id_alineamiento">Alineamiento:</label>
+                        <select class="form-control form-control-sm" id="id_alineamiento" formControlName="id_alineamiento">
+                            <option *ngFor="let al of alineamientos" [value]="al.id">{{ al.name }}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="retrato" class="file-upload">
+                            <i class="fas fa-upload"></i> - Subir archivo
+                        </label>
+                        <input type="file" id="retrato" class="form-control-file" style="display: none;" (change)="onFileSelected($event)">
+                    </div>
+                    <h2 class="title">DESCRIPCIÓN</h2>
+                    <textarea class="form-control textarea" rows="2" formControlName="descripcion" placeholder="Escribe aquí la descripción de tu personaje"></textarea>
                 </div>
-              </div>             
+
+                <div class="col-md-4 col-lg-4 columna2">
+                  <h2 class="title">CARACTERISTICAS</h2>
+                  <div class="form-group" *ngFor="let item of caracteristicas">
+                      <label class="tituloCaract">{{ item.label }}</label>
+                      <div class="input-group">
+                          <button class="btn btn-outline-secondary botonmenos" type="button" (click)="decreaseModifier(item.key)">-</button>
+                          <input type="text" class="form-control modificador" formControlName="{{item.key}}" readonly>
+                          <button class="btn btn-outline-secondary botonmas" type="button" (click)="increaseModifier(item.key)">+</button>
+                          <span class="input-group-text modificador">Mod: {{ calcularModificador(form.get(item.key)?.value) }}</span>
+                      </div>
+                  </div>
+              </div>
+              
             </div>
-          </div>
-
-
-          <div class="col-12 text-end"> <!-- Utilizamos la clase "text-end" para alinear el contenido a la derecha -->
-            <button type="submit" class="btn btn-outline-secondary send">Añadir Personaje</button>
-          </div>
-            <!-- </form> -->
-
-           
-         
-          
-
-
-
-        
-      </div>
-      </div>
-
+            <div class="col-12 text-end">
+                <button type="submit" class="btn btn-outline-secondary send">Añadir Personaje</button>
+            </div>
+        </form>
+    </div>
+</div>

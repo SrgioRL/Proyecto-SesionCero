@@ -1,5 +1,5 @@
 // Alineamientos
-export const ALINEAMIENTOS = [
+export const alineamientos = [
     {
       id: 1,
       name: 'Legal Bueno',

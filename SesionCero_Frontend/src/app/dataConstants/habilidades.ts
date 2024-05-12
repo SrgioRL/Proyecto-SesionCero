@@ -1,5 +1,5 @@
 // Habilidades
-export const HABILIDADES = [
+export const habilidades = [
     {
       id: 1,
       name: 'Atletismo',

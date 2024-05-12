@@ -12,6 +12,7 @@ const routes: Routes = [
   {path: 'crear', component: FormComponent},
   {path: 'todos', component: AllpjComponent},
   {path: 'jugador', component: JugadorComponent},
+  
 
 ];
 

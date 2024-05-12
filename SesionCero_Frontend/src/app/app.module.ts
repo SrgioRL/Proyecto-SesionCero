@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormComponent } from './form/form.component';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { NavComponent } from './nav/nav.component';
 import { LoginComponent } from './login/login.component';
 import { FooterComponent } from './footer/footer.component';
@@ -22,6 +23,7 @@ import { JugadorComponent } from './jugador/jugador.component';
     SignupComponent,
     AllpjComponent,
     JugadorComponent
+   
 
   ],
   imports: [
@@ -29,7 +31,8 @@ import { JugadorComponent } from './jugador/jugador.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    FormsModule 
+    FormsModule,
+    ReactiveFormsModule
   ],
  
   bootstrap: [AppComponent]
