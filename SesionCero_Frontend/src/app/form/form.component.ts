@@ -23,22 +23,39 @@ export class FormComponent implements OnInit {
     { key: 'carisma', label: 'Carisma' },
   ];
 
+  private basePG = 0;
+  private modConstitucion = 0;
+  private previousClassId = 0;
+
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
       nombre: [''],
       id_ascendencia: [''],
       id_clase: [''],
       id_alineamiento: [''],
+      nivel: [1],
+      pg: [''],
       fuerza: [10],
       destreza: [10],
       constitucion: [10],
       inteligencia: [10],
       sabiduria: [10],
       carisma: [10],
+      cronica: [''],
     });
+    this.setupFormSubscriptions();
   }
-
   ngOnInit(): void {}
+
+  private setupFormSubscriptions(): void {
+    this.form.get('id_clase')?.valueChanges.subscribe(() => {
+      this.calculatePG();
+    });
+    this.form.get('constitucion')?.valueChanges.subscribe(() => {
+      this.calculatePG();
+    });
+    this.calculatePG();
+  }
 
   onFileSelected(event: any): void {
     const file = event.target.files[0];
@@ -59,6 +76,24 @@ export class FormComponent implements OnInit {
 
   calcularModificador(valor: number): number {
     return Math.floor((valor - 10) / 2);
+  }
+
+  calculatePG(): void {
+    const claseId = this.form.get('id_clase')?.value;
+    const constitucion = this.form.get('constitucion')?.value;
+
+    if (this.previousClassId !== claseId) {
+      this.previousClassId = claseId;
+      const claseSeleccionada = this.clases.find(
+        (clase) => clase.id === +claseId
+      );
+      this.basePG = claseSeleccionada
+        ? Math.floor(Math.random() * claseSeleccionada.dadoGolpe) + 1
+        : 0;
+    }
+
+    this.modConstitucion = this.calcularModificador(constitucion);
+    this.form.patchValue({ pg: this.basePG + this.modConstitucion });
   }
 
   onSubmit() {
