@@ -25,7 +25,9 @@ export class FormComponent implements OnInit {
 
   private basePG = 0;
   private modConstitucion = 0;
-  private previousClassId = 0;
+  private previousClassIdPg = 0;
+  private baseCA = 0;
+  private previousClassIdCa = 0;
 
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
@@ -35,6 +37,9 @@ export class FormComponent implements OnInit {
       id_alineamiento: [''],
       nivel: [1],
       pg: [''],
+      ca: [''],
+      percepcionPasiva: [10],  
+      iniciativa: [''],
       fuerza: [10],
       destreza: [10],
       constitucion: [10],
@@ -45,16 +50,28 @@ export class FormComponent implements OnInit {
     });
     this.setupFormSubscriptions();
   }
+
   ngOnInit(): void {}
 
   private setupFormSubscriptions(): void {
     this.form.get('id_clase')?.valueChanges.subscribe(() => {
       this.calculatePG();
+      this.calculateCA(); 
     });
     this.form.get('constitucion')?.valueChanges.subscribe(() => {
       this.calculatePG();
     });
+    this.form.get('destreza')?.valueChanges.subscribe(() => {
+      this.updateModDestrezaCA();
+      this.updateInitiative(); 
+    });
+    this.form.get('sabiduria')?.valueChanges.subscribe(() => {
+      this.updatePerception(); 
+    });
     this.calculatePG();
+    this.calculateCA();
+    this.updateInitiative();
+    this.updatePerception();
   }
 
   onFileSelected(event: any): void {
@@ -82,8 +99,8 @@ export class FormComponent implements OnInit {
     const claseId = this.form.get('id_clase')?.value;
     const constitucion = this.form.get('constitucion')?.value;
 
-    if (this.previousClassId !== claseId) {
-      this.previousClassId = claseId;
+    if (this.previousClassIdPg !== claseId) {
+      this.previousClassIdPg = claseId;
       const claseSeleccionada = this.clases.find(
         (clase) => clase.id === +claseId
       );
@@ -94,6 +111,37 @@ export class FormComponent implements OnInit {
 
     this.modConstitucion = this.calcularModificador(constitucion);
     this.form.patchValue({ pg: this.basePG + this.modConstitucion });
+  }
+
+  calculateCA(): void {
+    const claseId = this.form.get('id_clase')?.value;
+    if (this.previousClassIdCa !== claseId) {
+      this.previousClassIdCa = claseId;
+      const claseSeleccionada = this.clases.find(clase => clase.id === +claseId);
+      this.baseCA = claseSeleccionada
+        ? Math.floor(Math.random() * claseSeleccionada.dadoGolpe) + 1
+        : 0;
+    }
+    this.updateTotalCA();
+  }
+
+  updateModDestrezaCA(): void {
+    this.updateTotalCA();
+  }
+
+  updateTotalCA(): void {
+    const destrezaMod = this.calcularModificador(this.form.get('destreza')?.value);
+    this.form.patchValue({ ca: this.baseCA + destrezaMod });
+  }
+
+  updateInitiative(): void {
+    const destrezaMod = this.calcularModificador(this.form.get('destreza')?.value);
+    this.form.patchValue({ iniciativa: destrezaMod });
+  }
+
+  updatePerception(): void {
+    const sabiduriaMod = this.calcularModificador(this.form.get('sabiduria')?.value);
+    this.form.patchValue({ percepcionPasiva: 10 + sabiduriaMod });
   }
 
   onSubmit() {
