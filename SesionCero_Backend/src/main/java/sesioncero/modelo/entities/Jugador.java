@@ -1,10 +1,14 @@
 package sesioncero.modelo.entities;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,5 +31,8 @@ public class Jugador {
     private String apellido1;
     private String apellido2;
     private String email;
-    private String contraseña;
+    @Column(name="contraseña")
+    private String password;
+    
+  
 }
