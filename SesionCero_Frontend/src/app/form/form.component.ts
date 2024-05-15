@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ascendencias } from '../dataConstants/ascendencias';
 import { clases } from '../dataConstants/clases';
 import { alineamientos } from '../dataConstants/alineamientos';
@@ -25,66 +25,67 @@ export class FormComponent implements OnInit {
 
   private basePG = 0;
   private modConstitucion = 0;
-  private previousClassIdPg = 0;
+  private idClaseAnteriorPG = 0;
   private baseCA = 0;
-  private previousClassIdCa = 0;
+  private modDestreza = 0;
+  private idClaseAnteriorCA = 0;
 
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
-      nombre: [''],
-      id_ascendencia: [''],
-      id_clase: [''],
-      id_alineamiento: [''],
+      nombre: ['', Validators.required],
+      id_ascendencia: ['', Validators.required],
+      id_clase: ['', Validators.required],
+      id_alineamiento: ['', Validators.required],
       nivel: [1],
       pg: [''],
       ca: [''],
-      percepcionPasiva: [10],  
+      percepcionPasiva: [10],
       iniciativa: [''],
-      fuerza: [10],
-      destreza: [10],
-      constitucion: [10],
-      inteligencia: [10],
-      sabiduria: [10],
-      carisma: [10],
+      fuerza: [10, [Validators.required, Validators.min(1), Validators.max(20)]],
+      destreza: [10, [Validators.required, Validators.min(1), Validators.max(20)]],
+      constitucion: [10, [Validators.required, Validators.min(1), Validators.max(20)]],
+      inteligencia: [10, [Validators.required, Validators.min(1), Validators.max(20)]],
+      sabiduria: [10, [Validators.required, Validators.min(1), Validators.max(20)]],
+      carisma: [10, [Validators.required, Validators.min(1), Validators.max(20)]],
       cronica: [''],
     });
-    this.setupFormSubscriptions();
+    this.suscripcionesFormulario();
   }
 
   ngOnInit(): void {}
 
-  private setupFormSubscriptions(): void {
+  private suscripcionesFormulario(): void {
     this.form.get('id_clase')?.valueChanges.subscribe(() => {
-      this.calculatePG();
-      this.calculateCA(); 
+      this.calcularPG();
+      this.calcularCA();
     });
     this.form.get('constitucion')?.valueChanges.subscribe(() => {
-      this.calculatePG();
+      this.calcularPG();
     });
     this.form.get('destreza')?.valueChanges.subscribe(() => {
-      this.updateModDestrezaCA();
-      this.updateInitiative(); 
+      this.calcularCA();
+      this.modIniciativa();
     });
     this.form.get('sabiduria')?.valueChanges.subscribe(() => {
-      this.updatePerception(); 
+      this.modPercepcion();
     });
-    this.calculatePG();
-    this.calculateCA();
-    this.updateInitiative();
-    this.updatePerception();
+    this.calcularPG();
+    this.calcularCA();
+    this.modIniciativa();
+    this.modPercepcion();
   }
 
-  onFileSelected(event: any): void {
+  archivoSeleccionado(event: any): void {
     const file = event.target.files[0];
     this.form.patchValue({ retrato: file });
   }
 
-  increaseModifier(caracteristica: string) {
+  aumentarModificador(caracteristica: string) {
     const value = this.form.get(caracteristica)?.value || 10;
     this.form.get(caracteristica)?.setValue(value + 1);
   }
 
-  decreaseModifier(caracteristica: string) {
+  disminuirModificador(caracteristica: string) {
     const value = this.form.get(caracteristica)?.value || 10;
     if (value > 1) {
       this.form.get(caracteristica)?.setValue(value - 1);
@@ -95,56 +96,56 @@ export class FormComponent implements OnInit {
     return Math.floor((valor - 10) / 2);
   }
 
-  calculatePG(): void {
+  calcularPG(): void {
     const claseId = this.form.get('id_clase')?.value;
     const constitucion = this.form.get('constitucion')?.value;
 
-    if (this.previousClassIdPg !== claseId) {
-      this.previousClassIdPg = claseId;
-      const claseSeleccionada = this.clases.find(
-        (clase) => clase.id === +claseId
-      );
-      this.basePG = claseSeleccionada
-        ? Math.floor(Math.random() * claseSeleccionada.dadoGolpe) + 1
-        : 0;
+    if (this.idClaseAnteriorPG !== claseId) {
+      this.idClaseAnteriorPG = claseId;
+      const claseSeleccionada = this.clases.find(clase => clase.id === +claseId);
+      this.basePG = claseSeleccionada ? Math.floor(Math.random() * claseSeleccionada.dadoGolpe) + 1 : 0;
     }
 
     this.modConstitucion = this.calcularModificador(constitucion);
     this.form.patchValue({ pg: this.basePG + this.modConstitucion });
   }
 
-  calculateCA(): void {
+  calcularCA(): void {
     const claseId = this.form.get('id_clase')?.value;
-    if (this.previousClassIdCa !== claseId) {
-      this.previousClassIdCa = claseId;
+    const destreza = this.form.get('destreza')?.value;
+
+    if (this.idClaseAnteriorCA !== claseId) {
+      this.idClaseAnteriorCA = claseId;
       const claseSeleccionada = this.clases.find(clase => clase.id === +claseId);
-      this.baseCA = claseSeleccionada
-        ? Math.floor(Math.random() * claseSeleccionada.dadoGolpe) + 1
-        : 0;
+      this.baseCA = claseSeleccionada ? Math.floor(Math.random() * claseSeleccionada.dadoGolpe) + 1 : 0;
     }
-    this.updateTotalCA();
+
+    this.modDestreza = this.calcularModificador(destreza);
+    this.form.patchValue({ ca: this.baseCA + this.modDestreza });
   }
 
-  updateModDestrezaCA(): void {
-    this.updateTotalCA();
-  }
-
-  updateTotalCA(): void {
-    const destrezaMod = this.calcularModificador(this.form.get('destreza')?.value);
-    this.form.patchValue({ ca: this.baseCA + destrezaMod });
-  }
-
-  updateInitiative(): void {
+  modIniciativa(): void {
     const destrezaMod = this.calcularModificador(this.form.get('destreza')?.value);
     this.form.patchValue({ iniciativa: destrezaMod });
   }
 
-  updatePerception(): void {
+  modPercepcion(): void {
     const sabiduriaMod = this.calcularModificador(this.form.get('sabiduria')?.value);
     this.form.patchValue({ percepcionPasiva: 10 + sabiduriaMod });
   }
 
   onSubmit() {
-    console.log(this.form.value);
+    if (this.form.valid) {
+      console.log(this.form.value);
+      // Aquí puedes manejar el envío de datos al backend
+    } else {
+      this.form.markAllAsTouched();  // Marca todos los campos como tocados para mostrar mensajes de error
+      console.log('El formulario no es válido');
+    }
+  }
+
+  campoInvalido(field: string): boolean {
+    const control = this.form.get(field);
+    return control ? control.invalid && (control.dirty || control.touched) : false;
   }
 }
