@@ -10,7 +10,7 @@ import { Jugador } from '../interfaces/jugador.interface';
 export class SignupComponent {
 
   // Declaración de la variable jugadorActual
-  jugadorActual: Jugador = {
+  nuevoJugador: Jugador = {
     id: 0,
     nombre: '',
     apellido1: '',
@@ -24,8 +24,7 @@ export class SignupComponent {
 
   // Método para agregar un nuevo jugador
   agregarJugador() {
-    console.log("Datos del jugador:", this.jugadorActual);
-    this.jugadorService.altaJugador(this.jugadorActual).subscribe(
+    this.jugadorService.altaJugador(this.nuevoJugador).subscribe(
       jugador => {
         console.log("Jugador agregado:", jugador);
         // No hay necesidad de actualizar la lista de jugadores en este componente

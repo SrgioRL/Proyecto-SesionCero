@@ -85,9 +85,29 @@
           <div class="form-group">
             <label for="pg">Puntos de Golpe (PG):</label>
             <span id="pg" class="form-control-static">
-              {{ form.get('pg')?.value }}
+              {{ form.get("pg")?.value }}
             </span>
           </div>
+          <div class="form-group">
+            <label for="ca">Clase de Armadura (CA):</label>
+            <span id="ca" class="form-control-static">
+              {{ form.get("ca")?.value }}
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="percepcionPasiva">Percepción Pasiva:</label>
+            <span id="percepcionPasiva" class="form-control-static">
+              {{ form.get("percepcionPasiva")?.value }}
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label for="iniciativa">Iniciativa:</label>
+            <span id="iniciativa" class="form-control-static">
+              {{ form.get("iniciativa")?.value }}
+            </span>
+          </div>
+
           <div class="form-group" *ngFor="let item of caracteristicas">
             <label class="tituloCaract">{{ item.label }}</label>
             <div class="input-group">
