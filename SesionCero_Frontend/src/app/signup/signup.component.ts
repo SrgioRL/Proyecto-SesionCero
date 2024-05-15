@@ -24,6 +24,7 @@ export class SignupComponent {
 
   // Método para agregar un nuevo jugador
   agregarJugador() {
+    console.log("Datos del jugador:", this.jugadorActual);
     this.jugadorService.altaJugador(this.jugadorActual).subscribe(
       jugador => {
         console.log("Jugador agregado:", jugador);
