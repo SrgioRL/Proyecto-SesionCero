@@ -1,6 +1,6 @@
-/*package sesioncero.configuration;
+package sesioncero.configuration;
 
-import java.io.IOException;
+/*import java.io.IOException;
 import java.util.Date;
 
 import jakarta.servlet.FilterChain;
@@ -25,14 +25,14 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
-import io.jsonwebtoken.UnsupportedJwtException;
+import io.jsonwebtoken.UnsupportedJwtException;*/
 
-<<<<<<< HEAD
-/**
+/**<<<<<<< HEAD
+
  * Clase de configuración que define beans para el manejo de JWT.
  */
-@Configuration
-public class TokenManagement {
+//@Configuration
+//public class TokenManagement {
 
 	/*---------------GENERACIÓN DEL TOKEN---------------*/
 
@@ -41,8 +41,8 @@ public class TokenManagement {
 	 * 
 	 * @return JwtTokenProvider una instancia del proveedor de token.
 	 */
-	@Bean
-=======
+	//@Bean
+//=======
 /*@Configuration
 public class TokenManagement {
 
@@ -58,7 +58,7 @@ public class TokenManagement {
 /**
  * Componente que provee la funcionalidad para la creación y validación de JWT.
  */
-@Component
+/*@Component
 class JwtTokenProvider {
 
 	private final String secretKey = "secretKey"; // TODO: HAY QUE OCULTAR ESTE VALOR EN EL APPLICATION PROPERTIES; QUE
@@ -72,7 +72,7 @@ class JwtTokenProvider {
 	 * @param username El nombre de usuario para el cual se crea el token.
 	 * @return String El token JWT generado.
 	 */
-	public String createToken(String username) {
+	/*public String createToken(String username) {
 		Date now = new Date();
 		Date validity = new Date(now.getTime() + expirationMs);
 
@@ -82,7 +82,7 @@ class JwtTokenProvider {
 
 	/*---------------VALIDACIÓN DEL TOKEN---------------*/
 
-<<<<<<< HEAD
+/*<<<<<<< HEAD
 	/**
 	 * Filtro que se ejecuta en cada solicitud HTTP para autenticar usuarios mediante JWT. 
 	 * Este filtro verifica la presencia de un token JWT en la cabecera "Authorization". 
@@ -97,7 +97,7 @@ class JwtTokenProvider {
 	 * @throws ServletException Si ocurre un error al procesar la solicitud.
 	 * 
 	 */
-	@Component
+	/*@Component
 =======
 	/*@Component
 >>>>>>> 10d4fa061efb8bc87ccee757ce23216f27b623b3
@@ -135,7 +135,7 @@ class JwtTokenProvider {
 		 * @param request El request HTTP desde el cual extraer el token.
 		 * @return String El token JWT o null si no se encuentra.
 		 */
-		private String getTokenFromRequest(HttpServletRequest request) {
+		/*private String getTokenFromRequest(HttpServletRequest request) {
 			String bearerToken = request.getHeader("Authorization");
 			if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
 				return bearerToken.substring(7);
@@ -150,7 +150,7 @@ class JwtTokenProvider {
 	 * @param token El token JWT a validar.
 	 * @return boolean true si el token es válido, false en caso contrario.
 	 */
-	public boolean validateToken(String token) {
+	/*public boolean validateToken(String token) {
 		try {
 			Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
 			return true;
@@ -174,7 +174,7 @@ class JwtTokenProvider {
 	 * @param token El token JWT del que se quiere obtener el nombre de usuario.
 	 * @return String El nombre de usuario contenido en el token.
 	 */
-	public String getUsernameFromToken(String token) {
+	/*public String getUsernameFromToken(String token) {
 		return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
 	}
 }*/

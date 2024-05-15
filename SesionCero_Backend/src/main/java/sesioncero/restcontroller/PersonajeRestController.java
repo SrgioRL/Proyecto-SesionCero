@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import sesioncero.modelo.entities.Personaje;
-import sesioncero.services.CaracteristicaService;
 import sesioncero.services.PersonajeService;
 
 @RestController
@@ -28,8 +27,7 @@ public class PersonajeRestController {
 
 	@Autowired
 	private PersonajeService personajeService;
-	private CaracteristicaService caracteristicaService;
-	
+
 	 // Método para agregar un nuevo personaje
     @PostMapping("/alta")
     public Personaje altaPersonaje(@RequestBody Personaje personaje) {
@@ -64,10 +62,4 @@ public class PersonajeRestController {
     	return personajeService.findAll();
     }
     
-    @PostMapping("/incrementar/{idPersonaje}")
-    public String incrementarCaracteristicas(@PathVariable int idPersonaje) {
-        personajeService.incrementarCaracteristicas(idPersonaje);
-        return "Características incrementadas correctamente para el personaje con ID: " + idPersonaje;
-    }
-
 }

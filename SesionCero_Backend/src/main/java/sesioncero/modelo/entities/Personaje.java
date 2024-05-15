@@ -1,5 +1,9 @@
 package sesioncero.modelo.entities;
 
+import java.sql.Blob;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -46,5 +51,26 @@ public class Personaje {
     private int percepcionPasiva;
     private int iniciativa;
     private String cronica;
+    private int fuerza;
+    @Column(name="fuerza_mod")
+    private String fuerzaMod;
+    private int destreza;
+    @Column(name="destreza_mod")
+    private String destrezaMod;
+    private int constitucion;
+    @Column(name="constitucion_mod")
+    private String constitucionMod;
+    private int inteligencia;
+    @Column(name="inteligencia_mod")
+    private String inteligenciaMod;
+    private int sabiduria;
+    @Column(name="sabiduria_mod")
+    private String sabiduriaMod;
+    private int carisma;
+    @Column(name="carisma_mod")
+    private String carismaMod;
+    private Blob retrato;
+   
+   
 
 }

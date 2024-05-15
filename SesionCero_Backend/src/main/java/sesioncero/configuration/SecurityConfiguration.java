@@ -1,7 +1,7 @@
-package sesioncero.configuration;
+//package sesioncero.configuration;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
+//import org.springframework.beans.factory.annotation.Autowired;
+/*import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -15,7 +15,7 @@ import sesioncero.configuration.JwtTokenProvider.JwtTokenFilter;
 /**
  * Configuración de seguridad para la aplicación, utilizando Spring Security.
  */
-@Configuration
+/*@Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
 
@@ -32,8 +32,8 @@ public class SecurityConfiguration {
 	 * @return SecurityFilterChain La cadena de filtros de seguridad configurada.
 	 * @throws Exception Si ocurre un error en la configuración de seguridad.
 	 */
-	@Bean
-	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+	//@Bean
+	/*SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.csrf(csrf -> csrf.disable())
 				.authorizeHttpRequests(
 						authz -> authz.requestMatchers("/auth/**").permitAll().anyRequest().authenticated())
@@ -49,8 +49,8 @@ public class SecurityConfiguration {
 	 * 
 	 * @return BCryptPasswordEncoder Un codificador de contraseñas BCrypt.
 	 */
-	@Bean
-	BCryptPasswordEncoder passwordEncoder() {
+	//@Bean
+	/*BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 }

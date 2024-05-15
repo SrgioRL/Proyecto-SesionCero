@@ -17,7 +17,7 @@ import sesioncero.modelo.entities.Jugador;
 import sesioncero.services.JugadorService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RequestMapping("/jugador")
 
 public class JugadorRestController {
