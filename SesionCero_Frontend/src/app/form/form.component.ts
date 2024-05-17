@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { ascendencias } from '../dataConstants/ascendencias';
 import { clases } from '../dataConstants/clases';
 import { alineamientos } from '../dataConstants/alineamientos';
+import { habilidadesPorClase, todasLasHabilidades } from '../dataConstants/habilidadesPorClase';
 
 @Component({
   selector: 'app-form',
@@ -14,6 +15,9 @@ export class FormComponent implements OnInit {
   ascendencias = ascendencias;
   clases = clases;
   alineamientos = alineamientos;
+  habilidadesPorClase = habilidadesPorClase;
+  todasLasHabilidades = todasLasHabilidades;
+
   caracteristicas = [
     { key: 'fuerza', label: 'Fuerza' },
     { key: 'destreza', label: 'Destreza' },
@@ -48,6 +52,8 @@ export class FormComponent implements OnInit {
       sabiduria: [10, [Validators.required, Validators.min(1), Validators.max(20)]],
       carisma: [10, [Validators.required, Validators.min(1), Validators.max(20)]],
       cronica: [''],
+      habilidadesFijas: this.fb.array([]),
+      habilidadesAdicionales: this.fb.array([]),
     });
     this.suscripcionesFormulario();
   }
@@ -58,6 +64,7 @@ export class FormComponent implements OnInit {
     this.form.get('id_clase')?.valueChanges.subscribe(() => {
       this.calcularPG();
       this.calcularCA();
+      this.asignarHabilidadesPorClase();
     });
     this.form.get('constitucion')?.valueChanges.subscribe(() => {
       this.calcularPG();
@@ -132,6 +139,36 @@ export class FormComponent implements OnInit {
   modPercepcion(): void {
     const sabiduriaMod = this.calcularModificador(this.form.get('sabiduria')?.value);
     this.form.patchValue({ percepcionPasiva: 10 + sabiduriaMod });
+  }
+
+  asignarHabilidadesPorClase(): void {
+    const claseId = this.form.get('id_clase')?.value;
+    const claseSeleccionada = this.clases.find(clase => clase.id === +claseId);
+    if (claseSeleccionada) {
+      const habilidadesClase = this.habilidadesPorClase[claseSeleccionada.name as keyof typeof habilidadesPorClase] || [];
+      const habilidadesFijasArray = this.form.get('habilidadesFijas') as FormArray;
+      habilidadesFijasArray.clear();
+      habilidadesClase.forEach((habilidad: string) => {
+        habilidadesFijasArray.push(this.fb.control(habilidad));
+      });
+    }
+  }
+
+  toggleHabilidadAdicional(habilidad: string): void {
+    const habilidadesAdicionalesArray = this.form.get('habilidadesAdicionales') as FormArray;
+    const index = habilidadesAdicionalesArray.controls.findIndex(control => control.value === habilidad);
+    if (index !== -1) {
+      habilidadesAdicionalesArray.removeAt(index);
+    } else {
+      if (habilidadesAdicionalesArray.length < 2) { // Limitar a 2 habilidades adicionales
+        habilidadesAdicionalesArray.push(this.fb.control(habilidad));
+      }
+    }
+  }
+
+  isHabilidadAdicionalDisabled(habilidad: string): boolean {
+    const habilidadesAdicionalesArray = this.form.get('habilidadesAdicionales') as FormArray;
+    return habilidadesAdicionalesArray.length >= 2 && !habilidadesAdicionalesArray.value.includes(habilidad);
   }
 
   onSubmit() {

@@ -21,7 +21,6 @@
               class="form-control form-control-sm"
               id="nombre"
               formControlName="nombre"
-              
             />
             <div *ngIf="campoInvalido('nombre')" class="text-danger">
               El nombre es obligatorio.
@@ -91,6 +90,31 @@
             formControlName="cronica"
             placeholder="Introduce una descripción de tu personaje"
           ></textarea>
+
+          <h2 class="title">HABILIDADES</h2>
+          <div class="form-group">
+            <label>Habilidades Fijas:</label>
+            <ul>
+              <li *ngFor="let habilidad of form.get('habilidadesFijas')?.value">
+                {{ habilidad }}
+              </li>
+            </ul>
+          </div>
+          <div class="form-group">
+            <label>Habilidades Adicionales (elige hasta 2):</label>
+            <div class="habilidades-container">
+              <div class="habilidad" *ngFor="let habilidad of todasLasHabilidades">
+                <input
+                  type="checkbox"
+                  [value]="habilidad"
+                  (change)="toggleHabilidadAdicional(habilidad)"
+                  [checked]="form.get('habilidadesAdicionales')?.value.includes(habilidad)"
+                  [disabled]="isHabilidadAdicionalDisabled(habilidad)"
+                />
+                {{ habilidad }}
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="col-md-4 col-lg-4 columna2">
