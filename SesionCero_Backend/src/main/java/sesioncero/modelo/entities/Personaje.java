@@ -39,9 +39,11 @@ public class Personaje {
     @ManyToOne
 	@JoinColumn(name="id_alineamiento")
     private Alineamiento alineamiento;
+
     @ManyToOne
 	@JoinColumn(name="id_jugador")
     private Jugador jugador;
+    
     private int nivel;
     @Column(name="CA")
     private int ca;

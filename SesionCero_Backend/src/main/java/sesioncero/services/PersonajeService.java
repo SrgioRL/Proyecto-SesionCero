@@ -1,6 +1,8 @@
 package sesioncero.services;
 
 import java.util.List;
+
+import sesioncero.modelo.entities.Jugador;
 import sesioncero.modelo.entities.Personaje;
 
 public interface PersonajeService {
@@ -10,6 +12,7 @@ public interface PersonajeService {
 		Personaje insertOne(Personaje personaje);
 		boolean deleteOne(int idPersonaje);
 		Personaje updateOne(Personaje personaje); 
+		List<Personaje> findPersonajeByJugador(Jugador jugador);
 	
 		
 		

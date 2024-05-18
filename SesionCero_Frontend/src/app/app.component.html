@@ -2,9 +2,14 @@
 <!-- mostrar la barra de navegación 
   en todas las páginas
    excepto en la página de login. -->
-<div *ngIf="!isLoginPage()">
-  <app-nav></app-nav>
-  <app-footer></app-footer>
-</div>
+   <div *ngIf="showNavAndFooter">
+    <app-nav></app-nav>
+  </div>
+  
+  <router-outlet></router-outlet>
+  
+  <div *ngIf="showNavAndFooter">
+    <app-footer></app-footer>
+  </div>
 
 <router-outlet></router-outlet>

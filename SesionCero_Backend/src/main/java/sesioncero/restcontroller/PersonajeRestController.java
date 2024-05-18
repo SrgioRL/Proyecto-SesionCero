@@ -3,6 +3,7 @@ package sesioncero.restcontroller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,8 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import sesioncero.modelo.entities.Jugador;
 import sesioncero.modelo.entities.Personaje;
+import sesioncero.services.JugadorService;
 import sesioncero.services.PersonajeService;
 
 @RestController
@@ -27,6 +29,9 @@ public class PersonajeRestController {
 
 	@Autowired
 	private PersonajeService personajeService;
+
+    @Autowired
+    private JugadorService jugadorService;
 
 	 // Método para agregar un nuevo personaje
     @PostMapping("/alta")
@@ -56,10 +61,18 @@ public class PersonajeRestController {
     	return personajeService.updateOne(personaje);
     }
     
-    //Método para buscar todos los jugadores
+    //Método para buscar todos los personajes
     @GetMapping ("/todos")
     public List <Personaje> buscarPersonajes () {
     	return personajeService.findAll();
     }
     
+    @GetMapping("/jugador/{idJugador}/personajes")
+    public List<Personaje> obtenerPersonajesPorIdJugador(@PathVariable int idJugador) {
+        Jugador jugador = jugadorService.findById(idJugador);
+        return personajeService.findPersonajeByJugador(jugador);
+    }
+
+ 
+
 }
