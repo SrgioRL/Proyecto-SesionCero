@@ -15,16 +15,19 @@
           <h2 class="title">DETALLES</h2>
 
           <div class="form-group">
-            <label for="nombre">Nombre:</label>
+            <label for="nombre">Nombre*</label>
             <input
               type="text"
               class="form-control form-control-sm"
               id="nombre"
               formControlName="nombre"
             />
+            <div *ngIf="campoInvalido('nombre')" class="text-danger">
+              El nombre es obligatorio.
+            </div>
           </div>
           <div class="form-group">
-            <label for="id_ascendencia">Ascendencia:</label>
+            <label for="id_ascendencia">Ascendencia*</label>
             <select
               class="form-control form-control-sm"
               id="id_ascendencia"
@@ -34,9 +37,12 @@
                 {{ asc.name }}
               </option>
             </select>
+            <div *ngIf="campoInvalido('id_ascendencia')" class="text-danger">
+              La ascendencia es obligatoria.
+            </div>
           </div>
           <div class="form-group">
-            <label for="id_clase">Clase:</label>
+            <label for="id_clase">Clase*</label>
             <select
               class="form-control form-control-sm"
               id="id_clase"
@@ -46,9 +52,12 @@
                 {{ cl.name }}
               </option>
             </select>
+            <div *ngIf="campoInvalido('id_clase')" class="text-danger">
+              La clase es obligatoria.
+            </div>
           </div>
           <div class="form-group">
-            <label for="id_alineamiento">Alineamiento:</label>
+            <label for="id_alineamiento">Alineamiento*</label>
             <select
               class="form-control form-control-sm"
               id="id_alineamiento"
@@ -58,6 +67,9 @@
                 {{ al.name }}
               </option>
             </select>
+            <div *ngIf="campoInvalido('id_alineamiento')" class="text-danger">
+              El alineamiento es obligatorio.
+            </div>
           </div>
           <div class="form-group">
             <label for="retrato" class="file-upload">
@@ -68,7 +80,7 @@
               id="retrato"
               class="form-control-file"
               style="display: none"
-              (change)="onFileSelected($event)"
+              (change)="archivoSeleccionado($event)"
             />
           </div>
           <h2 class="title">CRÓNICA</h2>
@@ -78,6 +90,31 @@
             formControlName="cronica"
             placeholder="Introduce una descripción de tu personaje"
           ></textarea>
+
+          <h2 class="title">HABILIDADES</h2>
+          <div class="form-group">
+            <label>Habilidades Fijas:</label>
+            <ul>
+              <li *ngFor="let habilidad of form.get('habilidadesFijas')?.value">
+                {{ habilidad }}
+              </li>
+            </ul>
+          </div>
+          <div class="form-group">
+            <label>Habilidades Adicionales (elige hasta 2):</label>
+            <div class="habilidades-container">
+              <div class="habilidad" *ngFor="let habilidad of todasLasHabilidades">
+                <input
+                  type="checkbox"
+                  [value]="habilidad"
+                  (change)="toggleHabilidadAdicional(habilidad)"
+                  [checked]="form.get('habilidadesAdicionales')?.value.includes(habilidad)"
+                  [disabled]="isHabilidadAdicionalDisabled(habilidad)"
+                />
+                {{ habilidad }}
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="col-md-4 col-lg-4 columna2">
@@ -114,7 +151,7 @@
               <button
                 class="btn btn-outline-secondary botonmenos"
                 type="button"
-                (click)="decreaseModifier(item.key)"
+                (click)="disminuirModificador(item.key)"
               >
                 -
               </button>
@@ -127,13 +164,16 @@
               <button
                 class="btn btn-outline-secondary botonmas"
                 type="button"
-                (click)="increaseModifier(item.key)"
+                (click)="aumentarModificador(item.key)"
               >
                 +
               </button>
               <span class="input-group-text modificador"
                 >Mod: {{ calcularModificador(form.get(item.key)?.value) }}</span
               >
+              <div *ngIf="campoInvalido(item.key)" class="text-danger">
+                {{ item.label }} debe estar entre 1 y 20.
+              </div>
             </div>
           </div>
         </div>

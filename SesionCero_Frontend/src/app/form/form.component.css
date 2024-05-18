@@ -1,165 +1,137 @@
 @font-face {
-    font-family: 'Modesto';
-    src: url("../../assets/fonts/Modesto.ttf") format('ttf');
+  font-family: 'Modesto';
+  src: url("../../assets/fonts/Modesto.ttf") format('ttf');
 }
 
 /* Paleta de colores */
 .base {
-    background-color: #222831; 
+  background-color: #222831; 
 }
 
 .secundario {
-    background-color: #676C77; 
+  background-color: #676C77; 
 }
 
 .ternario {
-    background-color: #474D3B; 
+  background-color: #474D3B; 
 }
 
 .positivo {
-    background-color: #ADCC6C !important; 
+  background-color: #ADCC6C !important; 
 }
 
 .negativo {
-    background-color: #CC7B6C; 
+  background-color: #CC7B6C; 
 }
 
 .body {
-    font-family: 'Roboto', sans-serif !important;
-    background-color: #393E46 !important;
-    height: 100vh; /* Esto establece la altura al 100% del viewport */
+  font-family: 'Roboto', sans-serif !important;
+  background-color: #393E46 !important;
+  min-height: 100vh; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
 }
 
-
-
-.columna1{
-    
-    border-radius: 25px;
-    /* background-color: rgba(255, 255, 255, 0.35);
-    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.233); */
-   padding-right: 15px !important;
-   padding-left: 15px !important;
-   color:#ffffff;
-}
-
-.columna2{
-    border-radius: 25px;
-    /* background-color: rgba(255, 255, 255, 0.35); */
-    /* box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.233); */
-    padding-right: 15px !important;
-    padding-left: 15px !important;
-    color:#ffffff;
-
-}
-/* Estilos para el contenedor del formulario */
 .container {
-
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 800px;
-    padding: 40px;
-   padding-top: 90px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 800px;
+  padding: 40px;
+  padding-top: 90px;
+  background-color: #222831;
+  border-radius: 25px;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.233);
+  color: #ffffff;
 }
-
-
-
-
-
 
 .tituloCaract {
-    font-family: 'Roboto', sans-serif  !important; 
-    
-}
-/* Botones - y + */
-.botonmas {
-    color: #ffffff !important; 
-    background-color: #2d8a9c !important;
-    border-radius: 05px 55px 55px 05px !important;
-   margin-right: 10px;
-   margin-left: 10px;
-    font-weight: 900 !important;
-    transition: all 0.3s ease !important;
-    font-family: 'Roboto', sans-serif  !important;
-    border: 0;
+  font-family: 'Roboto', sans-serif !important;
 }
 
-.botonmenos {
-    color: #ffffff !important; 
-    background-color: #2d8a9c !important;
-    border-radius: 55px 05px 05px 55px !important;
-   margin-right: 10px;
-   margin-left: 10px;
-    font-weight: 900 !important;
-    transition: all 0.3s ease !important;
-    font-family: 'Roboto', sans-serif  !important;
-    border: 0; 
+.botonmas, .botonmenos {
+  color: #ffffff !important; 
+  background-color: #2d8a9c !important;
+  border-radius: 25px !important;
+  margin-right: 10px;
+  margin-left: 10px;
+  font-weight: 900 !important;
+  transition: all 0.3s ease !important;
+  font-family: 'Roboto', sans-serif !important;
+  border: 0;
 }
-
 
 .valorcaracteristica {
-    text-align: center;
-    background-color: #ffffff1a; 
-    color: black;
-    border: 0;
-    font-family: 'Roboto', sans-serif  !important;
-}
-/* Estilos para los encabezados de sección */
-h2 {
-    margin-bottom: 20px;
-    font-family: "Modesto", sans-serif;
+  text-align: center;
+  background-color: #ffffff1a; 
+  color: black;
+  border: 0;
+  font-family: 'Roboto', sans-serif !important;
 }
 
-/* Estilos para reducir márgenes entre elementos */
+h2 {
+  margin-bottom: 20px;
+  font-family: "Modesto", sans-serif;
+}
+
 .form-group {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .input-group {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
-
-
-/* Estilos para los campos de entrada */
-.form-control {
+.form-control, .modificador {
   background-color: #ffffff1a; 
-    border-radius: 25px;
-    opacity: 0.9;
-    color:#ffffff;
+  border-radius: 25px;
+  opacity: 0.9;
+  color: #ffffff;
 }
-
-.modificador {
-    background-color: #ffffff1a; 
-    border-radius: 25px;
-    opacity: 0.9;
-    color:#ffffff;
-}
-
 
 .textarea {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
+
 .title {
-    text-align: center;
-    color:#ffffff
+  text-align: center;
+  color: #ffffff;
 }
 
 .send {
-   
-    color: #ffffff !important; 
-    background-color: #2d8a9c !important;
-    border-radius: 25px !important;
-    padding: 10px 20px !important;
-    font-weight: 500 !important;
-    transition: all 0.3s ease !important;
-    font-family: 'Roboto', sans-serif  !important; 
+  color: #ffffff !important; 
+  background-color: #2d8a9c !important;
+  border-radius: 25px !important;
+  padding: 10px 20px !important;
+  font-weight: 500 !important;
+  transition: all 0.3s ease !important;
+  font-family: 'Roboto', sans-serif !important; 
 }
 
 .send:hover {
-    background-color: #ce8821 !important;
+  background-color: #ce8821 !important;
 }
 
 .todo {
-    background-color: #ffffff1a; 
-    margin-bottom: 24px;
+  background-color: #ffffff1a; 
+  margin-bottom: 24px;
+  padding: 20px;
+  border-radius: 25px;
+}
+
+.habilidades-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.habilidad {
+  flex: 0 0 50%; 
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.habilidad input[type="checkbox"] {
+  margin-right: 10px;
 }
