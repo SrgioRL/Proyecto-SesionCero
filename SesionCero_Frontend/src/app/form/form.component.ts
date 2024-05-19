@@ -4,6 +4,7 @@ import { ascendencias } from '../dataConstants/ascendencias';
 import { clases } from '../dataConstants/clases';
 import { alineamientos } from '../dataConstants/alineamientos';
 import { habilidadesPorClase, todasLasHabilidades } from '../dataConstants/habilidadesPorClase';
+import { PersonajeService } from '../services/personaje.service';  // Importa el servicio
 
 @Component({
   selector: 'app-form',
@@ -34,7 +35,10 @@ export class FormComponent implements OnInit {
   private modDestreza = 0;
   private idClaseAnteriorCA = 0;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private personajeService: PersonajeService  // Inyecta el servicio
+  ) {
     this.form = this.fb.group({
       nombre: ['', Validators.required],
       id_ascendencia: ['', Validators.required],
@@ -160,7 +164,7 @@ export class FormComponent implements OnInit {
     if (index !== -1) {
       habilidadesAdicionalesArray.removeAt(index);
     } else {
-      if (habilidadesAdicionalesArray.length < 2) { // Limitar a 2 habilidades adicionales
+      if (habilidadesAdicionalesArray.length < 2) { 
         habilidadesAdicionalesArray.push(this.fb.control(habilidad));
       }
     }
@@ -173,10 +177,16 @@ export class FormComponent implements OnInit {
 
   onSubmit() {
     if (this.form.valid) {
-      console.log(this.form.value);
-      // Aquí puedes manejar el envío de datos al backend
+      this.personajeService.altaPersonaje(this.form.value).subscribe(
+        response => {
+          console.log('Personaje creado con éxito', response);
+        },
+        error => {
+          console.error('Error al crear el personaje', error);
+        }
+      );
     } else {
-      this.form.markAllAsTouched();  // Marca todos los campos como tocados para mostrar mensajes de error
+      this.form.markAllAsTouched();  
       console.log('El formulario no es válido');
     }
   }
