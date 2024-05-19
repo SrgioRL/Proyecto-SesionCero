@@ -1,8 +1,11 @@
 package sesioncero.configuration;
 
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,38 +18,35 @@ import sesioncero.services.JugadorServiceMyImpl8;
 @EnableWebSecurity
 public class SecurityConfiguration {
 
-    @Autowired
-    private JwtTokenFilter jwtTokenFilter;
+	@Autowired
+	private JugadorServiceMyImpl8 jugadorServiceMyImpl8;
 
-    @Autowired
-    private JugadorServiceMyImpl8 jugadorServiceMyImpl8;
+	@Bean
+	SecurityFilterChain securityFilterChain(HttpSecurity http, ObjectProvider<JwtTokenFilter> jwtTokenFilterProvider)
+			throws Exception {
+		http.csrf(csrf -> csrf.disable())
+				.authorizeHttpRequests(
+						authz -> authz.requestMatchers("/auth/**").permitAll().anyRequest().authenticated())
+				.formLogin(form -> form.loginPage("/login").defaultSuccessUrl("/home", true).permitAll())
+				.logout(logout -> logout.logoutUrl("/logout").logoutSuccessUrl("/login").permitAll())
+				.addFilterBefore(jwtTokenFilterProvider.getIfAvailable(), UsernamePasswordAuthenticationFilter.class);
 
-    @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(authz -> authz
-                        .requestMatchers("/auth/**").permitAll()
-                        .anyRequest().authenticated())
-                .formLogin(form -> form
-                        .loginPage("/login")
-                        .defaultSuccessUrl("/home", true)
-                        .permitAll())
-                .logout(logout -> logout
-                        .logoutUrl("/logout")
-                        .logoutSuccessUrl("/login")
-                        .permitAll())
-                .addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
+		return http.build();
+	}
 
-        return http.build();
-    }
+	@Bean
+	BCryptPasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 
-    @Bean
-    BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+	@Bean
+	UserDetailsService userDetailsService() {
+		return jugadorServiceMyImpl8;
+	}
 
-    @Bean
-    UserDetailsService userDetailsService() {
-        return jugadorServiceMyImpl8;
-    }
+	@Bean
+	public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
+			throws Exception {
+		return authenticationConfiguration.getAuthenticationManager();
+	}
 }
