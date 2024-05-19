@@ -5,6 +5,7 @@ import { FormComponent } from './form/form.component';
 import { SignupComponent } from './signup/signup.component';
 import { AllpjComponent } from './allpj/allpj.component';
 import { JugadorComponent } from './jugador/jugador.component';
+import { PersonajeComponent } from './personaje/personaje.component';  
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -12,6 +13,7 @@ const routes: Routes = [
   {path: 'crear', component: FormComponent},
   {path: 'todos', component: AllpjComponent},
   {path: 'jugador', component: JugadorComponent},
+  {path: 'personaje', component: PersonajeComponent},
   
 
 ];
