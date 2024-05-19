@@ -25,8 +25,8 @@ public class SecurityConfiguration {
     SecurityFilterChain securityFilterChain(HttpSecurity http, ObjectProvider<JwtTokenFilter> jwtTokenFilterProvider) throws Exception {
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authz -> authz
-                        .requestMatchers("/jugador/login", "/jugador/alta").permitAll() // Permitir acceso a login y alta sin autenticación
-                        .anyRequest().authenticated()) // Requerir autenticación para cualquier otra ruta
+                        .requestMatchers("/jugador/login", "/jugador/alta").permitAll()
+                        .anyRequest().authenticated())
                 .addFilterBefore(jwtTokenFilterProvider.getIfAvailable(), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();

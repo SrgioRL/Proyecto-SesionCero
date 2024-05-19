@@ -19,57 +19,53 @@ import sesioncero.services.JugadorService;
 @RequestMapping("/jugador")
 public class JugadorRestController {
 
-    @Autowired
-    private JugadorService jugadorService;
+	@Autowired
+	private JugadorService jugadorService;
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+	@Autowired
+	private AuthenticationManager authenticationManager;
 
-    @Autowired
-    private JwtTokenProvider jwtTokenProvider;
+	@Autowired
+	private JwtTokenProvider jwtTokenProvider;
 
-    // Método para el login
-    @PostMapping("/login")
-    public String login(@RequestBody LoginDTO loginDTO) {
-        try {
-            Authentication authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(loginDTO.getEmail(), loginDTO.getPassword()));
-            Jugador jugador = (Jugador) authentication.getPrincipal();
-            return jwtTokenProvider.createToken(jugador.getEmail());
-        } catch (AuthenticationException e) {
-            throw new RuntimeException("Credenciales erróneas");
-        }
-    }
-    // Método para agregar un nuevo jugador
-    @PostMapping("/alta")
-    public Jugador altaJugador(@RequestBody Jugador jugador) {
-        return jugadorService.insertOne(jugador);
-    }
+	// Método para el login
+	@PostMapping("/login")
+	public String login(@RequestBody LoginDTO loginDTO) {
+		try {
+			Authentication authentication = authenticationManager
+					.authenticate(new UsernamePasswordAuthenticationToken(loginDTO.getEmail(), loginDTO.getPassword()));
+			Jugador jugador = (Jugador) authentication.getPrincipal();
+			return jwtTokenProvider.createToken(jugador.getEmail());
+		} catch (AuthenticationException e) {
+			throw new RuntimeException("Credenciales erróneas");
+		}
+	}
 
-    // Método para eliminar un jugador por su ID
-    @DeleteMapping("/eliminar/{idJugador}")
-    public String eliminarJugador(@PathVariable int idJugador) {
-        if (jugadorService.deleteOne(idJugador))
-            return "Jugador eliminado correctamente";
-        else
-            return "Jugador no se ha podido eliminar";
-    }
+	@PostMapping("/alta")
+	public Jugador altaJugador(@RequestBody Jugador jugador) {
+		return jugadorService.insertOne(jugador);
+	}
 
-    // Método para obtener un jugador por su ID
-    @GetMapping("/uno/{idJugador}")
-    public Jugador mostrarJugador(@PathVariable int idJugador) {
-        return jugadorService.findById(idJugador);
-    }
+	@DeleteMapping("/eliminar/{idJugador}")
+	public String eliminarJugador(@PathVariable int idJugador) {
+		if (jugadorService.deleteOne(idJugador))
+			return "Jugador eliminado correctamente";
+		else
+			return "Jugador no se ha podido eliminar";
+	}
 
-    // Método para modificar un jugador
-    @PutMapping("/modificar")
-    public Jugador modificarJugador(@RequestBody Jugador jugador) {
-        return jugadorService.updateOne(jugador);
-    }
+	@GetMapping("/uno/{idJugador}")
+	public Jugador mostrarJugador(@PathVariable int idJugador) {
+		return jugadorService.findById(idJugador);
+	}
 
-    // Método para buscar todos los jugadores
-    @GetMapping("/todos")
-    public List<Jugador> buscarJugadores() {
-        return jugadorService.findAll();
-    }
+	@PutMapping("/modificar")
+	public Jugador modificarJugador(@RequestBody Jugador jugador) {
+		return jugadorService.updateOne(jugador);
+	}
+
+	@GetMapping("/todos")
+	public List<Jugador> buscarJugadores() {
+		return jugadorService.findAll();
+	}
 }
