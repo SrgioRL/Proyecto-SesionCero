@@ -15,7 +15,7 @@ import sesioncero.modelo.entities.Jugador;
 import sesioncero.services.JugadorService;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:4200") // Permitir solicitudes desde el frontend
 @RequestMapping("/jugador")
 public class JugadorRestController {
 
@@ -40,7 +40,6 @@ public class JugadorRestController {
             throw new RuntimeException("Credenciales erróneas");
         }
     }
-
     // Método para agregar un nuevo jugador
     @PostMapping("/alta")
     public Jugador altaJugador(@RequestBody Jugador jugador) {
