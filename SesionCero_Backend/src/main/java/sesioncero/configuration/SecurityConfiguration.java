@@ -1,3 +1,4 @@
+/*
 package sesioncero.configuration;
 
 import org.springframework.beans.factory.ObjectProvider;
@@ -25,7 +26,7 @@ public class SecurityConfiguration {
     SecurityFilterChain securityFilterChain(HttpSecurity http, ObjectProvider<JwtTokenFilter> jwtTokenFilterProvider) throws Exception {
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authz -> authz
-                        .requestMatchers("/jugador/login", "/jugador/alta").permitAll()
+                        .requestMatchers("/jugador/login", "/jugador/alta", "/personaje/alta").permitAll()
                         .anyRequest().authenticated())
                 .addFilterBefore(jwtTokenFilterProvider.getIfAvailable(), UsernamePasswordAuthenticationFilter.class);
 
@@ -47,3 +48,4 @@ public class SecurityConfiguration {
         return authenticationConfiguration.getAuthenticationManager();
     }
 }
+*/

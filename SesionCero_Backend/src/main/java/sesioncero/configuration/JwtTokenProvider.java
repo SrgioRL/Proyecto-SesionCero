@@ -1,3 +1,4 @@
+/*
 package sesioncero.configuration;
 
 import java.util.Date;
@@ -37,3 +38,4 @@ public class JwtTokenProvider {
         return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
     }
 }
+*/

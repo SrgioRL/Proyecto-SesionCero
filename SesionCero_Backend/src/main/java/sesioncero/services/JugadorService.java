@@ -1,8 +1,8 @@
 package sesioncero.services;
 
 import java.util.List;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+/*import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;*/
 import sesioncero.modelo.entities.Jugador;
 
 public interface JugadorService {
@@ -11,5 +11,5 @@ public interface JugadorService {
     Jugador insertOne(Jugador jugador);
     boolean deleteOne(int idJugador);
     Jugador updateOne(Jugador jugador);
-    UserDetails loadUserByUsername(String email) throws UsernameNotFoundException;
+    /*UserDetails loadUserByUsername(String email) throws UsernameNotFoundException;*/
 }

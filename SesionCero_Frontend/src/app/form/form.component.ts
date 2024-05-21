@@ -4,7 +4,8 @@ import { ascendencias } from '../dataConstants/ascendencias';
 import { clases } from '../dataConstants/clases';
 import { alineamientos } from '../dataConstants/alineamientos';
 import { habilidadesPorClase, todasLasHabilidades } from '../dataConstants/habilidadesPorClase';
-import { PersonajeService } from '../services/personaje.service';  // Importa el servicio
+import { PersonajeService } from '../services/personaje.service';
+import { Personaje } from '../interfaces/personaje.interface';
 
 @Component({
   selector: 'app-form',
@@ -12,12 +13,13 @@ import { PersonajeService } from '../services/personaje.service';  // Importa el
   styleUrls: ['./form.component.css'],
 })
 export class FormComponent implements OnInit {
-  form: FormGroup;
+  formulario: FormGroup;
   ascendencias = ascendencias;
   clases = clases;
   alineamientos = alineamientos;
   habilidadesPorClase = habilidadesPorClase;
   todasLasHabilidades = todasLasHabilidades;
+  habilidadesFijasSeleccionadas: string[] = [];
 
   caracteristicas = [
     { key: 'fuerza', label: 'Fuerza' },
@@ -37,9 +39,9 @@ export class FormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private personajeService: PersonajeService  // Inyecta el servicio
+    private personajeService: PersonajeService
   ) {
-    this.form = this.fb.group({
+    this.formulario = this.fb.group({
       nombre: ['', Validators.required],
       id_ascendencia: ['', Validators.required],
       id_clase: ['', Validators.required],
@@ -49,150 +51,232 @@ export class FormComponent implements OnInit {
       ca: [''],
       percepcionPasiva: [10],
       iniciativa: [''],
-      fuerza: [10, [Validators.required, Validators.min(1), Validators.max(20)]],
-      destreza: [10, [Validators.required, Validators.min(1), Validators.max(20)]],
-      constitucion: [10, [Validators.required, Validators.min(1), Validators.max(20)]],
-      inteligencia: [10, [Validators.required, Validators.min(1), Validators.max(20)]],
-      sabiduria: [10, [Validators.required, Validators.min(1), Validators.max(20)]],
-      carisma: [10, [Validators.required, Validators.min(1), Validators.max(20)]],
+      fuerza: [
+        10,
+        [Validators.required, Validators.min(1), Validators.max(20)],
+      ],
+      destreza: [
+        10,
+        [Validators.required, Validators.min(1), Validators.max(20)],
+      ],
+      constitucion: [
+        10,
+        [Validators.required, Validators.min(1), Validators.max(20)],
+      ],
+      inteligencia: [
+        10,
+        [Validators.required, Validators.min(1), Validators.max(20)],
+      ],
+      sabiduria: [
+        10,
+        [Validators.required, Validators.min(1), Validators.max(20)],
+      ],
+      carisma: [
+        10,
+        [Validators.required, Validators.min(1), Validators.max(20)],
+      ],
       cronica: [''],
       habilidadesFijas: this.fb.array([]),
       habilidadesAdicionales: this.fb.array([]),
+      retrato: [null],
     });
-    this.suscripcionesFormulario();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.configurarListenersFormulario();
+    this.actualizarCamposCalculados();
+  }
 
-  private suscripcionesFormulario(): void {
-    this.form.get('id_clase')?.valueChanges.subscribe(() => {
-      this.calcularPG();
-      this.calcularCA();
+  private configurarListenersFormulario(): void {
+    this.formulario.get('id_clase')?.valueChanges.subscribe(() => {
+      this.actualizarCamposCalculados();
       this.asignarHabilidadesPorClase();
     });
-    this.form.get('constitucion')?.valueChanges.subscribe(() => {
-      this.calcularPG();
-    });
-    this.form.get('destreza')?.valueChanges.subscribe(() => {
+    this.formulario.get('constitucion')?.valueChanges.subscribe(() => this.calcularPG());
+    this.formulario.get('destreza')?.valueChanges.subscribe(() => {
       this.calcularCA();
-      this.modIniciativa();
+      this.actualizarIniciativa();
     });
-    this.form.get('sabiduria')?.valueChanges.subscribe(() => {
-      this.modPercepcion();
-    });
+    this.formulario.get('sabiduria')?.valueChanges.subscribe(() => this.actualizarPercepcion());
+  }
+
+  private actualizarCamposCalculados(): void {
     this.calcularPG();
     this.calcularCA();
-    this.modIniciativa();
-    this.modPercepcion();
+    this.actualizarIniciativa();
+    this.actualizarPercepcion();
   }
 
   archivoSeleccionado(event: any): void {
-    const file = event.target.files[0];
-    this.form.patchValue({ retrato: file });
+    const archivo = event.target.files[0];
+    this.convertirImagenABase64(archivo).then((base64: string | ArrayBuffer | null) => {
+      this.formulario.patchValue({ retrato: base64 });
+    });
+  }
+
+  private convertirImagenABase64(archivo: File): Promise<string | ArrayBuffer | null> {
+    return new Promise((resolve, reject) => {
+      const lector = new FileReader();
+      lector.readAsDataURL(archivo);
+      lector.onload = () => resolve(lector.result);
+      lector.onerror = (error) => reject(error);
+    });
   }
 
   aumentarModificador(caracteristica: string) {
-    const value = this.form.get(caracteristica)?.value || 10;
-    this.form.get(caracteristica)?.setValue(value + 1);
+    this.cambiarValorCaracteristica(caracteristica, 1);
   }
 
   disminuirModificador(caracteristica: string) {
-    const value = this.form.get(caracteristica)?.value || 10;
-    if (value > 1) {
-      this.form.get(caracteristica)?.setValue(value - 1);
+    this.cambiarValorCaracteristica(caracteristica, -1);
+  }
+
+  private cambiarValorCaracteristica(caracteristica: string, cambio: number) {
+    const valor = this.formulario.get(caracteristica)?.value || 10;
+    const nuevoValor = valor + cambio;
+    if (nuevoValor >= 1 && nuevoValor <= 20) {
+      this.formulario.get(caracteristica)?.setValue(nuevoValor);
     }
   }
 
-  calcularModificador(valor: number): number {
+  public calcularModificador(valor: number): number {
     return Math.floor((valor - 10) / 2);
   }
 
-  calcularPG(): void {
-    const claseId = this.form.get('id_clase')?.value;
-    const constitucion = this.form.get('constitucion')?.value;
+  private calcularPG(): void {
+    const claseId = this.formulario.get('id_clase')?.value;
+    const constitucion = this.formulario.get('constitucion')?.value;
 
     if (this.idClaseAnteriorPG !== claseId) {
       this.idClaseAnteriorPG = claseId;
-      const claseSeleccionada = this.clases.find(clase => clase.id === +claseId);
-      this.basePG = claseSeleccionada ? Math.floor(Math.random() * claseSeleccionada.dadoGolpe) + 1 : 0;
+      this.basePG = this.obtenerValorBaseClase(claseId, 'dadoGolpe');
     }
 
     this.modConstitucion = this.calcularModificador(constitucion);
-    this.form.patchValue({ pg: this.basePG + this.modConstitucion });
+    this.formulario.patchValue({ pg: this.basePG + this.modConstitucion });
   }
 
-  calcularCA(): void {
-    const claseId = this.form.get('id_clase')?.value;
-    const destreza = this.form.get('destreza')?.value;
+  private calcularCA(): void {
+    const claseId = this.formulario.get('id_clase')?.value;
+    const destreza = this.formulario.get('destreza')?.value;
 
     if (this.idClaseAnteriorCA !== claseId) {
       this.idClaseAnteriorCA = claseId;
-      const claseSeleccionada = this.clases.find(clase => clase.id === +claseId);
-      this.baseCA = claseSeleccionada ? Math.floor(Math.random() * claseSeleccionada.dadoGolpe) + 1 : 0;
+      this.baseCA = this.obtenerValorBaseClase(claseId, 'dadoGolpe');
     }
 
     this.modDestreza = this.calcularModificador(destreza);
-    this.form.patchValue({ ca: this.baseCA + this.modDestreza });
+    this.formulario.patchValue({ ca: this.baseCA + this.modDestreza });
   }
 
-  modIniciativa(): void {
-    const destrezaMod = this.calcularModificador(this.form.get('destreza')?.value);
-    this.form.patchValue({ iniciativa: destrezaMod });
-  }
-
-  modPercepcion(): void {
-    const sabiduriaMod = this.calcularModificador(this.form.get('sabiduria')?.value);
-    this.form.patchValue({ percepcionPasiva: 10 + sabiduriaMod });
-  }
-
-  asignarHabilidadesPorClase(): void {
-    const claseId = this.form.get('id_clase')?.value;
+  private obtenerValorBaseClase(claseId: number, key: string): number {
     const claseSeleccionada = this.clases.find(clase => clase.id === +claseId);
-    if (claseSeleccionada) {
-      const habilidadesClase = this.habilidadesPorClase[claseSeleccionada.name as keyof typeof habilidadesPorClase] || [];
-      const habilidadesFijasArray = this.form.get('habilidadesFijas') as FormArray;
-      habilidadesFijasArray.clear();
-      habilidadesClase.forEach((habilidad: string) => {
-        habilidadesFijasArray.push(this.fb.control(habilidad));
-      });
+    // Asegúrate de que la clave (key) sea de tipo number
+    if (claseSeleccionada && typeof claseSeleccionada[key as keyof typeof claseSeleccionada] === 'number') {
+      return Math.floor(Math.random() * (claseSeleccionada[key as keyof typeof claseSeleccionada] as number)) + 1;
     }
+    return 0;
   }
 
-  toggleHabilidadAdicional(habilidad: string): void {
-    const habilidadesAdicionalesArray = this.form.get('habilidadesAdicionales') as FormArray;
-    const index = habilidadesAdicionalesArray.controls.findIndex(control => control.value === habilidad);
+  private actualizarIniciativa(): void {
+    const modDestreza = this.calcularModificador(this.formulario.get('destreza')?.value);
+    this.formulario.patchValue({ iniciativa: modDestreza });
+  }
+
+  private actualizarPercepcion(): void {
+    const modSabiduria = this.calcularModificador(this.formulario.get('sabiduria')?.value);
+    this.formulario.patchValue({ percepcionPasiva: 10 + modSabiduria });
+  }
+
+  private asignarHabilidadesPorClase(): void {
+    const claseId = this.formulario.get('id_clase')?.value;
+    const habilidadesClase = this.obtenerHabilidadesClase(claseId);
+    this.habilidadesFijasSeleccionadas = habilidadesClase; // Guardar habilidades fijas seleccionadas
+    this.establecerArrayHabilidades('habilidadesFijas', habilidadesClase);
+    this.resetHabilidadesAdicionales(); // Resetear habilidades adicionales seleccionadas
+  }
+
+  private obtenerHabilidadesClase(claseId: number): string[] {
+    const claseSeleccionada = this.clases.find(clase => clase.id === +claseId);
+    return claseSeleccionada ? (this.habilidadesPorClase[claseSeleccionada.name as keyof typeof habilidadesPorClase] || []) : [];
+  }
+
+  private establecerArrayHabilidades(nombreArray: string, habilidades: string[]): void {
+    const arrayForm = this.formulario.get(nombreArray) as FormArray;
+    arrayForm.clear();
+    habilidades.forEach(habilidad => arrayForm.push(this.fb.control(habilidad)));
+  }
+
+  private resetHabilidadesAdicionales(): void {
+    const arrayHabilidadesAdicionales = this.formulario.get('habilidadesAdicionales') as FormArray;
+    arrayHabilidadesAdicionales.clear();
+  }
+
+  alternarHabilidadAdicional(habilidad: string): void {
+    const arrayHabilidadesAdicionales = this.formulario.get('habilidadesAdicionales') as FormArray;
+    const index = arrayHabilidadesAdicionales.controls.findIndex(control => control.value === habilidad);
     if (index !== -1) {
-      habilidadesAdicionalesArray.removeAt(index);
-    } else {
-      if (habilidadesAdicionalesArray.length < 2) { 
-        habilidadesAdicionalesArray.push(this.fb.control(habilidad));
-      }
+      arrayHabilidadesAdicionales.removeAt(index);
+    } else if (arrayHabilidadesAdicionales.length < 2) {
+      arrayHabilidadesAdicionales.push(this.fb.control(habilidad));
     }
   }
 
-  isHabilidadAdicionalDisabled(habilidad: string): boolean {
-    const habilidadesAdicionalesArray = this.form.get('habilidadesAdicionales') as FormArray;
-    return habilidadesAdicionalesArray.length >= 2 && !habilidadesAdicionalesArray.value.includes(habilidad);
+  isHabilidadAdicionalDeshabilitada(habilidad: string): boolean {
+    const arrayHabilidadesAdicionales = this.formulario.get('habilidadesAdicionales') as FormArray;
+    return arrayHabilidadesAdicionales.length >= 2 && !arrayHabilidadesAdicionales.value.includes(habilidad);
   }
 
-  onSubmit() {
-    if (this.form.valid) {
-      this.personajeService.altaPersonaje(this.form.value).subscribe(
-        response => {
-          console.log('Personaje creado con éxito', response);
-        },
-        error => {
-          console.error('Error al crear el personaje', error);
-        }
+  isHabilidadFija(habilidad: string): boolean {
+    return this.habilidadesFijasSeleccionadas.includes(habilidad);
+  }
+
+  private prepararPersonaje(): Personaje {
+    const valores = this.formulario.value;
+    return {
+      idPersonaje: 0,
+      nombre: valores.nombre,
+      clase: { idClase: valores.id_clase },
+      ascendencia: { idAscendencia: valores.id_ascendencia },
+      alineamiento: { idAlineamiento: valores.id_alineamiento },
+      nivel: valores.nivel,
+      ca: valores.ca,
+      pg: valores.pg,
+      percepcionPasiva: valores.percepcionPasiva,
+      iniciativa: valores.iniciativa,
+      fuerza: valores.fuerza,
+      fuerzaMod: this.calcularModificador(valores.fuerza),
+      destreza: valores.destreza,
+      destrezaMod: this.calcularModificador(valores.destreza),
+      constitucion: valores.constitucion,
+      constitucionMod: this.calcularModificador(valores.constitucion),
+      inteligencia: valores.inteligencia,
+      inteligenciaMod: this.calcularModificador(valores.inteligencia),
+      sabiduria: valores.sabiduria,
+      sabiduriaMod: this.calcularModificador(valores.sabiduria),
+      carisma: valores.carisma,
+      carismaMod: this.calcularModificador(valores.carisma),
+      cronica: valores.cronica,
+      retrato: valores.retrato,
+      jugador: null,
+    };
+  }
+
+  onSubmit(): void {
+    if (this.formulario.valid) {
+      const personaje = this.prepararPersonaje();
+      this.personajeService.altaPersonaje(personaje).subscribe(
+        response => console.log('Personaje creado con éxito', response),
+        error => console.error('Error al crear el personaje', error)
       );
     } else {
-      this.form.markAllAsTouched();  
+      this.formulario.markAllAsTouched();
       console.log('El formulario no es válido');
     }
   }
 
-  campoInvalido(field: string): boolean {
-    const control = this.form.get(field);
+  campoInvalido(campo: string): boolean {
+    const control = this.formulario.get(campo);
     return control ? control.invalid && (control.dirty || control.touched) : false;
   }
 }

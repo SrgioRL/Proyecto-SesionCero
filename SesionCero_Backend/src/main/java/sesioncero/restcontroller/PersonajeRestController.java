@@ -1,9 +1,7 @@
 package sesioncero.restcontroller;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,16 +10,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import sesioncero.modelo.entities.Jugador;
 import sesioncero.modelo.entities.Personaje;
 import sesioncero.services.JugadorService;
 import sesioncero.services.PersonajeService;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/personaje")
 
 public class PersonajeRestController {
@@ -36,6 +32,7 @@ public class PersonajeRestController {
 	 // Método para agregar un nuevo personaje
     @PostMapping("/alta")
     public Personaje altaPersonaje(@RequestBody Personaje personaje) {
+        System.out.println("Received Personaje: " + personaje);
         return personajeService.insertOne(personaje);
     }
 

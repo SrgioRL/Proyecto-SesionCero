@@ -1,3 +1,4 @@
+/*
 package sesioncero.configuration;
 
 import jakarta.servlet.FilterChain;
@@ -46,3 +47,4 @@ public class JwtTokenFilter extends OncePerRequestFilter {
         return (bearerToken != null && bearerToken.startsWith("Bearer ")) ? bearerToken.substring(7) : null;
     }
 }
+*/

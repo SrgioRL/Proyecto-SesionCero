@@ -1,18 +1,18 @@
+
 package sesioncero.restcontroller;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.*;
-
-import sesioncero.configuration.JwtTokenProvider;
 import sesioncero.dto.LoginDTO;
 import sesioncero.modelo.entities.Jugador;
 import sesioncero.services.JugadorService;
+
+//import org.springframework.security.authentication.AuthenticationManager;
+//import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+//import org.springframework.security.core.Authentication;
+//import org.springframework.security.core.AuthenticationException;
+//import sesioncero.configuration.JwtTokenProvider;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200") // Permitir solicitudes desde el frontend
@@ -22,14 +22,13 @@ public class JugadorRestController {
 	@Autowired
 	private JugadorService jugadorService;
 
-	@Autowired
+	/*@Autowired
 	private AuthenticationManager authenticationManager;
-
 	@Autowired
-	private JwtTokenProvider jwtTokenProvider;
+	private JwtTokenProvider jwtTokenProvider;*/
 
 	// Método para el login
-	@PostMapping("/login")
+	/*@PostMapping("/login")
 	public String login(@RequestBody LoginDTO loginDTO) {
 		try {
 			Authentication authentication = authenticationManager
@@ -39,7 +38,7 @@ public class JugadorRestController {
 		} catch (AuthenticationException e) {
 			throw new RuntimeException("Credenciales erróneas");
 		}
-	}
+	}*/
 
 	@PostMapping("/alta")
 	public Jugador altaJugador(@RequestBody Jugador jugador) {

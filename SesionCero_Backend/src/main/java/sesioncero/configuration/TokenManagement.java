@@ -1,3 +1,4 @@
+/*
 package sesioncero.configuration;
 
 import org.springframework.beans.factory.ObjectProvider;
@@ -18,3 +19,4 @@ public class TokenManagement {
         return new JwtTokenFilter(jwtTokenProvider, userDetailsServiceProvider);
     }
 }
+*/

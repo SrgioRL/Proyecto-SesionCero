@@ -9,7 +9,7 @@
 
 <div class="body">
   <div class="container">
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
       <div class="row gap-5 todo">
         <div class="col-md-6 col-lg-6 columna1">
           <h2 class="title">DETALLES</h2>
@@ -41,6 +41,7 @@
               La ascendencia es obligatoria.
             </div>
           </div>
+
           <div class="form-group">
             <label for="id_clase">Clase*</label>
             <select
@@ -56,6 +57,7 @@
               La clase es obligatoria.
             </div>
           </div>
+
           <div class="form-group">
             <label for="id_alineamiento">Alineamiento*</label>
             <select
@@ -71,6 +73,7 @@
               El alineamiento es obligatorio.
             </div>
           </div>
+
           <div class="form-group">
             <label for="retrato" class="file-upload">
               <i class="fas fa-upload"></i> - Subir archivo
@@ -79,7 +82,6 @@
               type="file"
               id="retrato"
               class="form-control-file"
-              style="display: none"
               (change)="archivoSeleccionado($event)"
             />
           </div>
@@ -90,58 +92,64 @@
             formControlName="cronica"
             placeholder="Introduce una descripción de tu personaje"
           ></textarea>
-<div class="habilidades">
-          <h2 class="title">HABILIDADES</h2>
-          <div class="form-group">
-            <label>Habilidades Fijas:</label>
-            <ul>
-              <li *ngFor="let habilidad of form.get('habilidadesFijas')?.value">
-                {{ habilidad }}
-              </li>
-            </ul>
-          </div>
-          <div class="form-group">
-            <label>Habilidades Adicionales (elige hasta 2):</label>
-            <div class="habilidades-container">
-              <div class="habilidad" *ngFor="let habilidad of todasLasHabilidades">
-                <input
-                  type="checkbox"
-                  [value]="habilidad"
-                  (change)="toggleHabilidadAdicional(habilidad)"
-                  [checked]="form.get('habilidadesAdicionales')?.value.includes(habilidad)"
-                  [disabled]="isHabilidadAdicionalDisabled(habilidad)"
-                />
-                {{ habilidad }}
+          <div class="habilidades">
+            <h2 class="title">HABILIDADES</h2>
+            <div class="form-group">
+              <label>Habilidades Fijas:</label>
+              <ul>
+                <li
+                  *ngFor="let habilidad of formulario.get('habilidadesFijas')?.value"
+                >
+                  {{ habilidad }}
+                </li>
+              </ul>
+            </div>
+            <div class="form-group">
+              <label>Habilidades Adicionales (elige hasta 2):</label>
+              <div class="habilidades-container">
+                <div
+                  class="habilidad"
+                  *ngFor="let habilidad of todasLasHabilidades"
+                  [class.disabled]="isHabilidadFija(habilidad)"
+                >
+                  <input
+                    type="checkbox"
+                    [value]="habilidad"
+                    (change)="alternarHabilidadAdicional(habilidad)"
+                    [checked]="formulario.get('habilidadesAdicionales')?.value.includes(habilidad)"
+                    [disabled]="isHabilidadAdicionalDeshabilitada(habilidad) || isHabilidadFija(habilidad)"
+                  />
+                  {{ habilidad }}
+                </div>
               </div>
             </div>
           </div>
-</div>
-      </div>
+        </div>
         <div class="col-md-4 col-lg-4 columna2">
           <h2 class="title">CARACTERISTICAS</h2>
           <div class="form-group">
             <label for="pg">Puntos de Golpe (PG):</label>
             <span id="pg" class="form-control-static">
-              {{ form.get("pg")?.value }}
+              {{ formulario.get('pg')?.value }}
             </span>
           </div>
           <div class="form-group">
             <label for="ca">Clase de Armadura (CA):</label>
             <span id="ca" class="form-control-static">
-              {{ form.get("ca")?.value }}
+              {{ formulario.get('ca')?.value }}
             </span>
           </div>
           <div class="form-group">
             <label for="percepcionPasiva">Percepción Pasiva:</label>
             <span id="percepcionPasiva" class="form-control-static">
-              {{ form.get("percepcionPasiva")?.value }}
+              {{ formulario.get('percepcionPasiva')?.value }}
             </span>
           </div>
 
           <div class="form-group">
             <label for="iniciativa">Iniciativa:</label>
             <span id="iniciativa" class="form-control-static">
-              {{ form.get("iniciativa")?.value }}
+              {{ formulario.get('iniciativa')?.value }}
             </span>
           </div>
 
@@ -169,7 +177,9 @@
                 +
               </button>
               <span class="input-group-text modificador"
-                >Mod: {{ calcularModificador(form.get(item.key)?.value) }}</span
+                >Mod: {{
+                  calcularModificador(formulario.get(item.key)?.value)
+                }}</span
               >
               <div *ngIf="campoInvalido(item.key)" class="text-danger">
                 {{ item.label }} debe estar entre 1 y 20.
