@@ -171,7 +171,7 @@ export class FormComponent implements OnInit {
 
   private obtenerValorBaseClase(claseId: number, key: string): number {
     const claseSeleccionada = this.clases.find(clase => clase.id === +claseId);
-    // Asegúrate de que la clave (key) sea de tipo number
+    
     if (claseSeleccionada && typeof claseSeleccionada[key as keyof typeof claseSeleccionada] === 'number') {
       return Math.floor(Math.random() * (claseSeleccionada[key as keyof typeof claseSeleccionada] as number)) + 1;
     }
