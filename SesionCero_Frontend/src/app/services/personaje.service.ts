@@ -35,4 +35,8 @@ export class PersonajeService {
   incrementarCaracteristicas(idPersonaje: number): Observable<string> {
     return this.http.post<string>(`${this.baseUrl}/incrementar/${idPersonaje}`, null);
   }
+
+  obtenerPersonajesPorIdJugador(idJugador: number): Observable<Personaje[]> {
+    return this.http.get<Personaje[]>(`${this.baseUrl}/${idJugador}/personajes`);
+  }
 }

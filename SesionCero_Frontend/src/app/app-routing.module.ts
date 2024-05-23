@@ -11,9 +11,9 @@ const routes: Routes = [
   {path: '', component: LoginComponent},
   {path: 'signup', component: SignupComponent},
   {path: 'crear', component: FormComponent},
-  {path: 'todos', component: AllpjComponent},
-  {path: 'jugador', component: JugadorComponent},
-  {path: 'personaje', component: PersonajeComponent},
+  {path: 'todos/:idJugador', component: AllpjComponent},
+  {path: 'jugador/:idJugador', component: JugadorComponent},
+  {path: 'personaje/:idPersonaje', component: PersonajeComponent},
   
 
 ];

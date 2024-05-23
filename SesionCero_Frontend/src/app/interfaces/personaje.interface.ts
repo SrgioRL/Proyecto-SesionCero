@@ -8,7 +8,7 @@ export interface Personaje {
     idPersonaje: number;
     nombre: string;
     clase: { idClase: number };
-    ascendencia: { idAscendencia: number };
+    ascendencia: { idAscendencia: number};
     alineamiento: { idAlineamiento: number };
     nivel: number;
     ca: number;

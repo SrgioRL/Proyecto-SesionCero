@@ -64,7 +64,7 @@ public class PersonajeRestController {
     	return personajeService.findAll();
     }
     
-    @GetMapping("/jugador/{idJugador}/personajes")
+    @GetMapping("/{idJugador}/personajes")
     public List<Personaje> obtenerPersonajesPorIdJugador(@PathVariable int idJugador) {
         Jugador jugador = jugadorService.findById(idJugador);
         return personajeService.findPersonajeByJugador(jugador);

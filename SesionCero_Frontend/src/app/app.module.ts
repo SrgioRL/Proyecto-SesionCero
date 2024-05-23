@@ -34,7 +34,7 @@ import { PersonajeComponent } from './personaje/personaje.component';
     FormsModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
  
   bootstrap: [AppComponent]
