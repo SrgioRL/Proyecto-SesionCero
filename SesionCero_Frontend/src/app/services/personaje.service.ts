@@ -39,4 +39,9 @@ export class PersonajeService {
   obtenerPersonajesPorIdJugador(idJugador: number): Observable<Personaje[]> {
     return this.http.get<Personaje[]>(`${this.baseUrl}/${idJugador}/personajes`);
   }
+
+  obtenerRetrato(idPersonaje: number): Observable<any> {
+    const options = { responseType: 'blob' as 'json' };
+    return this.http.get(`${this.baseUrl}/${idPersonaje}/retrato`, options);
+  }
 }

@@ -40,7 +40,7 @@ export class JugadorComponent implements OnInit {
           console.error('Error al agregar jugador:', error);
         }
       );
-    }
+    }//TODO: redireccionar a /personajes para mostrar la página en vacío
   }
 
   eliminarJugador(idJugador: number) {

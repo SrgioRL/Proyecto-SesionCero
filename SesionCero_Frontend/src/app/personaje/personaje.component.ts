@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { PersonajeService } from '../services/personaje.service';
 import { Personaje } from '../interfaces/personaje.interface';
 import { JugadorService } from '../services/jugador.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-personaje',
@@ -13,10 +14,12 @@ export class PersonajeComponent implements OnInit {
   personajes: Personaje[] = [];
   personaje: Personaje | undefined;
   public idPersonaje: number | undefined;
+  public retratoUrl: any
 
   constructor(
     private route: ActivatedRoute,
-    private personajeService: PersonajeService
+    private personajeService: PersonajeService,
+    private http: HttpClient 
   ) {}
 
   ngOnInit(): void {
@@ -34,6 +37,26 @@ export class PersonajeComponent implements OnInit {
       }
     });
   }
+
+  obtenerRetrato() {
+    console.log('Retrato',this.retratoUrl)
+    if (this.idPersonaje) {
+      console.log('Retrato',this.retratoUrl)
+      this.personajeService.obtenerRetrato(this.idPersonaje).subscribe(
+        (data: Blob) => {
+          const reader = new FileReader();
+          reader.onload = () => {
+            this.retratoUrl = reader.result as string;
+          };
+          reader.readAsDataURL(data);
+        },
+        (error) => {
+          console.error('Error al obtener el retrato del personaje:', error);
+        }
+      );
+    }
+  }
+  
 
   calcularModificador(valor: number): number {
     return Math.floor((valor - 10) / 2);
