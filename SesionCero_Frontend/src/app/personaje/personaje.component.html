@@ -37,9 +37,9 @@
                 <label for="alineamiento" class="form-label">Alineamiento:</label>
                 <p id="alineamiento" class="form-control">{{ personaje?.alineamiento?.nombre }}</p>
               </div>
-              <h5 class="card-title">CRÓNICA</h5>
-              <div class="mb-4">
-                <p id="cronica" class="form-control">Ejemplo</p>
+              <h5 class="card-title" *ngIf="personaje.cronica">CRÓNICA</h5>
+              <div class="mb-4" *ngIf="personaje.cronica">
+                <p id="cronica" class="form-control">{{personaje.cronica}}</p>
               </div>
             </div>
           </div>
@@ -95,7 +95,7 @@
 
 <ng-template #noPersonaje>
   <div class="container text-center mt-5" id="noPersonaje">
-    <h1 class="mb-4">Parece que tu mazmorra está vacía, ¡comienza ahora!</h1>
+    <h1 class="mb-4"> Upss algo va mal, el personaje no se ha encontrado </h1>
     <div class="mb-4">
       <img id="dados" class="img-fluid rounded-circle mb-4" src="/assets/img/Dados.png" alt="Personajes en vacío" />
     </div>
