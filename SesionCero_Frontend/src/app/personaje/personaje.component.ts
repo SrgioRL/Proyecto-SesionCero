@@ -4,6 +4,8 @@ import { PersonajeService } from '../services/personaje.service';
 import { Personaje } from '../interfaces/personaje.interface';
 import { JugadorService } from '../services/jugador.service';
 import { HttpClient } from '@angular/common/http';
+import { HabilidadService } from '../services/habilidad.service';
+
 
 @Component({
   selector: 'app-personaje',
@@ -15,13 +17,16 @@ export class PersonajeComponent implements OnInit {
   public personaje: Personaje | undefined;
   public idPersonaje: number | undefined;
   public retratoUrl: any
+  public habilidadesFijas: string[] = [];
+  public habilidadesAdicionales: string[] = [];
 
   constructor(
     private route: ActivatedRoute,
     private personajeService: PersonajeService,
     private http: HttpClient ,
     private router: Router,
-  ) {}
+    private habilidadService: HabilidadService
+  ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -37,7 +42,12 @@ export class PersonajeComponent implements OnInit {
         );
       }
     });
+    this.habilidadService.habilidadesPorPersonaje$.subscribe((habilidades) => {
+      this.habilidadesFijas = habilidades.fijas;
+      this.habilidadesAdicionales = habilidades.adicionales;
+    });
   }
+
 
   obtenerRetrato() {
     console.log('Retrato',this.retratoUrl)

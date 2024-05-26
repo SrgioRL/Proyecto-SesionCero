@@ -27,15 +27,15 @@
               </div>
               <div class="mb-4">
                 <label for="ascendencia" class="form-label">Ascendencia:</label>
-                <p id="ascendencia" class="form-control">{{ personaje?.ascendencia }}</p>
+                <p id="ascendencia" class="form-control">{{ personaje?.ascendencia?.nombre }}</p>
               </div>
               <div class="mb-4">
                 <label for="clase" class="form-label">Clase:</label>
-                <p id="clase" class="form-control">{{ personaje?.clase }}</p>
+                <p id="clase" class="form-control">{{ personaje?.clase?.nombre }}</p>
               </div>
               <div class="mb-4">
                 <label for="alineamiento" class="form-label">Alineamiento:</label>
-                <p id="alineamiento" class="form-control">{{ personaje?.alineamiento }}</p>
+                <p id="alineamiento" class="form-control">{{ personaje?.alineamiento?.nombre }}</p>
               </div>
               <h5 class="card-title">CRÓNICA</h5>
               <div class="mb-4">
@@ -52,13 +52,13 @@
               <div class="mb-4">
                 <label class="form-label">Habilidades Fijas:</label>
                 <ul class="list-group">
-                  <li class="list-group-item">habilidad fija</li>
+                  <li class="list-group-item"  *ngFor="let habilidad of habilidadesFijas">{{habilidad}}</li>
                 </ul>
               </div>
               <div class="mb-4">
                 <label class="form-label">Habilidades Adicionales:</label>
                 <ul class="list-group">
-                  <li class="list-group-item">habilidad adicional</li>
+                  <li class="list-group-item" *ngFor="let habilidad of habilidadesAdicionales">{{habilidad}}</li>
                 </ul>
               </div>
               <h5 class="card-title">CARACTERISTICAS</h5>
