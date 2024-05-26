@@ -16,7 +16,7 @@ const routes: Routes = [
   {path: 'todos/:idJugador', component: AllpjComponent},
   {path: 'jugador/:idJugador', component: JugadorComponent},
   {path: 'personaje/:idPersonaje', component: PersonajeComponent},
-  {path: 'personajes/todos', component: PersonajeComponent},
+  {path: 'todos', component: AllpjComponent},
 ];
 
 @NgModule({

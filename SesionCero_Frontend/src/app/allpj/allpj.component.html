@@ -18,26 +18,24 @@
     />
   </head>
   <body>
-
     <div class="container mt-5">
-      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mt-5">
-        <div class="col" *ngFor="let personaje of personajes">
-          <div (click)="verDetalle(idJugador)">
-          <div class="card">
-            <img src="/assets/img/Cleriga.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">{{ personaje.nombre }}</h5>
-              <p class="card-text">
-                {{ personaje.ascendencia }} <br />
-                {{ personaje.alineamiento }} nivel {{ personaje.nivel }}
-              </p>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mt-5">
+            <div class="col" *ngFor="let personaje of personajes">
+                <div (click)="verDetalle(personaje.idPersonaje)">
+                    <div class="card">
+                        <img src="/assets/img/Cleriga.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ personaje.nombre }}</h5>
+                            <p class="card-text">
+                                {{ personaje.ascendencia }} <br />
+                                {{ personaje.alineamiento }} nivel {{ personaje.nivel }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-        </div>
-      </div>
     </div>
-  
-
-  </body>
+    <app-footer></app-footer>
+</body>
   <app-footer></app-footer>
