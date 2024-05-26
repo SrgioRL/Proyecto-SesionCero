@@ -3,9 +3,7 @@
     src: url("../../assets/fonts/Modesto.ttf") format('ttf');
 }
 
-
-/*Paleta de colores*/
-
+/* Paleta de colores */
 .base {
     background-color: #6c8ccd; 
 }
@@ -29,32 +27,26 @@
 html,
 body {
     height: 100%;
-    /* background-color: #ffffff1a !important;  */
-}
-body {
-
-    display: flex;
-    flex-direction: column;
     background-color: #ffffff1a !important; 
 }
 
-main{
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
     flex: 1;
 }
 
 .card {
     transition: transform .3s; 
-    border:0 !important; 
+    border: 0 !important; 
 }
-
-
-
 
 .card .card-title {
     color: #2d8a9c;
 }
-
-
 
 .card .card-img-top {
     border-radius: 50%; /* Establecer el radio de borde al 50% para hacer la imagen circular */
@@ -67,18 +59,41 @@ main{
 
 .card-title {
     font-family: "Modesto", sans-serif; /* Cambiar la tipografía del título de la carta */
-    font-size:xx-large
+    font-size: xx-large;
 }
-
 
 .btn {
     background-color: #2d8a9c !important;
-   color: white !important;
-   border-radius: 25px !important;
-   font-weight: 500 !important;
+    color: white !important;
+    border-radius: 25px !important;
+    font-weight: 500 !important;
 }
 
 .btn:hover {
     background-color: #1f5e6a !important;
 }
 
+/* Nuevos estilos para #noPersonaje */
+#noPersonaje h1 {
+    font-family: "Modesto", sans-serif;
+    color: #2d8a9c;
+    margin-bottom: 20px;
+}
+
+#noPersonaje img {
+    max-width: 250px;
+    max-height: 250px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+#noPersonaje .btn {
+    background-color: #2d8a9c !important;
+    color: white !important;
+    border-radius: 25px !important;
+    font-weight: 500 !important;
+}
+
+#noPersonaje .btn:hover {
+    background-color: #1f5e6a !important;
+}

@@ -13,6 +13,7 @@ import { SignupComponent } from './signup/signup.component';
 import { AllpjComponent } from './allpj/allpj.component';
 import { JugadorComponent } from './jugador/jugador.component';
 import { PersonajeComponent } from './personaje/personaje.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -24,17 +25,17 @@ import { PersonajeComponent } from './personaje/personaje.component';
     SignupComponent,
     AllpjComponent,
     JugadorComponent,
-    PersonajeComponent
-   
-
+    PersonajeComponent,
+    HomeComponent
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
  
   bootstrap: [AppComponent]

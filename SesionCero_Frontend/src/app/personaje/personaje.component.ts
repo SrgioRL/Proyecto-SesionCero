@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PersonajeService } from '../services/personaje.service';
 import { Personaje } from '../interfaces/personaje.interface';
 import { JugadorService } from '../services/jugador.service';
@@ -11,15 +11,16 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./personaje.component.css']
 })
 export class PersonajeComponent implements OnInit {
-  personajes: Personaje[] = [];
-  personaje: Personaje | undefined;
+  public personajes: Personaje[] = [];
+  public personaje: Personaje | undefined;
   public idPersonaje: number | undefined;
   public retratoUrl: any
 
   constructor(
     private route: ActivatedRoute,
     private personajeService: PersonajeService,
-    private http: HttpClient 
+    private http: HttpClient ,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -57,6 +58,9 @@ export class PersonajeComponent implements OnInit {
     }
   }
   
+  crearPersonaje() {
+    this.router.navigate(['/crear']);
+  }
 
   calcularModificador(valor: number): number {
     return Math.floor((valor - 10) / 2);

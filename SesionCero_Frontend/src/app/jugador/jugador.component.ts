@@ -13,6 +13,7 @@ export class JugadorComponent implements OnInit {
   jugadores: Jugador[] = [];
   modificacionExitosa: boolean = false;
   borradoExitoso: boolean = false;
+  errorEliminarJugador: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -42,22 +43,23 @@ export class JugadorComponent implements OnInit {
       );
     }//TODO: redireccionar a /personajes para mostrar la página en vacío
   }
-
   eliminarJugador(idJugador: number) {
     this.jugadorService.eliminarJugador(idJugador).subscribe(
       response => {
         console.log(response);
         this.buscarJugadores();
+        this.borradoExitoso = true; 
+        setTimeout(() => {
+          this.router.navigate(['/']); //TODO: mirar por qué se visualiza mal el login con la redirección
+        }, 3000);
       },
       error => {
         console.error('Error al eliminar jugador:', error);
+        this.errorEliminarJugador = true; //TODO: da error pero elimina bien en la BBDD
       }
     );
-    this.borradoExitoso = true;
-    setTimeout(() => {
-      this.router.navigate(['/']); 
-    }, 3000);  //TODO: mirar al hacer la navegación porque el login sale cortado
   }
+  
   
 
   obtenerJugador(idJugador: number) {

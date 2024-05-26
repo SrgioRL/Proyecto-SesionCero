@@ -1,0 +1,68 @@
+/* Estilos para el cuerpo del documento */
+body {
+    font-family: 'Roboto', sans-serif !important;
+    background-color: #222831 !important;
+}
+
+/* Estilos para las etiquetas de formulario */
+.form-label {
+    font-weight: 500 !important;
+    font-size: large;
+    color: #ffffff;
+}
+
+/* Estilos para los controles de formulario */
+.form-control {
+    border-radius: 25px !important;
+    border: 2px solid #ffffff !important;
+    width: 400px;
+    margin: auto; 
+}
+
+/* Estilos para los botones */
+.btn {
+    color: #ffffff !important;
+    background-color: #2d8a9c !important;
+    border-radius: 25px !important;
+    padding: 10px 20px !important;
+    font-weight: 500 !important;
+    transition: all 0.3s ease !important;
+    font-family: 'Roboto', sans-serif !important;
+}
+
+.btn:hover {
+    background-color: #1f5e6a !important;
+}
+
+/* Estilos para los enlaces pequeños */
+.small {
+    font-size: 1rem !important;
+}
+
+.small a {
+    color: #2d8a9c !important;
+    text-decoration: none !important;
+}
+
+.small a:hover {
+    text-decoration: underline !important;
+    color: #ce8821 !important;
+}
+
+/* Estilos para el logo */
+#logoLogin {
+    width: 200px;
+    height: auto;
+}
+
+/* Estilos para los párrafos */
+p {
+    font-weight: 500 !important;
+    font-size: 1.5rem !important;
+    color: white;
+}
+
+/* Estilos para el enlace de inicio de sesión */
+#iniciar {
+    color: #ffffff;
+}

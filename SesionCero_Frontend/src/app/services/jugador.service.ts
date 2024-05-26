@@ -19,10 +19,10 @@ export class JugadorService {
   }
 
   // Método para eliminar un jugador por su ID
-  eliminarJugador(idJugador: number): Observable<string> {
-    return this.http.delete<string>(`${this.baseUrl}/eliminar/${idJugador}`);
+  eliminarJugador(idJugador: number): Observable<any> {
+    return this.http.delete<any>(`${this.baseUrl}/eliminar/${idJugador}`);
   }
-
+  
   // Método para obtener un jugador por su ID
   mostrarJugador(idJugador: number): Observable<Jugador> {
     return this.http.get<Jugador>(`${this.baseUrl}/uno/${idJugador}`);
