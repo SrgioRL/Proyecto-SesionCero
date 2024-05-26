@@ -6,16 +6,17 @@ import { SignupComponent } from './signup/signup.component';
 import { AllpjComponent } from './allpj/allpj.component';
 import { JugadorComponent } from './jugador/jugador.component';
 import { PersonajeComponent } from './personaje/personaje.component';  
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-  {path: '', component: LoginComponent},
+  {path: 'login', component: LoginComponent},
   {path: 'signup', component: SignupComponent},
+  {path: 'home', component: HomeComponent},
   {path: 'crear', component: FormComponent},
   {path: 'todos/:idJugador', component: AllpjComponent},
   {path: 'jugador/:idJugador', component: JugadorComponent},
   {path: 'personaje/:idPersonaje', component: PersonajeComponent},
-  
-
+  {path: 'personajes/todos', component: PersonajeComponent},
 ];
 
 @NgModule({

@@ -40,7 +40,18 @@ export class AllpjComponent implements OnInit {
       }
     );
   }
-  
+
+  obtenerTodosLosPersonajes(): void {
+    this.personajeService.buscarPersonajes().subscribe(
+      data => {
+        this.personajes = data;
+      },
+      error => {
+        console.error('Error al obtener todos los personajes', error);
+      }
+    );
+  }
+
   verDetalle(idPersonaje: number): void {
     this.router.navigate(['/personaje', idPersonaje]);
   }

@@ -11,7 +11,7 @@ export class SignupComponent {
 
   // Declaración de la variable jugadorActual
   nuevoJugador: Jugador = {
-    id: 0,
+    idJugador: 0,
     nombre: '',
     apellido1: '',
     apellido2: '',

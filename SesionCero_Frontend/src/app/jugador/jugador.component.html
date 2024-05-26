@@ -49,9 +49,12 @@
               <div *ngIf="borradoExitoso" class="alert alert-success" role="alert">
                 ¡Jugador borrado exitosamente, esperamos verte pronto!
               </div>
+              <div *ngIf="errorEliminarJugador" class="alert alert-success" role="alert">
+                No ha podido procederse al borrado del jugador, por favor inténtelo de nuevo.
+              </div>
             <div class="d-flex justify-content-between">
               <button class="btn btn-primary" (click)="modificarJugador()">Modificar</button>
-              <button class="btn btn-primary" (click)="eliminarJugador(jugadorActual.id)">Darse de baja</button>
+              <button class="btn btn-primary" (click)="eliminarJugador(jugadorActual.idJugador)">Darse de baja</button>
             </div>
           </div>
         </div>
