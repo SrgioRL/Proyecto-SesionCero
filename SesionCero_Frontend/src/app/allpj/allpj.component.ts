@@ -1,8 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Personaje } from '../interfaces/personaje.interface';
 import { PersonajeService } from '../services/personaje.service';
 import { ActivatedRoute, Router } from '@angular/router';
-
 
 @Component({
   selector: 'app-allpj',
@@ -11,8 +10,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AllpjComponent implements OnInit {
   
-   public idJugador!: number; 
-   public personajes: Personaje[] = [];
+  public idJugador: number | null = null; 
+  public personajes: Personaje[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -22,17 +21,18 @@ export class AllpjComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      this.idJugador = +params['idJugador'];
+      this.idJugador = +params['idJugador'] || null;
       if (this.idJugador) {
         this.obtenerPersonajes();
+      } else {
+        this.obtenerTodosLosPersonajes();
       }
     });
   }
 
   obtenerPersonajes(): void {
-    this.personajeService.obtenerPersonajesPorIdJugador(this.idJugador).subscribe(
+    this.personajeService.obtenerPersonajesPorIdJugador(this.idJugador!).subscribe(
       data => {
-        // Filtrar los personajes por el ID del jugador
         this.personajes = data;
       },
       error => {
@@ -60,7 +60,7 @@ export class AllpjComponent implements OnInit {
     this.personajeService.eliminarPersonaje(idPersonaje).subscribe(
       () => {
         console.log('Personaje eliminado correctamente.');
-        this.obtenerPersonajes(); 
+        this.idJugador ? this.obtenerPersonajes() : this.obtenerTodosLosPersonajes(); 
       },
       (error) => {
         console.error('Error al eliminar personaje:', error);
