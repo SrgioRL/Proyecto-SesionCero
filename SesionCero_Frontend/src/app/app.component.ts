@@ -19,7 +19,7 @@ export class AppComponent {
   }
 
   checkRoute(url: string) {
-    const hiddenRoutes = ['/', '/signup'];
+    const hiddenRoutes = ['/', '/signup', '/home'];
     this.showNavAndFooter = !hiddenRoutes.includes(url);
   }
 }
