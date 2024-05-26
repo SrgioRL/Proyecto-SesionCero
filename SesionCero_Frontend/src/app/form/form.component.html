@@ -1,199 +1,202 @@
-<link
-  href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-  rel="stylesheet"
-/>
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-/>
-
-<div class="body">
-  <div class="container">
-    <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
-      <div class="row gap-5 todo">
-        <div class="col-md-6 col-lg-6 columna1">
-          <h2 class="title">DETALLES</h2>
-
+<div class="container mt-4 mb-5">
+  <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+    <div class="row justify-content-center">
+      <!-- Columna para detalles -->
+      <div class="col-md-3 mx-md-2">
+        <h2 class="title">DETALLES</h2>
+        <div class="form-group">
+          <label for="nombre">Nombre*</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            id="nombre"
+            formControlName="nombre"
+          />
+          <div *ngIf="campoInvalido('nombre')" class="text-danger">
+            El nombre es obligatorio.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="id_ascendencia">Ascendencia*</label>
+          <select
+            class="form-control form-control-sm"
+            id="id_ascendencia"
+            formControlName="id_ascendencia"
+          >
+            <option *ngFor="let asc of ascendencias" [value]="asc.id">
+              {{ asc.name }}
+            </option>
+          </select>
+          <div *ngIf="campoInvalido('id_ascendencia')" class="text-danger">
+            La ascendencia es obligatoria.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="id_clase">Clase*</label>
+          <select
+            class="form-control form-control-sm"
+            id="id_clase"
+            formControlName="id_clase"
+          >
+            <option *ngFor="let cl of clases" [value]="cl.id">
+              {{ cl.name }}
+            </option>
+          </select>
+          <div *ngIf="campoInvalido('id_clase')" class="text-danger">
+            La clase es obligatoria.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="id_alineamiento">Alineamiento*</label>
+          <select
+            class="form-control form-control-sm"
+            id="id_alineamiento"
+            formControlName="id_alineamiento"
+          >
+            <option *ngFor="let al of alineamientos" [value]="al.id">
+              {{ al.name }}
+            </option>
+          </select>
+          <div *ngIf="campoInvalido('id_alineamiento')" class="text-danger">
+            El alineamiento es obligatorio.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="retrato" class="file-upload">
+            <i class="fas fa-upload"></i> - Subir archivo
+          </label>
+          <input
+            type="file"
+            id="retrato"
+            class="form-control-file"
+            (change)="archivoSeleccionado($event)"
+          />
+        </div>
+        <h2 class="title">CRÓNICA</h2>
+        <textarea
+          class="form-control textarea"
+          rows="2"
+          formControlName="cronica"
+          placeholder="Introduce una descripción de tu personaje"
+        ></textarea>
+      </div>
+      <div class="col-md-1 mx-md-1"></div>
+      <!-- Columna para habilidades -->
+      <div class="col-md-3 mx-md-2">
+        <div class="habilidades">
+          <h2 class="title">HABILIDADES</h2>
           <div class="form-group">
-            <label for="nombre">Nombre*</label>
+            <label><h6>Habilidades Fijas:</h6></label>
+            <ul>
+              <li
+                *ngFor="
+                  let habilidad of formulario.get('habilidadesFijas')?.value
+                "
+              >
+                {{ habilidad }}
+              </li>
+            </ul>
+          </div>
+          <div class="form-group">
+            <label><h6> Adicionales (elige hasta 2):</h6></label>
+            <div class="habilidades-container">
+              <div
+                class="habilidad"
+                *ngFor="let habilidad of todasLasHabilidades"
+                [class.disabled]="isHabilidadFija(habilidad)"
+              >
+                <input
+                  type="checkbox"
+                  [value]="habilidad"
+                  (change)="alternarHabilidadAdicional(habilidad)"
+                  [checked]="
+                    formulario
+                      .get('habilidadesAdicionales')
+                      ?.value.includes(habilidad)
+                  "
+                  [disabled]="
+                    isHabilidadAdicionalDeshabilitada(habilidad) ||
+                    isHabilidadFija(habilidad)
+                  "
+                />
+                {{ habilidad }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="pg"><h6>Puntos de Golpe (PG):</h6> </label>
+          <span id="pg" class="form-control-static">{{
+            formulario.get("pg")?.value
+          }}</span>
+        </div>
+        <div class="form-group">
+          <label for="ca">Clase de Armadura (CA):</label>
+          <span id="ca" class="form-control-static">{{
+            formulario.get("ca")?.value
+          }}</span>
+        </div>
+        <div class="form-group">
+          <label for="percepcionPasiva">Percepción Pasiva:</label>
+          <span id="percepcionPasiva" class="form-control-static">{{
+            formulario.get("percepcionPasiva")?.value
+          }}</span>
+        </div>
+        <div class="form-group">
+          <label for="iniciativa">Iniciativa:</label>
+          <span id="iniciativa" class="form-control-static">{{
+            formulario.get("iniciativa")?.value
+          }}</span>
+        </div>
+      </div>
+      <div class="col-md-1 mx-md-1"></div>
+      <!-- Columna para características -->
+      <div class="col-md-3 mx-md-2">
+        <h2 class="title">CARACTERISTICAS</h2>
+        <div class="form-group" *ngFor="let item of caracteristicas">
+          <label class="tituloCaract">{{ item.label }}</label>
+          <div class="input-group">
+            <button
+              class="btn btn-outline-secondary botonmenos"
+              type="button"
+              (click)="disminuirModificador(item.key)"
+            >
+              -
+            </button>
             <input
               type="text"
-              class="form-control form-control-sm"
-              id="nombre"
-              formControlName="nombre"
+              class="diez modificador"
+              formControlName="{{ item.key }}"
+              readonly
             />
-            <div *ngIf="campoInvalido('nombre')" class="text-danger">
-              El nombre es obligatorio.
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="id_ascendencia">Ascendencia*</label>
-            <select
-              class="form-control form-control-sm"
-              id="id_ascendencia"
-              formControlName="id_ascendencia"
+            <button
+              class="btn btn-outline-secondary botonmas"
+              type="button"
+              (click)="aumentarModificador(item.key)"
             >
-              <option *ngFor="let asc of ascendencias" [value]="asc.id">
-                {{ asc.name }}
-              </option>
-            </select>
-            <div *ngIf="campoInvalido('id_ascendencia')" class="text-danger">
-              La ascendencia es obligatoria.
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="id_clase">Clase*</label>
-            <select
-              class="form-control form-control-sm"
-              id="id_clase"
-              formControlName="id_clase"
-            >
-              <option *ngFor="let cl of clases" [value]="cl.id">
-                {{ cl.name }}
-              </option>
-            </select>
-            <div *ngIf="campoInvalido('id_clase')" class="text-danger">
-              La clase es obligatoria.
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="id_alineamiento">Alineamiento*</label>
-            <select
-              class="form-control form-control-sm"
-              id="id_alineamiento"
-              formControlName="id_alineamiento"
-            >
-              <option *ngFor="let al of alineamientos" [value]="al.id">
-                {{ al.name }}
-              </option>
-            </select>
-            <div *ngIf="campoInvalido('id_alineamiento')" class="text-danger">
-              El alineamiento es obligatorio.
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="retrato" class="file-upload">
-              <i class="fas fa-upload"></i> - Subir archivo
-            </label>
-            <input
-              type="file"
-              id="retrato"
-              class="form-control-file"
-              (change)="archivoSeleccionado($event)"
-            />
-          </div>
-          <h2 class="title">CRÓNICA</h2>
-          <textarea
-            class="form-control textarea"
-            rows="2"
-            formControlName="cronica"
-            placeholder="Introduce una descripción de tu personaje"
-          ></textarea>
-          <div class="habilidades">
-            <h2 class="title">HABILIDADES</h2>
-            <div class="form-group">
-              <label>Habilidades Fijas:</label>
-              <ul>
-                <li
-                  *ngFor="let habilidad of formulario.get('habilidadesFijas')?.value"
-                >
-                  {{ habilidad }}
-                </li>
-              </ul>
-            </div>
-            <div class="form-group">
-              <label>Habilidades Adicionales (elige hasta 2):</label>
-              <div class="habilidades-container">
-                <div
-                  class="habilidad"
-                  *ngFor="let habilidad of todasLasHabilidades"
-                  [class.disabled]="isHabilidadFija(habilidad)"
-                >
-                  <input
-                    type="checkbox"
-                    [value]="habilidad"
-                    (change)="alternarHabilidadAdicional(habilidad)"
-                    [checked]="formulario.get('habilidadesAdicionales')?.value.includes(habilidad)"
-                    [disabled]="isHabilidadAdicionalDeshabilitada(habilidad) || isHabilidadFija(habilidad)"
-                  />
-                  {{ habilidad }}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 col-lg-4 columna2">
-          <h2 class="title">CARACTERISTICAS</h2>
-          <div class="form-group">
-            <label for="pg">Puntos de Golpe (PG):</label>
-            <span id="pg" class="form-control-static">
-              {{ formulario.get('pg')?.value }}
+              +
+            </button>
+            <span class="input-group-text modificador">
+              Mod:
+              {{ calcularModificador(formulario.get(item.key)?.value) }}
             </span>
-          </div>
-          <div class="form-group">
-            <label for="ca">Clase de Armadura (CA):</label>
-            <span id="ca" class="form-control-static">
-              {{ formulario.get('ca')?.value }}
-            </span>
-          </div>
-          <div class="form-group">
-            <label for="percepcionPasiva">Percepción Pasiva:</label>
-            <span id="percepcionPasiva" class="form-control-static">
-              {{ formulario.get('percepcionPasiva')?.value }}
-            </span>
-          </div>
-
-          <div class="form-group">
-            <label for="iniciativa">Iniciativa:</label>
-            <span id="iniciativa" class="form-control-static">
-              {{ formulario.get('iniciativa')?.value }}
-            </span>
-          </div>
-
-          <div class="form-group" *ngFor="let item of caracteristicas">
-            <label class="tituloCaract">{{ item.label }}</label>
-            <div class="input-group">
-              <button
-                class="btn btn-outline-secondary botonmenos"
-                type="button"
-                (click)="disminuirModificador(item.key)"
-              >
-                -
-              </button>
-              <input
-                type="text"
-                class="form-control modificador"
-                formControlName="{{ item.key }}"
-                readonly
-              />
-              <button
-                class="btn btn-outline-secondary botonmas"
-                type="button"
-                (click)="aumentarModificador(item.key)"
-              >
-                +
-              </button>
-              <span class="input-group-text modificador"
-                >Mod: {{
-                  calcularModificador(formulario.get(item.key)?.value)
-                }}</span
-              >
-              <div *ngIf="campoInvalido(item.key)" class="text-danger">
-                {{ item.label }} debe estar entre 1 y 20.
-              </div>
+            <div *ngIf="campoInvalido(item.key)" class="text-danger">
+              {{ item.label }} debe estar entre 1 y 20.
             </div>
           </div>
         </div>
       </div>
-      <div class="col-12 text-end">
-        <button type="submit" class="btn btn-outline-secondary send">
-          Añadir Personaje
-        </button>
-        <!-- TODO: Navegar a los personajes de ese jugador-->
-      </div>
-    </form>
+    </div>
+  </form>
+
+  <!-- Segunda fila para el botón "Añadir Personaje" -->
+
+  <div class="row justify-content-center">
+    <div class="col-md-10 text-center"></div>
+    <div class="col-md-2 text-center mb-4">
+      <button type="submit" class="btn btn-outline-secondary send send-fixed">
+        Añadir Personaje
+      </button>
+    </div>
   </div>
 </div>
