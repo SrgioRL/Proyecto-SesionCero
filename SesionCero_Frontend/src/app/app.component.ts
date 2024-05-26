@@ -16,10 +16,14 @@ export class AppComponent {
         this.checkRoute(event.urlAfterRedirects);
       }
     });
+
+
+    
   }
 
   checkRoute(url: string) {
-    const hiddenRoutes = ['/', '/signup'];
+    const hiddenRoutes = ['/login', '/signup'];
     this.showNavAndFooter = !hiddenRoutes.includes(url);
   }
 }
+gi
