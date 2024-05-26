@@ -88,3 +88,28 @@ main{
     background-color: #1f5e6a !important;
 }
 
+#noPersonaje h1 {
+    font-family: "Modesto", sans-serif;
+    color: #2d8a9c;
+    margin-bottom: 20px;
+    max-width: 100%; /* Ajusta este valor según tus necesidades */
+    width: auto; /* Hace que el texto ocupe todo el ancho disponible */
+}
+
+#noPersonaje img {
+    max-width: 250px;
+    max-height: 250px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+#noPersonaje .btn {
+    background-color: #2d8a9c !important;
+    color: white !important;
+    border-radius: 25px !important;
+    font-weight: 500 !important;
+}
+
+#noPersonaje .btn:hover {
+    background-color: #1f5e6a !important;
+}

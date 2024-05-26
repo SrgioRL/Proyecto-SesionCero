@@ -67,4 +67,8 @@ export class AllpjComponent implements OnInit {
       }
     );
   }
+
+  crearPersonaje() {
+    this.router.navigate(['/crear']);
+  }
 }

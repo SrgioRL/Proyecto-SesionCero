@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { JugadorService } from '../services/jugador.service';
 import { Jugador } from '../interfaces/jugador.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -20,14 +21,16 @@ export class SignupComponent {
   };
 
   // Inyección del servicio en el constructor
-  constructor(private jugadorService: JugadorService) { }
+  constructor(private jugadorService: JugadorService,
+    private router: Router,
+  ) { }
 
   // Método para agregar un nuevo jugador
   agregarJugador() {
     this.jugadorService.altaJugador(this.nuevoJugador).subscribe(
       jugador => {
         console.log("Jugador agregado:", jugador);
-        // No hay necesidad de actualizar la lista de jugadores en este componente
+        this.router.navigate(['/todos', jugador.idJugador])
       },
       error => {
         console.error('Error al agregar jugador:', error);
