@@ -1,68 +1,35 @@
-/* Estilos para el cuerpo del documento */
+/* Estilos para el fondo oscuro */
 body {
-    font-family: 'Roboto', sans-serif !important;
-    background-color: #222831 !important;
+  background-color: #333; /* Color de fondo oscuro */
 }
 
-/* Estilos para las etiquetas de formulario */
-.form-label {
-    font-weight: 500 !important;
-    font-size: large;
-    color: #ffffff;
+/* Estilos para los márgenes laterales */
+.container {
+  margin-right: auto;
+  margin-left: auto;
 }
 
-/* Estilos para los controles de formulario */
-.form-control {
-    border-radius: 25px !important;
-    border: 2px solid #ffffff !important;
-    width: 400px;
-    margin: auto; 
+/* Estilos para la alineación vertical de los elementos del carrusel */
+.carousel-inner img {
+  margin: auto;
 }
 
-/* Estilos para los botones */
-.btn {
-    color: #ffffff !important;
-    background-color: #2d8a9c !important;
-    border-radius: 25px !important;
-    padding: 10px 20px !important;
-    font-weight: 500 !important;
-    transition: all 0.3s ease !important;
-    font-family: 'Roboto', sans-serif !important;
+/* Estilos para las tarjetas */
+.card {
+  margin-top: 20px;
 }
 
-.btn:hover {
-    background-color: #1f5e6a !important;
-}
-
-/* Estilos para los enlaces pequeños */
-.small {
-    font-size: 1rem !important;
-}
-
-.small a {
-    color: #2d8a9c !important;
-    text-decoration: none !important;
-}
-
-.small a:hover {
-    text-decoration: underline !important;
-    color: #ce8821 !important;
-}
-
-/* Estilos para el logo */
-#logoLogin {
-    width: 200px;
-    height: auto;
-}
-
-/* Estilos para los párrafos */
-p {
-    font-weight: 500 !important;
-    font-size: 1.5rem !important;
-    color: white;
-}
-
-/* Estilos para el enlace de inicio de sesión */
-#iniciar {
-    color: #ffffff;
-}
+/* Estilos para el carrusel */
+.carousel-inner .carousel-item img {
+    width: 100%;
+    height: 400px; /* Altura predefinida del carrusel */
+    object-fit: cover;
+  }
+  
+  /* Estilos para las imágenes de las tarjetas */
+  .card-img-top {
+    width: 100%;
+    height: 200px; /* Altura predefinida de las imágenes de las tarjetas */
+    object-fit: cover;
+  }
+  
