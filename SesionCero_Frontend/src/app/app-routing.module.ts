@@ -11,7 +11,7 @@ import { HomeComponent } from './home/home.component';
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'signup', component: SignupComponent},
-  {path: 'home', component: HomeComponent},
+  {path: '', component: HomeComponent},
   {path: 'crear', component: FormComponent},
   {path: 'todos/:idJugador', component: AllpjComponent},
   {path: 'jugador/:idJugador', component: JugadorComponent},

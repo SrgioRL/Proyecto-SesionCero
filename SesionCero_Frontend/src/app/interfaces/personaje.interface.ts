@@ -1,15 +1,9 @@
-
-import { Alineamiento } from "./alineamiento.interface";
-import { Ascendencia } from "./ascendencia.interface";
-import { Clase } from "./clase.interface";
-import { Jugador } from "./jugador.interface";
-
 export interface Personaje {
     idPersonaje: number;
     nombre: string;
-    clase: { idClase: number };
-    ascendencia: { idAscendencia: number};
-    alineamiento: { idAlineamiento: number };
+    clase: { idClase: number, nombre: string };
+    ascendencia: { idAscendencia: number, nombre: string};
+    alineamiento: { idAlineamiento: number, nombre: string };
     nivel: number;
     ca: number;
     pg: number;

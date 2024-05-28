@@ -6,6 +6,8 @@ import { alineamientos } from '../dataConstants/alineamientos';
 import { habilidadesPorClase, todasLasHabilidades } from '../dataConstants/habilidadesPorClase';
 import { PersonajeService } from '../services/personaje.service';
 import { Personaje } from '../interfaces/personaje.interface';
+import { HabilidadService } from '../services/habilidad.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form',
@@ -39,7 +41,9 @@ export class FormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private personajeService: PersonajeService
+    private personajeService: PersonajeService,
+    private habilidadService: HabilidadService,
+    private router: Router
   ) {
     this.formulario = this.fb.group({
       nombre: ['', Validators.required],
@@ -193,6 +197,7 @@ export class FormComponent implements OnInit {
     const habilidadesClase = this.obtenerHabilidadesClase(claseId);
     this.habilidadesFijasSeleccionadas = habilidadesClase; // Guardar habilidades fijas seleccionadas
     this.establecerArrayHabilidades('habilidadesFijas', habilidadesClase);
+    this.habilidadService.setHabilidadesFijas(habilidadesClase);
     this.resetHabilidadesAdicionales(); // Resetear habilidades adicionales seleccionadas
   }
 
@@ -220,6 +225,7 @@ export class FormComponent implements OnInit {
     } else if (arrayHabilidadesAdicionales.length < 2) {
       arrayHabilidadesAdicionales.push(this.fb.control(habilidad));
     }
+    this.habilidadService.setHabilidadesAdicionales(arrayHabilidadesAdicionales.value);
   }
 
   isHabilidadAdicionalDeshabilitada(habilidad: string): boolean {
@@ -236,9 +242,9 @@ export class FormComponent implements OnInit {
     return {
       idPersonaje: 0,
       nombre: valores.nombre,
-      clase: { idClase: valores.id_clase },
-      ascendencia: { idAscendencia: valores.id_ascendencia },
-      alineamiento: { idAlineamiento: valores.id_alineamiento },
+      clase: { idClase: valores.id_clase, nombre: valores.nombre },
+      ascendencia: { idAscendencia: valores.id_ascendencia, nombre: valores.nombre },
+      alineamiento: { idAlineamiento: valores.id_alineamiento, nombre: valores.nombre },
       nivel: valores.nivel,
       ca: valores.ca,
       pg: valores.pg,
@@ -266,7 +272,10 @@ export class FormComponent implements OnInit {
     if (this.formulario.valid) {
       const personaje = this.prepararPersonaje();
       this.personajeService.altaPersonaje(personaje).subscribe(
-        response => console.log('Personaje creado con éxito', response),
+        response => {
+          console.log('Personaje creado con éxito', response);
+          this.router.navigate(['/personaje/idJugador']);
+        },
         error => console.error('Error al crear el personaje', error)
       );
     } else {
@@ -274,9 +283,17 @@ export class FormComponent implements OnInit {
       console.log('El formulario no es válido');
     }
   }
+  
 
   campoInvalido(campo: string): boolean {
     const control = this.formulario.get(campo);
     return control ? control.invalid && (control.dirty || control.touched) : false;
   }
+
+  guardarHabilidadesSeleccionadas(): void {
+    const habilidadesFijasSeleccionadas = this.formulario.get('habilidadesFijas')?.value;
+    const habilidadesAdicionalesSeleccionadas = this.formulario.get('habilidadesAdicionales')?.value;
+    this.habilidadService.setHabilidadesPorPersonaje({ fijas: habilidadesFijasSeleccionadas, adicionales: habilidadesAdicionalesSeleccionadas });
+  }
+  
 }
