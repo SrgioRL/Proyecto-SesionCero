@@ -63,6 +63,8 @@ main{
 }
 
 .card .card-img-top {
+    max-width: 340px;
+    padding: 30px;
     border-radius: 50%; /* Establecer el radio de borde al 50% para hacer la imagen circular */
     overflow: hidden; /* Asegúrate de que la imagen no se salga del límite circular */
 }
