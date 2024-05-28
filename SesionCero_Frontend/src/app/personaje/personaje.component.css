@@ -39,6 +39,9 @@ main {
     flex: 1;
 }
 
+.retrato {
+    max-width: 199px;
+}
 .card {
     transition: transform .3s; 
     border: 0 !important; 

@@ -30,3 +30,8 @@
     object-fit: cover;
   }
   
+  h5 {
+    color: #3F3B59 !important;
+    font-family: Modesto;
+    font-size:xx-large
+  }

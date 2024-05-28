@@ -1,6 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
 body {
     font-family: 'Roboto', sans-serif !important;
-        background-color: #d9d9d9 !important;
+        background-color: #F2F2F2 !important;
     
 }
+
+/* Color Theme Swatches in Hex */
+.Capitana-Typeface-1-hex { color: #F24150; }
+.Capitana-Typeface-2-hex { color: #BF3B53; }
+.Capitana-Typeface-3-hex { color: #3F3B59; }
+.Capitana-Typeface-4-hex { color: #333259; }
+.Capitana-Typeface-5-hex { color: #F2F2F2; }
+
+
+

@@ -79,7 +79,7 @@ main{
 
 .btn {
     background-color: #2d8a9c !important;
-   color: white !important;
+   color: rgb(255, 255, 255) !important;
    border-radius: 25px !important;
    font-weight: 500 !important;
 }
@@ -105,7 +105,7 @@ main{
 
 #noPersonaje .btn {
     background-color: #2d8a9c !important;
-    color: white !important;
+    color: rgb(255, 255, 255) !important;
     border-radius: 25px !important;
     font-weight: 500 !important;
 }
