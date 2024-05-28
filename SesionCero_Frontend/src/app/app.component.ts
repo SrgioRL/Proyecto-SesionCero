@@ -26,4 +26,3 @@ export class AppComponent {
     this.showNavAndFooter = !hiddenRoutes.includes(url);
   }
 }
-gi
