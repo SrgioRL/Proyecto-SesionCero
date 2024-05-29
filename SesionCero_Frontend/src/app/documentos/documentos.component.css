@@ -1,0 +1,86 @@
+@font-face {
+  font-family: "Modesto";
+  src: url("../../assets/fonts/Modesto.ttf") format("ttf");
+}
+
+.body {
+  font-family: "Roboto", sans-serif !important;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1300px;
+  padding-top: 25px;
+  padding-bottom: 50px; 
+  background-color: #e7e5e5 !important;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.233);
+  color: #000000;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.header h1 {
+  color: #2d8a9c;
+  font-family: "Modesto", sans-serif;
+  margin-bottom: 10px;
+}
+
+.header p {
+  font-family: "Roboto", sans-serif;
+  color: #676c77;
+  font-size: 18px;
+}
+
+h2 {
+  color: #676c77 !important;
+  font-size: 30px;
+  margin-top: 20px;
+  margin-left: 25px;
+  font-family: "Modesto", sans-serif;
+}
+
+.document-section {
+  margin-bottom: 30px;
+  padding-left: 20px;
+}
+
+.document-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.document-item {
+  margin: 20px;
+  text-align: center;
+}
+
+.document-image {
+  width: 208px;
+  height: 276px;
+  cursor: pointer;
+  border: 2px solid #bbb;
+  border-radius: 8px;
+  padding: 5px;
+  transition: all 0.3s ease;
+}
+
+.document-image:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+hr {
+  height: 2px;
+  background: #000;
+  margin: 20px 0;
+}

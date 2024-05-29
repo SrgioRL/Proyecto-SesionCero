@@ -14,6 +14,9 @@ import { AllpjComponent } from './allpj/allpj.component';
 import { JugadorComponent } from './jugador/jugador.component';
 import { PersonajeComponent } from './personaje/personaje.component';
 import { HomeComponent } from './home/home.component';
+import { DocumentosComponent } from './documentos/documentos.component';
+import { AuthService } from './services/auth.service';
+import { DownloadService } from './services/download.service'; 
 
 @NgModule({
   declarations: [
@@ -26,18 +29,17 @@ import { HomeComponent } from './home/home.component';
     AllpjComponent,
     JugadorComponent,
     PersonajeComponent,
-    HomeComponent
+    HomeComponent,
+    DocumentosComponent
   ],
-
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    FormsModule,
     ReactiveFormsModule
   ],
- 
+  providers: [AuthService, DownloadService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

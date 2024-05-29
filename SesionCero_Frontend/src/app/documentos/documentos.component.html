@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="header">
+    <h1>¡Encuentra aquí todo lo que necesitas para jugar!</h1>
+    <p>Haz click en una imagen para descargar el documento</p>
+  </div>
+  
+  <div class="document-section">
+    <h2>Esenciales</h2>
+    <div class="document-list">
+      <div *ngFor="let doc of esenciales" class="document-item">
+        <img [src]="doc.img" (click)="download(doc.pdf)" alt="Documento esencial" class="document-image"/>
+      </div>
+    </div>
+    <hr>
+  </div>
+
+  <div class="document-section">
+    <h2>Complementos</h2>
+    <div class="document-list">
+      <div *ngFor="let doc of complementos" class="document-item">
+        <img [src]="doc.img" (click)="download(doc.pdf)" alt="Documento complemento" class="document-image"/>
+      </div>
+    </div>
+    <hr>
+  </div>
+
+  <div class="document-section">
+    <h2>Aventuras</h2>
+    <div class="document-list">
+      <div *ngFor="let doc of aventuras" class="document-item">
+        <img [src]="doc.img" (click)="download(doc.pdf)" alt="Documento aventura" class="document-image"/>
+      </div>
+    </div>
+    <hr>
+  </div>
+</div>
