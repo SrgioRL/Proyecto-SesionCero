@@ -1,25 +1,31 @@
 @font-face {
-    font-family: 'Modesto';
-    src: url('assets/fonts/Modesto.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-  }
-  /* You can add global styles to this file, and also import other style files */
+  font-family: "Modesto";
+  src: url("assets/fonts/Modesto.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+/* You can add global styles to this file, and also import other style files */
 body {
-    font-family: 'Roboto', sans-serif !important;
-        background-color: #222831 !important;
-    
+  font-family: "Roboto", sans-serif !important;
+  background-color: #222831 !important;
 }
 h1 {
-    font-family: 'Modesto', sans-serif !important;
+  font-family: "Modesto", sans-serif !important;
 }
 
 /* Color Theme Swatches in Hex */
-.Capitana-Typeface-1-hex { color: #F24150; }
-.Capitana-Typeface-2-hex { color: #BF3B53; }
-.Capitana-Typeface-3-hex { color: #3F3B59; }
-.Capitana-Typeface-4-hex { color: #333259; }
-.Capitana-Typeface-5-hex { color: #F2F2F2; }
-
-
-
+.Capitana-Typeface-1-hex {
+  color: #f24150;
+}
+.Capitana-Typeface-2-hex {
+  color: #bf3b53;
+}
+.Capitana-Typeface-3-hex {
+  color: #3f3b59;
+}
+.Capitana-Typeface-4-hex {
+  color: #333259;
+}
+.Capitana-Typeface-5-hex {
+  color: #f2f2f2;
+}

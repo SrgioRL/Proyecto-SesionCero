@@ -1,67 +1,105 @@
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>pjDungeons</title>
-  
-    <link rel="stylesheet" type="text/css" href="jugador.component.css" />
-  
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-    />
-  </head>
-  
-  <div class="container mt-5" *ngIf="jugadorActual">
-    <div class="row">
-      <div class="col-md-6 offset-md-3">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Perfil de {{ jugadorActual.nombre }}</h5>
-            <div class="mb-3">
-              <label for="nombre" class="form-label">Nombre:</label>
-              <input type="text" class="form-control" id="nombre" [(ngModel)]="jugadorActual.nombre">
-            </div>
-            <div class="mb-3">
-              <label for="apellido1" class="form-label">Primer apellido:</label>
-              <input type="text" class="form-control" id="apellido1" [(ngModel)]="jugadorActual.apellido1">
-            </div>
-            <div class="mb-3">
-              <label for="apellido2" class="form-label">Segundo apellido:</label>
-              <input type="text" class="form-control" id="apellido2" [(ngModel)]="jugadorActual.apellido2">
-            </div>
-            <div class="mb-3">
-              <label for="email" class="form-label">Correo electrónico:</label>
-              <input type="email" class="form-control" id="email" [(ngModel)]="jugadorActual.email" readonly>
-            </div>
-            <div class="mb-3">
-              <label for="contraseña" class="form-label">Contraseña:</label>
-              <input type="password" class="form-control" id="contraseña" [(ngModel)]="jugadorActual.password">
-            </div>
-            <div *ngIf="modificacionExitosa" class="alert alert-success" role="alert">
-                ¡Jugador modificado exitosamente!
-              </div>
-              <div *ngIf="borradoExitoso" class="alert alert-success" role="alert">
-                ¡Jugador borrado exitosamente, esperamos verte pronto!
-              </div>
-              <div *ngIf="errorEliminarJugador" class="alert alert-success" role="alert">
-                No ha podido procederse al borrado del jugador, por favor inténtelo de nuevo.
-              </div>
-            <div class="d-flex justify-content-between">
-              <button class="btn btn-primary" (click)="modificarJugador()">Modificar</button>
-              <button class="btn btn-primary" (click)="eliminarJugador(jugadorActual.idJugador)">Darse de baja</button>
-            </div>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pjDungeons</title>
+
+  <link rel="stylesheet" type="text/css" href="jugador.component.css" />
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+    crossorigin="anonymous"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+  />
+</head>
+
+<div class="container mt-5" *ngIf="jugadorActual">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Perfil de {{ jugadorActual.nombre }}</h5>
+          <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="nombre"
+              [(ngModel)]="jugadorActual.nombre"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="apellido1" class="form-label">Primer apellido:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="apellido1"
+              [(ngModel)]="jugadorActual.apellido1"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="apellido2" class="form-label">Segundo apellido:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="apellido2"
+              [(ngModel)]="jugadorActual.apellido2"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Correo electrónico:</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              [(ngModel)]="jugadorActual.email"
+              readonly
+            />
+          </div>
+          <div class="mb-3">
+            <label for="contraseña" class="form-label">Contraseña:</label>
+            <input
+              type="password"
+              class="form-control"
+              id="contraseña"
+              [(ngModel)]="jugadorActual.password"
+            />
+          </div>
+          <div
+            *ngIf="modificacionExitosa"
+            class="alert alert-success"
+            role="alert"
+          >
+            ¡Jugador modificado exitosamente!
+          </div>
+          <div *ngIf="borradoExitoso" class="alert alert-success" role="alert">
+            ¡Jugador borrado exitosamente, esperamos verte pronto!
+          </div>
+          <div
+            *ngIf="errorEliminarJugador"
+            class="alert alert-success"
+            role="alert"
+          >
+            No ha podido procederse al borrado del jugador, por favor inténtelo
+            de nuevo.
+          </div>
+          <div class="d-flex justify-content-between">
+            <button class="btn btn-primary" (click)="modificarJugador()">
+              Modificar
+            </button>
+            <button
+              class="btn btn-primary"
+              (click)="eliminarJugador(jugadorActual.idJugador)"
+            >
+              Darse de baja
+            </button>
           </div>
         </div>
       </div>
     </div>
   </div>
-  
-  <app-footer></app-footer>
-
-  
+</div>

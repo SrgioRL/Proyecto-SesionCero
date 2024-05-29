@@ -1,84 +1,73 @@
 @font-face {
-    font-family: 'Modesto';
-    src: url("../../assets/fonts/Modesto.ttf") format('ttf');
+  font-family: "Modesto";
+  src: url("../../assets/fonts/Modesto.ttf") format("ttf");
 }
 
-
-/*Paleta de colores*/
-
 .base {
-    background-color: #6c8ccd; 
+  background-color: #6c8ccd;
 }
 
 .secundario {
-    background-color: #676C77; 
+  background-color: #676c77;
 }
 
 .ternario {
-    background-color: #474D3B; 
+  background-color: #474d3b;
 }
 
 .positivo {
-    background-color: #ADCC6C !important; 
+  background-color: #adcc6c !important;
 }
 
 .negativo {
-    background-color: #CC7B6C; 
+  background-color: #cc7b6c;
 }
 
 html,
 body {
-    height: 100%;
-    background-color: #ffffff1a !important; 
+  height: 100%;
+  background-color: #ffffff1a !important;
 }
 body {
-
-    display: flex;
-    flex-direction: column;
-    background-color: #ffffff1a !important; 
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff1a !important;
 }
 
-main{
-    flex: 1;
+main {
+  flex: 1;
 }
 
 .card {
-    transition: transform .3s; 
-    border:0 !important; 
+  transition: transform 0.3s;
+  border: 0 !important;
 }
-
-
-
 
 .card .card-title {
-    color: #2d8a9c;
+  color: #2d8a9c;
 }
 
-
-
 .card .card-img-top {
-    border-radius: 50%; /* Establecer el radio de borde al 50% para hacer la imagen circular */
-    overflow: hidden; /* Asegúrate de que la imagen no se salga del límite circular */
+  border-radius: 50%;
+  overflow: hidden;
 }
 
 .card-body {
-    text-align: center; /* Centrar el contenido del cuerpo de la carta */
+  text-align: center;
 }
 
 .card-title {
-    font-family: "Modesto", sans-serif; /* Cambiar la tipografía del título de la carta */
-    font-size:xx-large
+  font-family: "Modesto", sans-serif;
+  font-size: xx-large;
 }
 
-
 .btn {
-    background-color: #2d8a9c !important;
-   color: white !important;
-   border-radius: 25px !important;
-   font-weight: 500 !important;
+  background-color: #2d8a9c !important;
+  color: white !important;
+  border-radius: 25px !important;
+  font-weight: 500 !important;
 }
 
 .btn:hover {
-    background-color: #1f5e6a !important;
+  background-color: #1f5e6a !important;
 }
-

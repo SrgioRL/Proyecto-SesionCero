@@ -23,6 +23,6 @@ export interface Personaje {
     carismaMod: number;
     cronica: string;
     retrato: string | null;
-    jugador: any; // Ajusta según tu necesidad
+    jugador: any; 
   }
   
