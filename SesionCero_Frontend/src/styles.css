@@ -1,8 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: 'Modesto';
+    src: url('assets/fonts/Modesto.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  /* You can add global styles to this file, and also import other style files */
 body {
     font-family: 'Roboto', sans-serif !important;
-        background-color: #F2F2F2 !important;
+        background-color: #222831 !important;
     
+}
+h1 {
+    font-family: 'Modesto', sans-serif !important;
 }
 
 /* Color Theme Swatches in Hex */
