@@ -50,7 +50,7 @@
 
     <div class="row mt-4">
       <div class="col-md-4">
-        <div class="card">
+        <div class="card" (click)="goRecursos()">
           <img src="/assets/img/equipment.jpg" class="card-img-top" alt="..." />
           <div class="card-body">
             <h5 class="card-title">Recursos</h5>
@@ -61,7 +61,7 @@
         </div>
       </div>
       <div class="col-md-4">
-        <div class="card">
+        <div class="card" (click)="error()">
           <img src="/assets/img/party.jpg" class="card-img-top" alt="..." />
           <div class="card-body">
             <h5 class="card-title">Eventos</h5>
@@ -72,7 +72,7 @@
         </div>
       </div>
       <div class="col-md-4">
-        <div class="card">
+        <div class="card" (click)="error()">
           <img src="/assets/img/library.jpg" class="card-img-top" alt="..." />
           <div class="card-body">
             <h5 class="card-title">Foro</h5>
@@ -86,6 +86,6 @@
     </div>
   </div>
   <div class="text-center mt-4">
-    <button type="button" class="btn btn-primary" (click)="signUp()">COMIENZA AHORA</button>
+    <button type="button" class="btn btn-primary" (click)="login()">COMIENZA AHORA</button>
   </div>
 </div>

@@ -11,15 +11,15 @@ import { DocumentosComponent } from './documentos/documentos.component';
 import { ErrorComponent } from './error/error.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent }, 
   { path: 'signup', component: SignupComponent },
   { path: '', component: HomeComponent },
-  { path: 'crear', component: FormComponent },
-  { path: 'todos/:idJugador', component: AllpjComponent },
-  { path: 'jugador/:idJugador', component: JugadorComponent },
-  { path: 'personaje/:idPersonaje', component: PersonajeComponent },
-  { path: 'todos', component: AllpjComponent },
-  { path: 'documentos', component: DocumentosComponent } ,
+  { path: 'crear', component: FormComponent }, //Formulario para la creación de personaje
+  { path: 'todos/:idJugador', component: AllpjComponent }, //Ver los personajes de un jugador
+  { path: 'jugador/:idJugador', component: JugadorComponent }, //Ver detalle del jugador
+  { path: 'personaje/:idPersonaje', component: PersonajeComponent }, //Ver detalle de un personaje
+  { path: 'todos', component: AllpjComponent }, //Ver todos los jugadores
+  { path: 'documentos', component: DocumentosComponent } , //Ver PDFs descargables
   { path: 'error', component: ErrorComponent}
 ];
 

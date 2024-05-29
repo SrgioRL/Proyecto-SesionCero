@@ -9,8 +9,16 @@ import { Router } from '@angular/router';
 export class HomeComponent {
 
  constructor( private router: Router) {}
-  signUp() {
-    this.router.navigate(['/signup']);
+  login() {
+    this.router.navigate(['/login']);
+  }
+
+  goRecursos() {
+    this.router.navigate(['/documentos']);
+  }
+
+  error() {
+    this.router.navigate(['/error']);
   }
 
 }
