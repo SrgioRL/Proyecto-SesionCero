@@ -66,37 +66,57 @@ main {
 }
 
 .btn {
+    font-family: Modesto;
     background-color: #2d8a9c !important;
     color: white !important;
     border-radius: 25px !important;
+    border:none;
+    word-spacing: 4px;
+    letter-spacing: 2px;
     font-weight: 500 !important;
-}
-
-.btn:hover {
-    background-color: #1f5e6a !important;
-}
+    padding: 8px 40px;
+ }
+ 
+ .btn:hover {
+     background-color: #1f5e6a !important;
+ }
 
 /* Nuevos estilos para #noPersonaje */
 #noPersonaje h1 {
     font-family: "Modesto", sans-serif;
-    color: #2d8a9c;
+    color: #fff;
     margin-bottom: 20px;
+    letter-spacing: 2px;
+    word-spacing: 4px;
+    font-size: 56px;
 }
 
 #noPersonaje img {
-    max-width: 250px;
-    max-height: 250px;
+    max-width: 300px;
+    max-height: 300px;
     border-radius: 50%;
-    margin-bottom: 20px;
+   
 }
 
 #noPersonaje .btn {
-    background-color: #2d8a9c !important;
-    color: white !important;
-    border-radius: 25px !important;
-    font-weight: 500 !important;
+    font-family: Modesto;
+    background-color: #CE8821 !important;
+    color: #fff  !important;
+    border: none;
+    border-radius: 50px !important;
+    font-weight: 200 !important;
+    padding: 8px 200px !important; 
+    letter-spacing: 5px;
+    font-size: 32px;
+    word-spacing: 10px;
 }
 
 #noPersonaje .btn:hover {
-    background-color: #1f5e6a !important;
+    background-color: #fff; 
+    color: #CE8821; 
+    border-color: #CE8821; 
+    transform: scale(1.05); 
 }
+
+  
+  

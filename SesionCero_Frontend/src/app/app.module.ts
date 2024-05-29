@@ -16,7 +16,8 @@ import { PersonajeComponent } from './personaje/personaje.component';
 import { HomeComponent } from './home/home.component';
 import { DocumentosComponent } from './documentos/documentos.component';
 import { AuthService } from './services/auth.service';
-import { DownloadService } from './services/download.service'; 
+import { DownloadService } from './services/download.service';
+import { ErrorComponent } from './error/error.component'; 
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { DownloadService } from './services/download.service';
     JugadorComponent,
     PersonajeComponent,
     HomeComponent,
-    DocumentosComponent
+    DocumentosComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,

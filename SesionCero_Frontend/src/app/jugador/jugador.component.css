@@ -72,10 +72,15 @@ main{
 
 
 .btn {
-    background-color: #2d8a9c !important;
+   font-family: Modesto;
+   background-color: #2d8a9c !important;
    color: white !important;
    border-radius: 25px !important;
+   border:none;
+   word-spacing: 4px;
+   letter-spacing: 2px;
    font-weight: 500 !important;
+   padding: 8px 40px;
 }
 
 .btn:hover {

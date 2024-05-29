@@ -92,7 +92,7 @@ main{
 
 #noPersonaje h1 {
     font-family: "Modesto", sans-serif;
-    color: #2d8a9c;
+    color: #fff;
     margin-bottom: 20px;
     max-width: 100%; /* Ajusta este valor según tus necesidades */
     width: auto; /* Hace que el texto ocupe todo el ancho disponible */
@@ -115,3 +115,14 @@ main{
 #noPersonaje .btn:hover {
     background-color: #1f5e6a !important;
 }
+
+/* Estilos para el botón de volver */
+#btn-back {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #fff;
+    border: none
+    
+  }
+  

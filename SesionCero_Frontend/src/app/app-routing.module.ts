@@ -8,6 +8,7 @@ import { JugadorComponent } from './jugador/jugador.component';
 import { PersonajeComponent } from './personaje/personaje.component';
 import { HomeComponent } from './home/home.component';
 import { DocumentosComponent } from './documentos/documentos.component';
+import { ErrorComponent } from './error/error.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: 'jugador/:idJugador', component: JugadorComponent },
   { path: 'personaje/:idPersonaje', component: PersonajeComponent },
   { path: 'todos', component: AllpjComponent },
-  { path: 'documentos', component: DocumentosComponent } 
+  { path: 'documentos', component: DocumentosComponent } ,
+  { path: 'error', component: ErrorComponent}
 ];
 
 @NgModule({

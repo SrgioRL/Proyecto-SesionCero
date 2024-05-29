@@ -121,19 +121,22 @@ h2 {
 }
 
 .send {
-  color: #ffffff !important; 
+  font-family: Modesto;
   background-color: #2d8a9c !important;
+  color: white !important;
   border-radius: 25px !important;
-  padding: 10px 20px !important;
+  border:none;
+  word-spacing: 4px;
+  letter-spacing: 2px;
   font-weight: 500 !important;
-  transition: all 0.3s ease !important;
-  font-family: 'Roboto', sans-serif !important; 
-  
+  padding: 8px 20px;
+  margin-top: -40px;
 }
 
 .send:hover {
-  background-color: #ce8821 !important;
+  background-color: #1f5e6a !important;
 }
+
 
 .todo {
   background-color: #ffffff1a; 

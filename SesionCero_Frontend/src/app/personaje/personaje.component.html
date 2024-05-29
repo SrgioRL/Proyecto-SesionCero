@@ -1,7 +1,14 @@
 
 
+<div *ngIf="personaje; else noPersonaje">
+  
+<div class="d-flex justify-content-start w-100 mt-5 ms-5" style="max-width: 300px;">
+  <button class="btn-back" onclick="window.history.back();">
+    <i class="fas fa-arrow-left"></i> Volver
+  </button>
+</div>
 
-  <div *ngIf="personaje; else noPersonaje">
+  
     <div class="container mt-5">
       <div class="row">
         <!-- Columna para retrato, detalles y crónica -->
@@ -84,7 +91,7 @@
 
 <ng-template #noPersonaje>
   <div class="container text-center mt-5" id="noPersonaje">
-    <h1 class="mb-4"> Upss algo va mal, el personaje no se ha encontrado </h1>
+    <h1 class="mb-4"> ¡Ups! parece que este personaje solo está en tu mente, es hora de crearlo </h1>
     <div class="mb-4">
       <img id="dados" class="img-fluid rounded-circle mb-4" src="/assets/img/Dados.png" alt="Personajes en vacío" />
     </div>

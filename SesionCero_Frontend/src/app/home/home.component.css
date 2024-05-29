@@ -42,3 +42,28 @@
     font-family: Modesto;
     font-size:xx-large
   }
+
+  
+  
+  .btn {
+    font-family: Modesto;
+    background-color: #CE8821 !important;
+    color: #fff  !important;
+    border: none;
+    border-radius: 50px !important;
+    font-weight: 200 !important;
+    padding: 10px 200px !important; 
+    letter-spacing: 5px;
+    font-size: 32px;
+    word-spacing: 10px;
+    margin-top: 30px
+  }
+  .btn:hover {
+    background-color: #fff; 
+    color: #CE8821; 
+    border-color: #CE8821; 
+    transform: scale(1.05); 
+  }
+  
+  
+  
