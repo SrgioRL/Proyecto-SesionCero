@@ -65,16 +65,16 @@ main{
 .card .card-img-top {
     max-width: 340px;
     padding: 30px;
-    border-radius: 50%; /* Establecer el radio de borde al 50% para hacer la imagen circular */
-    overflow: hidden; /* Asegúrate de que la imagen no se salga del límite circular */
+    border-radius: 50%; 
+    overflow: hidden; 
 }
 
 .card-body {
-    text-align: center; /* Centrar el contenido del cuerpo de la carta */
+    text-align: center;
 }
 
 .card-title {
-    font-family: "Modesto", sans-serif; /* Cambiar la tipografía del título de la carta */
+    font-family: "Modesto", sans-serif;
     font-size:xx-large
 }
 
@@ -94,8 +94,8 @@ main{
     font-family: "Modesto", sans-serif;
     color: #fff;
     margin-bottom: 20px;
-    max-width: 100%; /* Ajusta este valor según tus necesidades */
-    width: auto; /* Hace que el texto ocupe todo el ancho disponible */
+    max-width: 100%; 
+    width: auto;
 }
 
 #noPersonaje img {

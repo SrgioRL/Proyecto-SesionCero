@@ -1,27 +1,24 @@
-/* Estilos para los márgenes laterales */
 .container {
   margin-right: auto;
   margin-left: auto;
 }
 
-/* Estilos para la alineación vertical de los elementos del carrusel */
 .carousel-inner img {
   margin: auto;
 }
 
-/* Estilos para las tarjetas */
 .card {
   margin-top: 20px;
-  transition: transform 0.3s, box-shadow 0.3s; /* Transición para suavizar el efecto */
-  border: none; /* Elimina el borde si existe */
-  border-radius: 10px; /* Redondea las esquinas de las tarjetas */
-  overflow: hidden; /* Asegura que los contenidos no se desborden */
+  transition: transform 0.3s, box-shadow 0.3s;
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 /* Efecto hover para las tarjetas */
 .card:hover {
-  transform: translateY(-10px) scale(1.05); /* Mueve la tarjeta hacia arriba y la escala */
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Añade una sombra más pronunciada */
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 /* Estilos para el carrusel */
 .carousel-inner .carousel-item img {
@@ -64,6 +61,5 @@
     border-color: #CE8821; 
     transform: scale(1.05); 
   }
-  
   
   
