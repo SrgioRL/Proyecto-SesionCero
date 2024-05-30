@@ -3,8 +3,19 @@ DROP DATABASE IF EXISTS dungeons_and_dragons;
 CREATE DATABASE dungeons_and_dragons;
 USE dungeons_and_dragons;
 
+-- Crear la tabla jugadores
+CREATE TABLE `jugadores` (
+  `id_jugador` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) NOT NULL,
+  `apellido1` varchar(100) NOT NULL,
+  `apellido2` varchar(100) DEFAULT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(250) NOT NULL,
+  PRIMARY KEY (`id_jugador`),
+  UNIQUE KEY `email` (`email`)
+) ;
+
 -- Crear la tabla alineamientos
-DROP TABLE IF EXISTS `alineamientos`;
 CREATE TABLE `alineamientos` (
   `id_alineamiento` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) NOT NULL,
@@ -26,7 +37,6 @@ INSERT INTO `alineamientos` VALUES
 (9,'Caótico Malvado','CM','Siguen su propio camino sin restricciones morales. Demonios, brujos oscuros y algunos invocadores de caos son de alineamiento Caótico Malvado.');
 
 -- Crear la tabla ascendencias
-DROP TABLE IF EXISTS `ascendencias`;
 CREATE TABLE `ascendencias` (
   `id_ascendencia` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) NOT NULL,
@@ -80,7 +90,6 @@ INSERT INTO `ascendencias` VALUES
 (42,'Yuan-ti','Humanoides serpenteantes con una mezcla de rasgos humanos y de serpiente.');
 
 -- Crear la tabla clases
-DROP TABLE IF EXISTS `clases`;
 CREATE TABLE `clases` (
   `id_clase` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) NOT NULL,
@@ -105,61 +114,8 @@ INSERT INTO `clases` VALUES
 (12,'Artifice',8,'Experto en la creación de objetos mágicos y artilugios.'),
 (13,'Bardo',8,'Entretenedor mágico y habilidoso en muchas áreas.');
 
--- Crear la tabla habilidades
-DROP TABLE IF EXISTS `habilidades`;
-CREATE TABLE `habilidades` (
-  `id_habilidad` int NOT NULL AUTO_INCREMENT,
-  `id_personaje` int DEFAULT NULL,
-  `atletismo` int DEFAULT NULL,
-  `acrobacias` int DEFAULT NULL,
-  `juego_de_manos` int DEFAULT NULL,
-  `sigilo` int DEFAULT NULL,
-  `arcano` int DEFAULT NULL,
-  `historia` int DEFAULT NULL,
-  `investigacion` int DEFAULT NULL,
-  `naturaleza` int DEFAULT NULL,
-  `religion` int DEFAULT NULL,
-  `trato_de_animales` int DEFAULT NULL,
-  `medicina` int DEFAULT NULL,
-  `percepcion` int DEFAULT NULL,
-  `perspicacia` int DEFAULT NULL,
-  `supervivencia` int DEFAULT NULL,
-  `engano` int DEFAULT NULL,
-  `intimidacion` int DEFAULT NULL,
-  `interpretacion` int DEFAULT NULL,
-  `persuasion` int DEFAULT NULL,
-  PRIMARY KEY (`id_habilidad`),
-  KEY `id_personaje` (`id_personaje`),
-  CONSTRAINT `habilidades_ibfk_1` FOREIGN KEY (`id_personaje`) REFERENCES `personajes` (`id_personaje`) ON DELETE CASCADE
-) ;
-
--- Insertar datos en la tabla habilidades
-INSERT INTO `habilidades` VALUES 
-(1,1,2,4,3,5,0,1,-1,2,3,0,2,4,1,3,2,1,0,3),
-(3,3,4,3,1,2,2,3,-1,4,2,0,2,3,4,3,2,1,0,3);
-
--- Crear la tabla jugadores
-DROP TABLE IF EXISTS `jugadores`;
-CREATE TABLE `jugadores` (
-  `id_jugador` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(100) NOT NULL,
-  `apellido1` varchar(100) NOT NULL,
-  `apellido2` varchar(100) DEFAULT NULL,
-  `email` varchar(100) NOT NULL,
-  `contraseña` varchar(250) NOT NULL,
-  PRIMARY KEY (`id_jugador`),
-  UNIQUE KEY `email` (`email`)
-) ;
-
--- Insertar datos en la tabla jugadores
-INSERT INTO `jugadores` VALUES 
-(1,'Juancar','Menéndez','Sanz','juancar@ejemplo.com','1234'),
-(2,'Bea','de Val','Navares','bea@ejemplo.com','1234'),
-(3,'Sergio','Rojas','Lendines','sergio@ejemplo.com','1234'),
-(6,'Sara','Ejemplo','Ejemplo','sara@ejemplo.com','1234');
 
 -- Crear la tabla personajes
-DROP TABLE IF EXISTS `personajes`;
 CREATE TABLE `personajes` (
   `id_personaje` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) NOT NULL,
@@ -202,6 +158,38 @@ INSERT INTO `personajes` VALUES
 (1,'Morea Elurien',10,37,3,1,2,16,22,12,3,NULL,16,3,14,2,15,2,10,0,12,1,8,-1,NULL),
 (3,'Kylden',7,4,2,3,10,18,50,13,6,NULL,14,2,12,1,15,2,10,0,8,-1,16,3,NULL),
 (5,'Morea Elurien',10,37,3,2,2,16,22,12,3,NULL,16,3,14,2,15,2,10,0,12,1,8,-1,NULL);
+
+-- Crear la tabla habilidades
+CREATE TABLE `habilidades` (
+  `id_habilidad` int NOT NULL AUTO_INCREMENT,
+  `id_personaje` int DEFAULT NULL,
+  `atletismo` int DEFAULT NULL,
+  `acrobacias` int DEFAULT NULL,
+  `juego_de_manos` int DEFAULT NULL,
+  `sigilo` int DEFAULT NULL,
+  `arcano` int DEFAULT NULL,
+  `historia` int DEFAULT NULL,
+  `investigacion` int DEFAULT NULL,
+  `naturaleza` int DEFAULT NULL,
+  `religion` int DEFAULT NULL,
+  `trato_de_animales` int DEFAULT NULL,
+  `medicina` int DEFAULT NULL,
+  `percepcion` int DEFAULT NULL,
+  `perspicacia` int DEFAULT NULL,
+  `supervivencia` int DEFAULT NULL,
+  `engano` int DEFAULT NULL,
+  `intimidacion` int DEFAULT NULL,
+  `interpretacion` int DEFAULT NULL,
+  `persuasion` int DEFAULT NULL,
+  PRIMARY KEY (`id_habilidad`),
+  KEY `id_personaje` (`id_personaje`),
+  CONSTRAINT `habilidades_ibfk_1` FOREIGN KEY (`id_personaje`) REFERENCES `personajes` (`id_personaje`) ON DELETE CASCADE
+) ;
+
+-- Insertar datos en la tabla habilidades
+INSERT INTO `habilidades` VALUES 
+(1,1,2,4,3,5,0,1,-1,2,3,0,2,4,1,3,2,1,0,3),
+(3,3,4,3,1,2,2,3,-1,4,2,0,2,3,4,3,2,1,0,3);
 
 drop user if exists sesioncero;
 create user sesioncero identified by 'sesioncero';

@@ -58,7 +58,7 @@ export class JugadorComponent implements OnInit {
           this.buscarJugadores();
         },
         (error) => {
-          console.error('Error al agregar jugador:', error);
+          console.error('Error al crear jugador:', error);
         }
       );
     }

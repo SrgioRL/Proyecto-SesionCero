@@ -1,24 +1,50 @@
 <body>
   <div class="container-fluid">
-    <div class="row justify-content-center align-items-center min-vh-100"> <!-- Centra verticalmente -->
+    <div class="row justify-content-center align-items-center min-vh-100">
+      <!-- Centra verticalmente -->
       <div class="col-md-6 text-center">
-        <div class="container p-4 bg-transparent rounded"> <!-- Añadir padding y fondo transparente -->
-          <img id="logoLogin" src="../../assets/img/logoBlanco.png" class="mb-4 mt-4">
+        <div class="container p-4 bg-transparent rounded">
+          <!-- Añadir padding y fondo transparente -->
+          <img
+            id="logoLogin"
+            src="../../assets/img/logoBlanco.png"
+            class="mb-4 mt-4"
+          />
           <div>
             <p id="iniciar">INICIAR SESIÓN</p>
             <form (ngSubmit)="login()">
               <div class="mb-3">
-                <input type="email" class="form-control" id="email" placeholder="Nombre de usuario o email"
-                  [(ngModel)]="email" name="email" required>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  placeholder="Nombre de usuario o email"
+                  [(ngModel)]="email"
+                  name="email"
+                  required
+                />
               </div>
               <div class="mb-3">
-                <input type="password" class="form-control" id="password" placeholder="Contraseña"
-                  [(ngModel)]="password" name="password" required>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  placeholder="Contraseña"
+                  [(ngModel)]="password"
+                  name="password"
+                  required
+                />
               </div>
               <button type="submit" class="btn">E N T R A R</button>
             </form>
+            <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+              {{ errorMessage }}
+            </div>
           </div>
-          <p class="mt-3 small">Si aún no formas parte de nuestra comunidad, <a href="/signup">regístrate</a>.</p>
+          <p class="mt-3 small">
+            Si aún no formas parte de nuestra comunidad,
+            <a [routerLink]="['/signup']">regístrate</a>.
+          </p>
         </div>
       </div>
     </div>

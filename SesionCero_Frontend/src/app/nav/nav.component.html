@@ -20,7 +20,11 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" [ngClass]="{ 'show': isMenuOpen }" id="navbarText">
+    <div
+      class="collapse navbar-collapse"
+      [ngClass]="{ show: isMenuOpen }"
+      id="navbarText"
+    >
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
           <a class="nav-link" routerLink="/" (click)="toggleMenu()">
@@ -28,7 +32,12 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="todos/:idJugador" routerLinkActive="active" (click)="toggleMenu()">
+          <a
+            class="nav-link"
+            routerLink="todos/:idJugador"
+            routerLinkActive="active"
+            (click)="toggleMenu()"
+          >
             Personajes
           </a>
         </li>
@@ -38,9 +47,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="signup" (click)="toggleMenu()">
-            Cerrar Sesión
-          </a>
+          <a class="nav-link clickable" (click)="logout()"> Cerrar Sesión </a>
         </li>
       </ul>
     </div>
