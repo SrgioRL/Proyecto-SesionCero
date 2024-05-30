@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'jugador/:idJugador', component: JugadorComponent }, //Ver detalle del jugador
   { path: 'personaje/:idPersonaje', component: PersonajeComponent }, //Ver detalle de un personaje
   { path: 'todos', component: AllpjComponent }, //Ver todos los jugadores
-  { path: 'documentos', component: DocumentosComponent } , //Ver PDFs descargables
+  { path: 'recursos', component: DocumentosComponent } , //Ver PDFs descargables
   { path: 'error', component: ErrorComponent}
 ];
 

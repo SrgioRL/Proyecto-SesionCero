@@ -14,7 +14,7 @@ export class HomeComponent {
   }
 
   goRecursos() {
-    this.router.navigate(['/documentos']);
+    this.router.navigate(['/recursos']);
   }
 
   error() {

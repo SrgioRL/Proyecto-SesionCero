@@ -13,6 +13,7 @@
   border: none;
   border-radius: 10px;
   overflow: hidden;
+  cursor: pointer;
 }
 
 /* Efecto hover para las tarjetas */
