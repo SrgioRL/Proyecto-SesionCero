@@ -16,6 +16,6 @@ export const habilidadesPorClase = {
 
 export const todasLasHabilidades = [
   'Atletismo', 'Acrobacias', 'Sigilo', 'Juego de Manos', 'Arcano', 'Historia',
-  'Investigación', 'Naturaleza', 'Religión', 'Manejo de Animales', 'Medicina',
+  'Investigación', 'Naturaleza', 'Religión', 'T. con Animales', 'Medicina',
   'Percepción', 'Persuasión', 'Engaño', 'Intimidación', 'Actuación', 'Supervivencia'
 ];

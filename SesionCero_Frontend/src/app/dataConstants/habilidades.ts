@@ -47,7 +47,7 @@ export const habilidades = [
     },
     {
       id: 9,
-      name: 'Manejo de Animales',
+      name: 'T. con Animales',
       description: 'Habilidad para entender y entrenar animales.',
     },
     {

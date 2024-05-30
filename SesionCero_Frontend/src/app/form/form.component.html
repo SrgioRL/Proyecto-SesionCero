@@ -1,15 +1,16 @@
 <div class="d-flex justify-content-start w-100 mt-5 ms-5" style="max-width: 300px;">
   <button class="btn-back" onclick="window.history.back();">
-    <i class="fas fa-arrow-left"></i> Volver
+    <i class="fas fa-arrow-left"></i>   Volver
   </button>
 </div>
 
-<div class="container mt-4 mb-5">
+<div class="container mt-1 mb-5">
   <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
     <div class="row justify-content-center">
       <!-- Columna para detalles -->
       <div class="col-md-3 mx-md-2">
         <h2 class="title">DETALLES</h2>
+        <hr>
         <div class="form-group">
           <label for="nombre">Nombre*</label>
           <input
@@ -80,6 +81,7 @@
           <span id="file-name" class="file-name">Ningún archivo seleccionado</span>
         </div>
         <h2 class="title">CRÓNICA</h2>
+        <hr>
         <textarea
   class="form-control textarea fixed-height"
   rows="2"
@@ -92,10 +94,11 @@
       <div class="col-md-3 mx-md-2">
         <div class="habilidades">
           <h2 class="title">HABILIDADES</h2>
+          <hr>
           <div class="form-group">
             <label><h6>Habilidades Fijas:</h6></label>
             <ul>
-              <li
+              <li class = "text"
                 *ngFor="
                   let habilidad of formulario.get('habilidadesFijas')?.value
                 "
@@ -131,26 +134,30 @@
             </div>
           </div>
         </div>
+        <hr>
         <div class="form-group">
-          <label for="pg"><h6>Puntos de Golpe (PG):</h6> </label>
+          <label for="pg"><i class="fas fa-heart"></i>Puntos de Golpe (PG): </label>
           <span id="pg" class="form-control-static">{{
             formulario.get("pg")?.value
           }}</span>
         </div>
+        <hr>
         <div class="form-group">
-          <label for="ca">Clase de Armadura (CA):</label>
+          <label for="ca">  <i class="fas fa-shield-alt"></i>Clase de Armadura (CA):</label>
           <span id="ca" class="form-control-static">{{
             formulario.get("ca")?.value
           }}</span>
         </div>
+        <hr>
         <div class="form-group">
-          <label for="percepcionPasiva">Percepción Pasiva:</label>
+          <label for="percepcionPasiva">  <i class="fas fa-eye"></i>Percepción Pasiva:</label>
           <span id="percepcionPasiva" class="form-control-static">{{
             formulario.get("percepcionPasiva")?.value
           }}</span>
         </div>
+        <hr>
         <div class="form-group">
-          <label for="iniciativa">Iniciativa:</label>
+          <label for="iniciativa"> <i class="fas fa-bolt"></i>Iniciativa:</label>
           <span id="iniciativa" class="form-control-static">{{
             formulario.get("iniciativa")?.value
           }}</span>
@@ -160,6 +167,7 @@
       <!-- Columna para características -->
       <div class="col-md-3 mx-md-2">
         <h2 class="title">CARACTERISTICAS</h2>
+        <hr>
         <div class="form-group" *ngFor="let item of caracteristicas">
           <label class="tituloCaract">{{ item.label }}</label>
           <div class="input-group">
