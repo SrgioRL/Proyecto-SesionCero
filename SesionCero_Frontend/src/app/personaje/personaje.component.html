@@ -5,10 +5,10 @@
       <i class="fas fa-arrow-left"></i> Volver
     </button>
   </div>
-  <div class="container mt-5">
+
+  <div class="container">
     <div class="row">
-      <!-- Columna para retrato, detalles y crónica -->
-      <div class="col-md-6">
+      <div class="col-md-4">
         <div class="card">
           <div class="card-body text-center">
             <img
@@ -18,42 +18,39 @@
               alt="Retrato del personaje"
             />
             <h5 class="card-title">DETALLES</h5>
-            <div class="mb-4">
-              <label for="nombre" class="form-label">NOMBRE:</label>
-              <p id="nombre" class="form-control">{{ personaje.nombre }}</p>
+            <hr>
+            <div class="mb-4 d-flex justify-content-between align-items-center">
+              <label for="nombre" class="form-label">Nombre:</label>
+              <p id="nombre" class="form-control-custom m-0 w-auto">{{ personaje.nombre }}</p>
             </div>
-            <div class="mb-4">
-              <label for="ascendencia" class="form-label">ASCENDENCIA:</label>
-              <p id="ascendencia" class="form-control">
-                {{ personaje.ascendencia.nombre }}
-              </p>
+            <div class="mb-4 d-flex justify-content-between align-items-center">
+              <label for="ascendencia" class="form-label">Ascendencia:</label>
+              <p id="ascendencia" class="form-control-custom  m-0 w-auto">{{ personaje.ascendencia.nombre }}</p>
             </div>
-            <div class="mb-4">
-              <label for="clase" class="form-label">CLASE:</label>
-              <p id="clase" class="form-control">
-                {{ personaje.clase.nombre }}
-              </p>
+            <div class="mb-4 d-flex justify-content-between align-items-center">
+              <label for="clase" class="form-label">Clase:</label>
+              <p id="clase" class="form-control-custom  m-0 w-auto">{{ personaje.clase.nombre }}</p>
             </div>
-            <div class="mb-4">
-              <label for="alineamiento" class="form-label">ALINEAMIENTO:</label>
-              <p id="alineamiento" class="form-control">
-                {{ personaje.alineamiento.nombre }}
-              </p>
+            <div class="mb-4 d-flex justify-content-between align-items-center">
+              <label for="alineamiento" class="form-label">Alineamiento:</label>
+              <p id="alineamiento" class="form-control-custom  m-0 w-auto">{{ personaje.alineamiento.nombre }}</p>
             </div>
-            <h5 class="card-title" *ngIf="personaje.cronica">CRÓNICA</h5>
+            <h5 class="card-title" *ngIf="personaje.cronica">Crónica</h5>
             <div class="mb-4" *ngIf="personaje.cronica">
               <p id="cronica" class="form-control">{{ personaje.cronica }}</p>
             </div>
           </div>
         </div>
       </div>
-      <!-- Columna para habilidades y características -->
-      <div class="col-md-6">
+
+      <!-- Columna para habilidades  -->
+      <div class="col-md-4">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">HABILIDADES</h5>
+            <hr>
             <div class="">
-              <label class="form-label">HABILIDADES FIJAS:</label>
+              <!-- <label class="form-label">HABILIDADES FIJAS:</label> -->
               <ul class="list-group">
                 <li
                   class="list-group-item"
@@ -64,7 +61,7 @@
               </ul>
             </div>
             <div class="">
-              <label class="form-label">HABILIDADES ADICIONALES:</label>
+              <!-- <label class="form-label">Habilidades:</label> -->
               <ul class="list-group">
                 <li
                   class="list-group-item"
@@ -74,53 +71,66 @@
                 </li>
               </ul>
             </div>
-            <h5 class="card-title">CARACTERISTICAS</h5>
-            <div class="mb-4">
-              <label for="pg" class="form-label">PUNTOS DE GOLPE (PG):</label>
-              <span id="pg" class="form-control">{{ personaje.pg }}</span>
-            </div>
-            <div class="mb-4">
-              <label for="ca" class="form-label">CLASE DE ARMADURA (CA):</label>
-              <span id="ca" class="form-control">{{ personaje.ca }}</span>
-            </div>
-            <div class="mb-4">
-              <label for="percepcionPasiva" class="form-label"
-                >PERCEPCIÓN PASIVA:</label
-              >
-              <span id="percepcionPasiva" class="form-control">{{
-                personaje.percepcionPasiva
-              }}</span>
-            </div>
-            <div class="mb-4">
-              <label for="iniciativa" class="form-label">INICIATIVA:</label>
-              <span id="iniciativa" class="form-control">{{
-                personaje.iniciativa
-              }}</span>
-            </div>
-            <div class="mb-4">
-              <label class="form-label">Ejemplo</label>
-              <div class="input-group">
-                <input
-                  type="text"
-                  class="form-control"
-                  readonly
-                  value="personaje[item.key]"
-                />
-                <span class="input-group-text"
-                  >Mod: calcularModificador(personaje[item.key])</span
-                >
-              </div>
-            </div>
-            <button
-              class="btn btn-outline-secondary mt-3"
-              (click)="crearPersonaje()"
-            >
-              CREAR NUEVO PERSONAJE
-            </button>
           </div>
         </div>
       </div>
+
+
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+        <h5 class="card-title">CARACTERISTICAS</h5>
+        <hr>
+        <div class="mb-4">
+          <label for="pg" class="form-label">Puntos de Golpe (PG):</label>
+          <span id="pg" class="form-control-custom">{{ personaje.pg }}</span>
+        </div>
+        <div class="mb-4">
+          <label for="ca" class="form-label">Clase de Armadura (CA):</label>
+          <span id="ca" class="form-control-custom">{{ personaje.ca }}</span>
+        </div>
+        <div class="mb-4">
+          <label for="percepcionPasiva" class="form-label"
+            >Percepción Pasiva:</label
+          >
+          <span id="percepcionPasiva" class="form-control-custom">{{
+            personaje.percepcionPasiva
+          }}</span>
+        </div>
+        <div class="mb-4">
+          <label for="iniciativa" class="form-label">Iniciativa:</label>
+          <span id="iniciativa" class="form-control-custom">{{
+            personaje.iniciativa
+          }}</span>
+        </div>
+        <!-- <div class="mb-4 d-flex justify-content-between align-items-center">
+          <label class="form-label">Ejemplo</label>
+          <div class="input-group">
+            <input
+              type="text"
+              class="form-control"
+              readonly
+              value="personaje[item.key]"
+            />
+            <span class="input-group-text"
+              >Mod: calcularModificador(personaje[item.key])</span
+            >
+          </div>
+        </div> -->
+
+        
+
     </div>
+      </div>
+      <button
+      class="btn btn-outline-secondary mt-5"
+      (click)="crearPersonaje()"
+    >
+      CREAR NUEVO PERSONAJE
+    </button>
+    </div>
+
+    </div>  <!--row-->
   </div>
 </div>
 

@@ -82,6 +82,21 @@ main {
      background-color: #1f5e6a !important;
  }
 
+ label {
+    font-family: "Roboto", sans-serif !important;
+    font-variant: small-caps;
+  }
+
+  .form-control-custom {
+    border: none;
+    padding: 0;
+    background-color: transparent;
+    margin-left: 10px !important;
+    color:#2d8a9c;
+    font-size:large;
+  
+  }
+
 /* Nuevos estilos para #noPersonaje */
 #noPersonaje h1 {
     font-family: "Modesto", sans-serif;
