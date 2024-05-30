@@ -141,7 +141,7 @@ export class FormComponent implements OnInit {
       .get('sabiduria')
       ?.valueChanges.subscribe(() => this.actualizarPercepcion());
   }
-
+  
   /**
    * Actualiza todos los campos calculados del formulario.
    *

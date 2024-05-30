@@ -57,6 +57,7 @@ main{
     color: white !important;
     border-radius: 50px !important;
     background-color:  #CE8821; 
+    border: none
   }
   
 .card:hover .card-title {
@@ -121,13 +122,4 @@ main{
     background-color: #1f5e6a !important;
 }
 
-/* Estilos para el botón de volver */
-#btn-back {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #fff;
-    border: none
-    
-  }
-  
+

@@ -65,6 +65,7 @@ main {
     font-size: xx-large;
 }
 
+
 .btn {
     font-family: Modesto;
     background-color: #2d8a9c !important;
@@ -120,4 +121,9 @@ main {
 }
 
   
-  
+.btn-back{
+    color: white !important;
+    border-radius: 50px !important;
+    background-color:  #CE8821; 
+    border: none
+  }

@@ -1,4 +1,4 @@
-export const habilidadesPorClase = {
+export const habilidadesPorClase: Record<string, string[]> = {
   'Picaro': ['Sigilo', 'Juego de Manos'],
   'Mago': ['Arcano', 'Historia'],
   'Druida': ['Naturaleza', 'Percepción'],
@@ -14,7 +14,7 @@ export const habilidadesPorClase = {
   'Bardo': ['Actuación', 'Persuasión'],
 };
 
-export const todasLasHabilidades = [
+export const todasLasHabilidades: string[] = [
   'Atletismo', 'Acrobacias', 'Sigilo', 'Juego de Manos', 'Arcano', 'Historia',
   'Investigación', 'Naturaleza', 'Religión', 'T. con Animales', 'Medicina',
   'Percepción', 'Persuasión', 'Engaño', 'Intimidación', 'Actuación', 'Supervivencia'
