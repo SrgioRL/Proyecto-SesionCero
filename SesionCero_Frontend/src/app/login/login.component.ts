@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
   email: string = '';
@@ -23,28 +23,26 @@ export class LoginComponent {
    */
   constructor(private authService: AuthService, private router: Router) {}
 
-  /**
-   * Método que se ejecuta al iniciar el componente.
-   */
+  
   ngOnInit(): void {}
 
   /**
    * Maneja el proceso de inicio de sesión.
    *
    * Utiliza el servicio de autenticación para enviar las credenciales de inicio de sesión.
-   * Si el inicio de sesión es correcto, redirige al usuario a la vista de jugador.
+   * Si el inicio de sesión es correcto, redirige al usuario a la vista de todos sus personajes.
    * Si ocurre un error, muestra un mensaje de error.
    */
   login(): void {
     this.authService.login(this.email, this.password).subscribe({
-      next: (token) => {
-        console.log('Login exitoso, token:', token);
-        this.router.navigate(['/jugador']); 
+      next: (response) => {
+        console.log('Login exitoso, token:', response.token);
+        this.router.navigate([`/todos/${response.idJugador}`]);
       },
       error: (err) => {
         console.error('Error en el login', err);
         this.errorMessage = 'Credenciales incorrectas';
-      }
+      },
     });
   }
 }

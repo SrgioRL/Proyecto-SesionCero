@@ -11,7 +11,7 @@ import { HabilidadService } from '../services/habilidad.service';
 @Component({
   selector: 'app-personaje',
   templateUrl: './personaje.component.html',
-  styleUrls: ['./personaje.component.css']
+  styleUrls: ['./personaje.component.css'],
 })
 export class PersonajeComponent implements OnInit {
   public personajes: Personaje[] = [];
@@ -45,7 +45,7 @@ export class PersonajeComponent implements OnInit {
    * También suscribe a las habilidades del personaje para obtener las habilidades fijas y adicionales.
    */
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
+    this.route.params.subscribe((params) => {
       this.idPersonaje = +params['idPersonaje'];
       if (this.idPersonaje) {
         this.personajeService.mostrarPersonaje(this.idPersonaje).subscribe(
@@ -53,7 +53,10 @@ export class PersonajeComponent implements OnInit {
             this.personaje = data;
           },
           (error) => {
-            console.error('Error al obtener los detalles del personaje:', error);
+            console.error(
+              'Error al obtener los detalles del personaje:',
+              error
+            );
           }
         );
       }

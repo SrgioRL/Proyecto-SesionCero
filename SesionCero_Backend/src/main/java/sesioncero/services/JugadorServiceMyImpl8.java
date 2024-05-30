@@ -1,20 +1,14 @@
-
 package sesioncero.services;
 
-
 import java.util.List;
-
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
-/*import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;*/
 import org.springframework.stereotype.Service;
-
 import sesioncero.modelo.entities.Jugador;
 import sesioncero.repository.JugadorRepository;
 
 @Service
-public class JugadorServiceMyImpl8 implements JugadorService/*, UserDetailsService */{
+public class JugadorServiceMyImpl8 implements JugadorService {
 
     @Autowired
     private JugadorRepository jugadorRepository;
@@ -60,20 +54,9 @@ public class JugadorServiceMyImpl8 implements JugadorService/*, UserDetailsServi
             return null;
         }
     }
-/*
-    @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Jugador jugador = jugadorRepository.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + email));
 
-        return org.springframework.security.core.userdetails.User
-                .withUsername(jugador.getEmail())
-                .password(jugador.getPassword())
-                .authorities("USER") // Define los roles o autoridades
-                .accountExpired(false)
-                .accountLocked(false)
-                .credentialsExpired(false)
-                .disabled(false)
-                .build();
-    }*/
+    @Override
+    public Optional<Jugador> findByEmail(String email) {  
+        return jugadorRepository.findByEmail(email);
+    }
 }

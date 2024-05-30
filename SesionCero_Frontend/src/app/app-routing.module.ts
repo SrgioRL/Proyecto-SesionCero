@@ -9,22 +9,39 @@ import { PersonajeComponent } from './personaje/personaje.component';
 import { HomeComponent } from './home/home.component';
 import { DocumentosComponent } from './documentos/documentos.component';
 import { ErrorComponent } from './error/error.component';
+import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent }, 
+  { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: '', component: HomeComponent },
-  { path: 'crear', component: FormComponent }, //Formulario para la creación de personaje
-  { path: 'todos/:idJugador', component: AllpjComponent }, //Ver los personajes de un jugador
-  { path: 'jugador/:idJugador', component: JugadorComponent }, //Ver detalle del jugador
-  { path: 'personaje/:idPersonaje', component: PersonajeComponent }, //Ver detalle de un personaje
-  { path: 'todos', component: AllpjComponent }, //Ver todos los jugadores
-  { path: 'recursos', component: DocumentosComponent } , //Ver PDFs descargables
-  { path: 'error', component: ErrorComponent}
+  { path: 'crear', component: FormComponent, canActivate: [AuthGuard] },
+  {
+    path: 'todos/:idJugador',
+    component: AllpjComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'jugador/:idJugador',
+    component: JugadorComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'personaje/:idPersonaje',
+    component: PersonajeComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: 'todos', component: AllpjComponent, canActivate: [AuthGuard] },
+  {
+    path: 'recursos',
+    component: DocumentosComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: 'error', component: ErrorComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

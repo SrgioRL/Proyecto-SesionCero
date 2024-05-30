@@ -4,11 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import sesioncero.modelo.entities.Ascendencia;
 import sesioncero.modelo.entities.Jugador;
 import sesioncero.modelo.entities.Personaje;
-import sesioncero.repository.AscendenciaRepository;
 import sesioncero.repository.PersonajeRepository;
 
 @Service
