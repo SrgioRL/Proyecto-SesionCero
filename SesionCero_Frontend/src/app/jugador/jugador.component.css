@@ -43,6 +43,12 @@ main {
   border: 0 !important;
 }
 
+.btn-back{
+  color: white !important;
+  border-radius: 50px !important;
+  background-color:  #CE8821; 
+}
+
 .card .card-title {
   color: #2d8a9c;
 }

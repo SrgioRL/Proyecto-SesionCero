@@ -53,7 +53,12 @@ main{
 
 }
 
-
+.btn-back{
+    color: white !important;
+    border-radius: 50px !important;
+    background-color:  #CE8821; 
+  }
+  
 .card:hover .card-title {
     color: #2d8a9c;
 }
