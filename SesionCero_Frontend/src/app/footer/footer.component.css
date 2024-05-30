@@ -4,4 +4,7 @@ footer {
   color: #fff;
   padding: 10px;
   z-index: 1000;
-}
+  box-sizing: border-box; 
+  flex-shrink: 0; /* Asegura que el footer no se encoja */
+  margin-top: auto;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.4);}

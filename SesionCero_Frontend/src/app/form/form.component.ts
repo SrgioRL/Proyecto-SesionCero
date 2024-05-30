@@ -156,21 +156,47 @@ export class FormComponent implements OnInit {
   }
 
   /**
-   * Maneja la selección de un archivo de imagen, convirtiéndolo a base64 y actualizando el formulario.
+   * Maneja la selección de un archivo de imagen, validando el tipo de archivo, mostrando el nombre del archivo,
+   * convirtiéndolo a base64 y actualizando el formulario.
    *
    * Este método se activa cuando un archivo de imagen es seleccionado por el usuario.
-   * Toma el archivo seleccionado, lo convierte a formato base64 utilizando el método `convertirImagenABase64`,
+   * Toma el archivo seleccionado, valida que sea de tipo jpg o png, actualiza un elemento <span> con el nombre del archivo,
+   * lo convierte a formato base64 utilizando el método `convertirImagenABase64`,
    * y actualiza el campo `retrato` del formulario con el valor en base64.
+   * Si no se selecciona ningún archivo, o si el archivo seleccionado no es válido, se muestra un mensaje correspondiente.
    *
    * @param {any} event - El evento de selección de archivo.
    */
   archivoSeleccionado(event: any): void {
     const archivo = event.target.files[0];
-    this.convertirImagenABase64(archivo).then(
-      (base64: string | ArrayBuffer | null) => {
-        this.formulario.patchValue({ retrato: base64 });
+    const fileNameSpan = document.getElementById('file-name');
+
+    if (archivo) {
+      const validTypes = ['image/jpeg', 'image/png'];
+      if (validTypes.includes(archivo.type)) {
+        if (fileNameSpan) {
+          fileNameSpan.textContent = archivo.name;
+          fileNameSpan.classList.remove('error'); // Eliminar clase de error si existe
+        }
+
+        this.convertirImagenABase64(archivo).then(
+          (base64: string | ArrayBuffer | null) => {
+            this.formulario.patchValue({ retrato: base64 });
+          }
+        );
+      } else {
+        if (fileNameSpan) {
+          fileNameSpan.textContent =
+            'Archivo no válido. Solo se permiten archivos JPG o PNG.';
+          fileNameSpan.classList.add('error'); // Añadir clase de error
+        }
       }
-    );
+    } else {
+      if (fileNameSpan) {
+        fileNameSpan.textContent = 'Ningún archivo seleccionado';
+        fileNameSpan.classList.remove('error'); // Eliminar clase de error si existe
+      }
+    }
   }
 
   /**

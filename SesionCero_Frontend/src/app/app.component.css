@@ -12,14 +12,15 @@
   
   .content {
     flex: 1;
+    margin-bottom: 50px;
   }
   
-  .footer-wrapper {
+ 
+  footer {
     flex-shrink: 0;
-    background-color: #222831; 
+    width: 100%;
+    background-color: #222831;
     color: #fff;
     padding: 10px;
-    width: 100%;
     box-sizing: border-box;
   }
-  

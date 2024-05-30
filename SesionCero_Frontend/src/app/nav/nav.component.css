@@ -6,3 +6,6 @@
     color: #2d8a9c !important;
 }
 
+nav {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+}
