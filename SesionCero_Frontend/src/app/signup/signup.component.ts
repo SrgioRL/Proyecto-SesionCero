@@ -50,4 +50,13 @@ export class SignupComponent {
       }
     );
   }
+
+    /**
+   * Navega a la página de inicio.
+   *
+   * Este método redirige al usuario a la página de inicio.
+   */
+    goHome() {
+      this.router.navigate(['/']);
+    }
 }

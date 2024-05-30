@@ -1,0 +1,25 @@
+.cierre-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  .cierre-container h1 {
+    font-family: "Modesto", sans-serif;
+    color: #fff !important;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    word-spacing: 4px;
+    font-size: 56px;
+  }
+  
+  .cierre-container img {
+    max-width: 600px;
+    max-height: 600px;
+    border-radius: 50%;
+  }
+  
+  

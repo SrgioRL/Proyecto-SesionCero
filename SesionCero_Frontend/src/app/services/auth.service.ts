@@ -49,11 +49,15 @@ export class AuthService {
   /**
    * Maneja el cierre de sesión.
    *
-   * Elimina el token JWT del almacenamiento local y redirige al usuario a la página de inicio.
+   * Elimina el token JWT del almacenamiento local y redirige al usuario a la página de cierre de sesión,
+   * pasados unos segundos le dirigirá a la home.
    */
   logout(): void {
     localStorage.removeItem('jwtToken');
-    this.router.navigate(['/']);
+    this.router.navigate(['/logout']); 
+    setTimeout(() => {
+      this.router.navigate(['/']); 
+    }, 2000);
   }
 
   /**

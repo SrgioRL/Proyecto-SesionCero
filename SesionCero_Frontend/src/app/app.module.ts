@@ -17,7 +17,8 @@ import { HomeComponent } from './home/home.component';
 import { DocumentosComponent } from './documentos/documentos.component';
 import { AuthService } from './services/auth.service';
 import { DownloadService } from './services/download.service';
-import { ErrorComponent } from './error/error.component'; 
+import { ErrorComponent } from './error/error.component';
+import { CerrarSesionComponent } from './cerrar-sesion/cerrar-sesion.component'; 
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { ErrorComponent } from './error/error.component';
     PersonajeComponent,
     HomeComponent,
     DocumentosComponent,
-    ErrorComponent
+    ErrorComponent,
+    CerrarSesionComponent
 
 
   ],

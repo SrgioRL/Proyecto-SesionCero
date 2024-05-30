@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { DocumentosComponent } from './documentos/documentos.component';
 import { ErrorComponent } from './error/error.component';
 import { AuthGuard } from './services/auth.guard';
+import { CerrarSesionComponent } from './cerrar-sesion/cerrar-sesion.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -38,6 +39,8 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   { path: 'error', component: ErrorComponent },
+  { path: 'logout', component: CerrarSesionComponent },
+
 ];
 
 @NgModule({
