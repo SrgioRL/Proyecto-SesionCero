@@ -31,6 +31,9 @@ export class PersonajeService {
    * @returns {Observable<Personaje>} - Emite la respuesta del backend.
    */
   altaPersonaje(personaje: Personaje): Observable<Personaje> {
+    const idJugador = this.authService.getIdJugador(); 
+    personaje.jugador = { idJugador: idJugador };
+  
     return this.http.post<Personaje>(`${this.baseUrl}/alta`, personaje, {
       headers: this.authService.getAuthHeaders(),
     });

@@ -544,7 +544,7 @@ export class FormComponent implements OnInit {
    *
    * Este método se llama cuando el formulario se envía. Primero, verifica si el formulario es válido.
    * Si es válido, prepara los datos del personaje utilizando el método `prepararPersonaje` y llama al servicio `PersonajeService`
-   * para enviar estos datos al servidor. Si la creación se completa, redirige a la página de detalles del personaje.
+   * para enviar estos datos al servidor. Si la creación se completa, redirige a la página de los personajes asociados al jugador.
    * Si ocurre un error, se muestra un mensaje de error en la consola.
    *
    * Si el formulario no es válido, marca todos los campos como tocados para que se muestren los mensajes de error
@@ -556,7 +556,13 @@ export class FormComponent implements OnInit {
       this.personajeService.altaPersonaje(personaje).subscribe(
         (response) => {
           console.log('Personaje creado con éxito', response);
-          this.router.navigate(['/todos/idJugador']);
+      
+          const idJugador = localStorage.getItem('idJugador');
+          if (idJugador) {
+            this.router.navigate(['/todos', idJugador]);
+          } else {
+            console.error('No se pudo obtener el ID del jugador logueado');
+          }
         },
         (error) => console.error('Error al crear el personaje', error)
       );
@@ -565,7 +571,7 @@ export class FormComponent implements OnInit {
       console.log('El formulario no es válido');
     }
   }
-
+  
   /**
    * Verifica si un campo del formulario es inválido si no cumple con las validaciones marcadas en el formulario.
    * Además, este método verifica si el campo ha sido modificado (`dirty`) o si ha sido tocado (`touched`).

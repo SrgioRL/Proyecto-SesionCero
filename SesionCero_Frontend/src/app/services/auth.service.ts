@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import jwt_decode from 'jwt-decode';
 
 /**
  * Servicio para manejar la autenticación de usuarios.
@@ -118,4 +119,13 @@ export class AuthService {
       Authorization: `Bearer ${token}`,
     });
   }
+
+  
+  getIdJugador(): number {
+    const idJugador = localStorage.getItem('idJugador');
+    return idJugador ? parseInt(idJugador, 10) : -1; 
+
+
+
+}
 }
