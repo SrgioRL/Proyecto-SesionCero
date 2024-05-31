@@ -65,6 +65,17 @@ main {
     font-size: xx-large;
 }
 
+.form-label {
+
+    font-family: "Roboto", sans-serif !important;
+    font-variant: small-caps !important;    
+   
+}
+
+label {
+    font-family: "Roboto", sans-serif !important;
+    font-variant: small-caps;
+  }
 
 .btn {
     font-family: Modesto;
@@ -76,6 +87,7 @@ main {
     letter-spacing: 2px;
     font-weight: 500 !important;
     padding: 8px 40px;
+    font-size: 24px;
  }
  
  .btn:hover {

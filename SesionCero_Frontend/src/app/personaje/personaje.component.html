@@ -65,29 +65,27 @@
                   class="list-group-item"
                   *ngFor="let habilidad of habilidadesFijasSeleccionadas"
                 >
-                  {{ habilidad }}
+                 {{ habilidad }}
                 </li>
               </ul>
             </div>
             <h5 class="card-title">CARACTERISTICAS</h5>
             <div class="mb-4">
-              <label for="pg" class="form-label">PUNTOS DE GOLPE (PG):</label>
+              <label for="pg"><i class="fas fa-heart"></i>Puntos de Golpe (PG): </label>
               <span id="pg" class="form-control">{{ personaje.pg }}</span>
             </div>
             <div class="mb-4">
-              <label for="ca" class="form-label">CLASE DE ARMADURA (CA):</label>
+              <label for="ca">  <i class="fas fa-shield-alt"></i>Clase de Armadura (CA):</label>
               <span id="ca" class="form-control">{{ personaje.ca }}</span>
             </div>
             <div class="mb-4">
-              <label for="percepcionPasiva" class="form-label"
-                >PERCEPCIÓN PASIVA:</label
-              >
+              <label for="percepcionPasiva">  <i class="fas fa-eye"></i>Percepción Pasiva:</label>
               <span id="percepcionPasiva" class="form-control">{{
                 personaje.percepcionPasiva
               }}</span>
             </div>
             <div class="mb-4">
-              <label for="iniciativa" class="form-label">INICIATIVA:</label>
+              <label for="iniciativa"> <i class="fas fa-bolt"></i>Iniciativa:</label>
               <span id="iniciativa" class="form-control">{{
                 personaje.iniciativa
               }}</span>
