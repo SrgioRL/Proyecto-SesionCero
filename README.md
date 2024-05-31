@@ -1,6 +1,6 @@
 # Sesión Cero
 
-¡Bienvenidos a nuestro proyecto de Sesión Cero! 🐉
+¡Bienvenidos a nuestro proyecto de D&D! 🐉
 
 ## Cómo arrancar el proyecto
 
