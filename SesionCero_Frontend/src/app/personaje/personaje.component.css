@@ -42,6 +42,7 @@ main {
 .retrato {
   max-width: 199px;
 }
+
 .card {
   transition: transform 0.3s;
   border: 0 !important;
@@ -66,33 +67,31 @@ main {
 }
 
 .form-label {
-
-    font-family: "Roboto", sans-serif !important;
-    font-variant: small-caps !important;    
-   
+  font-family: "Roboto", sans-serif !important;
+  font-variant: small-caps !important;
 }
 
 label {
-    font-family: "Roboto", sans-serif !important;
-    font-variant: small-caps;
-  }
+  font-family: "Roboto", sans-serif !important;
+  font-variant: small-caps;
+}
 
 .btn {
-    font-family: Modesto;
-    background-color: #2d8a9c !important;
-    color: white !important;
-    border-radius: 25px !important;
-    border:none;
-    word-spacing: 4px;
-    letter-spacing: 2px;
-    font-weight: 500 !important;
-    padding: 8px 40px;
-    font-size: 24px;
- }
- 
- .btn:hover {
-     background-color: #1f5e6a !important;
- }
+  font-family: Modesto;
+  background-color: #2d8a9c !important;
+  color: white !important;
+  border-radius: 25px !important;
+  border: none;
+  word-spacing: 4px;
+  letter-spacing: 2px;
+  font-weight: 500 !important;
+  padding: 8px 40px;
+  font-size: 24px;
+}
+
+.btn:hover {
+  background-color: #1f5e6a !important;
+}
 
 /* Nuevos estilos para #noPersonaje */
 #noPersonaje h1 {
