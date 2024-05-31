@@ -1,129 +1,126 @@
 @font-face {
-    font-family: 'Modesto';
-    src: url("../../assets/fonts/Modesto.ttf") format('ttf');
+  font-family: "Modesto";
+  src: url("../../assets/fonts/Modesto.ttf") format("ttf");
 }
 
 /* Paleta de colores */
 .base {
-    background-color: #6c8ccd; 
+  background-color: #6c8ccd;
 }
 
 .secundario {
-    background-color: #676C77; 
+  background-color: #676c77;
 }
 
 .ternario {
-    background-color: #474D3B; 
+  background-color: #474d3b;
 }
 
 .positivo {
-    background-color: #ADCC6C !important; 
+  background-color: #adcc6c !important;
 }
 
 .negativo {
-    background-color: #CC7B6C; 
+  background-color: #cc7b6c;
 }
 
 html,
 body {
-    height: 100%;
-    background-color: #ffffff1a !important; 
+  height: 100%;
+  background-color: #ffffff1a !important;
 }
 
 body {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 main {
-    flex: 1;
+  flex: 1;
 }
 
 .retrato {
-    max-width: 199px;
+  max-width: 199px;
 }
 .card {
-    transition: transform .3s; 
-    border: 0 !important; 
+  transition: transform 0.3s;
+  border: 0 !important;
 }
 
 .card .card-title {
-    color: #2d8a9c;
+  color: #2d8a9c;
 }
 
 .card .card-img-top {
-    border-radius: 50%; /* Establecer el radio de borde al 50% para hacer la imagen circular */
-    overflow: hidden; /* Asegúrate de que la imagen no se salga del límite circular */
+  border-radius: 50%;
+  overflow: hidden;
 }
 
 .card-body {
-    text-align: center; /* Centrar el contenido del cuerpo de la carta */
+  text-align: center;
 }
 
 .card-title {
-    font-family: "Modesto", sans-serif; /* Cambiar la tipografía del título de la carta */
-    font-size: xx-large;
+  font-family: "Modesto", sans-serif;
+  font-size: xx-large;
 }
 
-
 .btn {
-    font-family: Modesto;
-    background-color: #2d8a9c !important;
-    color: white !important;
-    border-radius: 25px !important;
-    border:none;
-    word-spacing: 4px;
-    letter-spacing: 2px;
-    font-weight: 500 !important;
-    padding: 8px 40px;
- }
- 
- .btn:hover {
-     background-color: #1f5e6a !important;
- }
+  font-family: Modesto;
+  background-color: #2d8a9c !important;
+  color: white !important;
+  border-radius: 25px !important;
+  border: none;
+  word-spacing: 4px;
+  letter-spacing: 2px;
+  font-weight: 500 !important;
+  padding: 8px 40px;
+}
+
+.btn:hover {
+  background-color: #1f5e6a !important;
+}
 
 /* Nuevos estilos para #noPersonaje */
 #noPersonaje h1 {
-    font-family: "Modesto", sans-serif;
-    color: #fff;
-    margin-bottom: 20px;
-    letter-spacing: 2px;
-    word-spacing: 4px;
-    font-size: 56px;
-    margin-top: 200px;
+  font-family: "Modesto", sans-serif;
+  color: #fff;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+  word-spacing: 4px;
+  font-size: 56px;
+  margin-top: 200px;
 }
 
 #noPersonaje img {
-    max-width: 300px;
-    max-height: 300px;
-    border-radius: 50%;
-   
+  max-width: 300px;
+  max-height: 300px;
+  border-radius: 50%;
 }
 
 #noPersonaje .btn {
-    font-family: Modesto;
-    background-color: #CE8821 !important;
-    color: #fff  !important;
-    border: none;
-    border-radius: 50px !important;
-    font-weight: 200 !important;
-    padding: 8px 200px !important; 
-    letter-spacing: 5px;
-    font-size: 32px;
-    word-spacing: 10px;
+  font-family: Modesto;
+  background-color: #ce8821 !important;
+  color: #fff !important;
+  border: none;
+  border-radius: 50px !important;
+  font-weight: 200 !important;
+  padding: 8px 200px !important;
+  letter-spacing: 5px;
+  font-size: 32px;
+  word-spacing: 10px;
 }
 
 #noPersonaje .btn:hover {
-    background-color: #fff; 
-    color: #CE8821; 
-    border-color: #CE8821; 
-    transform: scale(1.05); 
+  background-color: #fff;
+  color: #ce8821;
+  border-color: #ce8821;
+  transform: scale(1.05);
 }
 
-  
-.btn-back{
-    color: white !important;
-    border-radius: 50px !important;
-    background-color:  #CE8821; 
-    border: none
-  }
+.btn-back {
+  color: white !important;
+  border-radius: 50px !important;
+  background-color: #ce8821;
+  border: none;
+}

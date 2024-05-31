@@ -15,7 +15,7 @@ import { AuthService } from './auth.service';
 })
 export class AuthGuard implements CanActivate {
   /**
-   * El constructor del servicio. Aquí se inyectan las dependencias necesarias.
+   * Constructor
    *
    * @param {AuthService} authService - Servicio para manejar la autenticación.
    * @param {Router} router - Para navegar entre diferentes vistas.

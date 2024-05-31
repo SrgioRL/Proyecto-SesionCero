@@ -25,7 +25,7 @@ export class AllpjComponent implements OnInit {
   public personajes: Personaje[] = [];
 
   /**
-   * El constructor del componente. Aquí se inyectan las dependencias necesarias.
+   * Constructor
    * 
    * @param {ActivatedRoute} route - Para obtener información sobre la ruta activa.
    * @param {PersonajeService} personajeService - Servicio para manejar los datos de los personajes.

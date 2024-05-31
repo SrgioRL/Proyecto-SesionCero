@@ -19,7 +19,7 @@ export class JugadorComponent implements OnInit {
   errorEliminarJugador: boolean = false;
 
   /**
-   * El constructor del componente. Aquí se inyectan las dependencias necesarias.
+   * Constructor
    *
    * @param {ActivatedRoute} route - Para obtener información sobre la ruta activa.
    * @param {JugadorService} jugadorService - Servicio para manejar los datos de los jugadores.

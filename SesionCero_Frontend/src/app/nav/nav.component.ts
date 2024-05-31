@@ -17,7 +17,7 @@ export class NavComponent implements OnInit {
   public idJugador: number | null = null;
 
   /**
-   * El constructor del componente. Aquí se inyectan las dependencias necesarias.
+   * Constructor
    *
    * @param {AuthService} authService - Servicio para manejar la autenticación.
    */

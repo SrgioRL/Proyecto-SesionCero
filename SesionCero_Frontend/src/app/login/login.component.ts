@@ -16,7 +16,7 @@ export class LoginComponent {
   errorMessage: string = '';
 
   /**
-   * El constructor del componente. Aquí se inyectan las dependencias necesarias.
+   * Constructor
    *
    * @param {AuthService} authService - Servicio para manejar la autenticación.
    * @param {Router} router - Para navegar entre diferentes vistas.
