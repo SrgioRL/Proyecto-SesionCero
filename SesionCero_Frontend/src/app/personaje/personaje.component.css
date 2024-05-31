@@ -67,7 +67,7 @@ main {
 
 
 .btn {
-    font-family: Modesto;
+    
     background-color: #2d8a9c !important;
     color: white !important;
     border-radius: 25px !important;
@@ -116,7 +116,6 @@ main {
 }
 
 #noPersonaje .btn {
-    font-family: Modesto;
     background-color: #CE8821 !important;
     color: #fff  !important;
     border: none;
