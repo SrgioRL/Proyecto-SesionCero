@@ -114,7 +114,6 @@ INSERT INTO `clases` VALUES
 (12,'Artifice',8,'Experto en la creación de objetos mágicos y artilugios.'),
 (13,'Bardo',8,'Entretenedor mágico y habilidoso en muchas áreas.');
 
-
 -- Crear la tabla personajes
 CREATE TABLE `personajes` (
   `id_personaje` int NOT NULL AUTO_INCREMENT,
@@ -153,12 +152,6 @@ CREATE TABLE `personajes` (
   CONSTRAINT `personajes_ibfk_5` FOREIGN KEY (`id_jugador`) REFERENCES `jugadores` (`id_jugador`) ON DELETE CASCADE
 ) ;
 
--- Insertar datos en la tabla personajes
-INSERT INTO `personajes` VALUES 
-(1,'Morea Elurien',10,37,3,1,2,16,22,12,3,NULL,16,3,14,2,15,2,10,0,12,1,8,-1,NULL),
-(3,'Kylden',7,4,2,3,10,18,50,13,6,NULL,14,2,12,1,15,2,10,0,8,-1,16,3,NULL),
-(5,'Morea Elurien',10,37,3,2,2,16,22,12,3,NULL,16,3,14,2,15,2,10,0,12,1,8,-1,NULL);
-
 -- Crear la tabla habilidades
 CREATE TABLE `habilidades` (
   `id_habilidad` int NOT NULL AUTO_INCREMENT,
@@ -185,11 +178,6 @@ CREATE TABLE `habilidades` (
   KEY `id_personaje` (`id_personaje`),
   CONSTRAINT `habilidades_ibfk_1` FOREIGN KEY (`id_personaje`) REFERENCES `personajes` (`id_personaje`) ON DELETE CASCADE
 ) ;
-
--- Insertar datos en la tabla habilidades
-INSERT INTO `habilidades` VALUES 
-(1,1,2,4,3,5,0,1,-1,2,3,0,2,4,1,3,2,1,0,3),
-(3,3,4,3,1,2,2,3,-1,4,2,0,2,3,4,3,2,1,0,3);
 
 drop user if exists sesioncero;
 create user sesioncero identified by 'sesioncero';

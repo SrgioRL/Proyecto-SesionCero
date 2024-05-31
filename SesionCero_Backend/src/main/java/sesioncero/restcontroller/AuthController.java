@@ -24,37 +24,36 @@ import sesioncero.services.JugadorService;
 @RequestMapping("/jugador")
 public class AuthController {
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+	@Autowired
+	private AuthenticationManager authenticationManager;
 
-    @Autowired
-    private JwtUtils jwtUtils;
+	@Autowired
+	private JwtUtils jwtUtils;
 
-    @Autowired
-    private JugadorService jugadorService;
+	@Autowired
+	private JugadorService jugadorService;
 
-    @PostMapping("/login")
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthRequest authRequest) {
-        try {
-            Authentication authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword())
-            );
+	@PostMapping("/login")
+	public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthRequest authRequest) {
+	    try {
+	        Authentication authentication = authenticationManager.authenticate(
+	                new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
 
-            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-            String jwt = jwtUtils.generateToken(userDetails.getUsername());
+	        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+	        String jwt = jwtUtils.generateToken(userDetails.getUsername());
 
-            // Obtener el jugador por email
-            Jugador jugador = jugadorService.findByEmail(authRequest.getUsername()).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
-  
-            return ResponseEntity.ok(new AuthResponse(jwt, jugador.getIdJugador()));
-        } catch (AuthenticationException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales incorrectas");
-        }
-    }
+	        Jugador jugador = jugadorService.findByEmail(authRequest.getUsername())
+	                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
-    @PostMapping("/alta")
-    public Jugador registerUser(@RequestBody Jugador jugador) {
-        jugador.setPassword(new BCryptPasswordEncoder().encode(jugador.getPassword()));
-        return jugadorService.insertOne(jugador);
-    }
+	        return ResponseEntity.ok(new AuthResponse(jwt, jugador.getIdJugador(), jugador.getNombre()));
+	    } catch (AuthenticationException e) {
+	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales incorrectas");
+	    }
+	}
+
+	@PostMapping("/alta")
+	public Jugador registerUser(@RequestBody Jugador jugador) {
+		jugador.setPassword(new BCryptPasswordEncoder().encode(jugador.getPassword()));
+		return jugadorService.insertOne(jugador);
+	}
 }

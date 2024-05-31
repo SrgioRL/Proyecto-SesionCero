@@ -22,42 +22,67 @@ export class AuthService {
   constructor(private http: HttpClient, private router: Router) {}
 
   /**
+   * Verifica si el almacenamiento local está disponible.
+   *
+   * Intenta utilizar el almacenamiento local para ver si está disponible.
+   *
+   * @returns {boolean} - `true` si el almacenamiento local está disponible, `false` en caso contrario.
+   */
+  private isLocalStorageAvailable(): boolean {
+    try {
+      const test = 'test';
+      localStorage.setItem(test, test);
+      localStorage.removeItem(test);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  /**
    * Maneja el proceso de inicio de sesión.
    *
-   * Envía las credenciales de inicio de sesión al servidor y guarda el token JWT en el almacenamiento local.
+   * Envía las credenciales de inicio de sesión al servidor y guarda el token JWT, nombre de usuario y ID del jugador en el almacenamiento local.
    *
    * @param {string} email - El correo electrónico del usuario.
    * @param {string} password - La contraseña del usuario.
-   * @returns {Observable<{ token: string; idJugador: number }>} - Un observable que emite la respuesta del servidor.
+   * @returns {Observable<{ token: string; idJugador: number; nombre: string }>} - Un observable que emite la respuesta del servidor.
    */
   login(
     email: string,
     password: string
-  ): Observable<{ token: string; idJugador: number }> {
+  ): Observable<{ token: string; idJugador: number; nombre: string }> {
     return this.http
-      .post<{ token: string; idJugador: number }>(`${this.baseUrl}/login`, {
-        username: email,
-        password,
-      })
+      .post<{ token: string; idJugador: number; nombre: string }>(
+        `${this.baseUrl}/login`,
+        {
+          username: email,
+          password,
+        }
+      )
       .pipe(
         tap((response) => {
-          localStorage.setItem('jwtToken', response.token);
+          if (this.isLocalStorageAvailable()) {
+            localStorage.setItem('jwtToken', response.token);
+            localStorage.setItem('nombreUsuario', response.nombre);
+            localStorage.setItem('idJugador', response.idJugador.toString());
+          }
         })
       );
   }
 
   /**
-   * Maneja el cierre de sesión.
+   * Maneja el proceso de cierre de sesión.
    *
-   * Elimina el token JWT del almacenamiento local y redirige al usuario a la página de cierre de sesión,
-   * pasados unos segundos le dirigirá a la home.
+   * Elimina el token JWT, nombre de usuario y ID del jugador del almacenamiento local y redirige al usuario a la página de inicio.
    */
   logout(): void {
-    localStorage.removeItem('jwtToken');
-    this.router.navigate(['/logout']); 
-    setTimeout(() => {
-      this.router.navigate(['/']); 
-    }, 2000);
+    if (this.isLocalStorageAvailable()) {
+      localStorage.removeItem('jwtToken');
+      localStorage.removeItem('nombreUsuario');
+      localStorage.removeItem('idJugador');
+    }
+    this.router.navigate(['/']);
   }
 
   /**
@@ -66,7 +91,10 @@ export class AuthService {
    * @returns {string | null} - El token JWT si está presente, de lo contrario `null`.
    */
   getToken(): string | null {
-    return localStorage.getItem('jwtToken');
+    if (this.isLocalStorageAvailable()) {
+      return localStorage.getItem('jwtToken');
+    }
+    return null;
   }
 
   /**
