@@ -17,8 +17,8 @@
 
 ## Notas adicionales
 
-- **Interfaz Gráfica**: Usa la interfaz gráfica para añadir personajes y jugadores a tu campaña.
-- **Dependencias**: Asegúrate de tener todas las dependencias necesarias instaladas tanto para el front-end como para el back-end.
+- **Interfaz Gráfica**: Usa la interfaz gráfica para añadir personajes y jugadores a tu campaña. Empieza la prueba haciendo el registro y login de un nuevo jugador.
+
 
 ¡Y eso es todo! Esperamos que disfrutes del proyecto tanto como nosotros al desarrollarlo. 🎲
 
