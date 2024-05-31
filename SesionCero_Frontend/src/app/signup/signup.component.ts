@@ -25,7 +25,7 @@ export class SignupComponent {
   };
 
   /**
-   * El constructor del componente. Aquí se inyectan las dependencias necesarias.
+   * Constructor
    *
    * @param {JugadorService} jugadorService - Servicio para manejar los datos de los jugadores.
    * @param {Router} router - Para navegar entre diferentes vistas.
@@ -51,12 +51,12 @@ export class SignupComponent {
     );
   }
 
-    /**
+  /**
    * Navega a la página de inicio.
    *
    * Este método redirige al usuario a la página de inicio.
    */
-    goHome() {
-      this.router.navigate(['/']);
-    }
+  goHome() {
+    this.router.navigate(['/']);
+  }
 }

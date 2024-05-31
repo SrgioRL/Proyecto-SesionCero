@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class ErrorComponent {
   /**
-   * El constructor del componente. Aquí se inyectan las dependencias necesarias.
+   * Constructor
    *
    * @param {Router} router - Para navegar entre diferentes vistas.
    */

@@ -50,7 +50,7 @@ export class FormComponent implements OnInit {
   private idClaseAnteriorCA = 0;
 
   /**
-   * El constructor del componente. Aquí se inyectan las dependencias necesarias.
+   * Constructor
    *
    * @param {FormBuilder} fb - Para construir y gestionar el formulario reactivo.
    * @param {PersonajeService} personajeService - Servicio para manejar los datos de los personajes.

@@ -14,7 +14,7 @@ export class JugadorService {
   private baseUrl = 'http://localhost:8087/jugador'; // URL base del backend
 
   /**
-   * El constructor del servicio. Aquí se inyectan las dependencias necesarias.
+   * Constructor
    *
    * @param {HttpClient} http - Para realizar solicitudes HTTP.
    * @param {AuthService} authService - Servicio para manejar la autenticación.

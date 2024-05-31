@@ -1,4 +1,3 @@
-
 <div *ngIf="personaje; else noPersonaje">
   <div class="container mt-5">
     <div class="row">
@@ -58,17 +57,7 @@
                 </li>
               </ul>
             </div>
-            <div class="">
-              <label class="form-label">HABILIDADES ADICIONALES:</label>
-              <ul class="list-group">
-                <li
-                  class="list-group-item"
-                  *ngFor="let habilidad of habilidadesFijasSeleccionadas"
-                >
-                 {{ habilidad }}
-                </li>
-              </ul>
-            </div>
+
             <h5 class="card-title">CARACTERISTICAS</h5>
             <div class="mb-4">
               <label for="pg"><i class="fas fa-heart"></i>Puntos de Golpe (PG): </label>
@@ -90,19 +79,60 @@
                 personaje.iniciativa
               }}</span>
             </div>
+
             <div class="mb-4">
-              <label class="form-label">Ejemplo</label>
-              <div class="input-group">
-                <input
-                  type="text"
-                  class="form-control"
-                  readonly
-                  value="personaje[item.key]"
-                />
-                <span class="input-group-text"
-                  >Mod: calcularModificador(personaje[item.key])</span
-                >
-              </div>
+              <label for="fuerza" class="form-label">FUERZA:</label>
+              <span id="fuerza" class="form-control">{{
+                personaje.fuerza
+              }}</span>
+              <span id="fuerza_mod" class="form-control"
+                >Mod: {{ personaje.fuerzaMod }}</span
+              >
+            </div>
+            <div class="mb-4">
+              <label for="destreza" class="form-label">DESTREZA:</label>
+              <span id="destreza" class="form-control">{{
+                personaje.destreza
+              }}</span>
+              <span id="destreza_mod" class="form-control"
+                >Mod: {{ personaje.destrezaMod }}</span
+              >
+            </div>
+            <div class="mb-4">
+              <label for="constitucion" class="form-label">CONSTITUCIÓN:</label>
+              <span id="constitucion" class="form-control">{{
+                personaje.constitucion
+              }}</span>
+              <span id="constitucion_mod" class="form-control"
+                >Mod: {{ personaje.constitucionMod }}</span
+              >
+            </div>
+            <div class="mb-4">
+              <label for="inteligencia" class="form-label">INTELIGENCIA:</label>
+              <span id="inteligencia" class="form-control">{{
+                personaje.inteligencia
+              }}</span>
+              <span id="inteligencia_mod" class="form-control"
+                >Mod: {{ personaje.inteligenciaMod }}</span
+              >
+            </div>
+            <div class="mb-4">
+              <label for="sabiduria" class="form-label">SABIDURÍA:</label>
+              <span id="sabiduria" class="form-control">{{
+                personaje.sabiduria
+              }}</span>
+              <span id="sabiduria_mod" class="form-control"
+                >Mod: {{ personaje.sabiduriaMod }}</span
+              >
+            </div>
+            <div class="mb-4">
+              <label for="carisma" class="form-label">CARISMA:</label>
+              <span id="carisma" class="form-control">{{
+                personaje.carisma
+              }}</span>
+              <span id="carisma_mod" class="form-control"
+                >Mod: {{ personaje.carismaMod }}</span
+              >
             </div>
             <button
               class="btn btn-outline-secondary mt-3"
@@ -119,7 +149,10 @@
 
 <ng-template #noPersonaje>
   <div class="container text-center mt-5" id="noPersonaje">
-    <h1 class="mb-4"> ¡Ups! parece que el personaje solo está en tu imaginación, es hora de crearlo </h1>
+    <h1 class="mb-4">
+      ¡Ups! parece que el personaje solo está en tu imaginación, es hora de
+      crearlo
+    </h1>
     <div class="mb-4">
       <img
         id="dados"

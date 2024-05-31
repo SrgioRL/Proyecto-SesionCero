@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import jwt_decode from 'jwt-decode';
 
 /**
  * Servicio para manejar la autenticación de usuarios.
@@ -15,7 +14,7 @@ export class AuthService {
   private baseUrl = 'http://localhost:8087/jugador';
 
   /**
-   * El constructor del servicio. Aquí se inyectan las dependencias necesarias.
+   * Constructor
    *
    * @param {HttpClient} http - Para realizar solicitudes HTTP.
    * @param {Router} router - Para navegar entre diferentes vistas.

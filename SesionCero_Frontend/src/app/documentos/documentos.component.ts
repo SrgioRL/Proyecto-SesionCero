@@ -97,7 +97,7 @@ export class DocumentosComponent {
   ];
 
   /**
-   * El Constructor. Aquí se inyecta el servicio de descarga.
+   * Constructor
    *
    * @param {DownloadService} downloadService - Servicio para manejar la descarga de archivos.
    */

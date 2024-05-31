@@ -14,7 +14,7 @@ export class PersonajeService {
   private baseUrl = 'http://localhost:8087/personaje';
 
   /**
-   * El constructor del servicio. Aquí se inyectan las dependencias necesarias.
+   * Constructor
    *
    * @param {HttpClient} http - Para realizar solicitudes HTTP.
    * @param {AuthService} authService - Servicio para manejar la autenticación.
