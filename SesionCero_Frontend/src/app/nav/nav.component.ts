@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 /**
  * Este es el componente encargado de manejar la barra de navegación.
@@ -20,7 +21,9 @@ export class NavComponent implements OnInit {
    *
    * @param {AuthService} authService - Servicio para manejar la autenticación.
    */
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService,
+    private router: Router
+  ) {}
 
   /**
    * Método que se ejecuta al iniciar el componente.
@@ -29,12 +32,12 @@ export class NavComponent implements OnInit {
    */
   ngOnInit(): void {
     if (this.isLocalStorageAvailable()) {
-      this.nombreUsuario = localStorage.getItem('nombreUsuario');
+      this.nombreUsuario = localStorage.getItem('nombreUsuario'); 
       const idJugadorString = localStorage.getItem('idJugador');
       this.idJugador = idJugadorString ? parseInt(idJugadorString, 10) : null;
     }
   }
-
+  
   /**
    * Alterna el estado del menú de navegación.
    *
@@ -60,7 +63,13 @@ export class NavComponent implements OnInit {
    */
   logout() {
     this.authService.logout();
+    this.router.navigate(['/logout']).then(() => {
+      setTimeout(() => {
+        this.router.navigate(['/']);
+      }, 3000); 
+    });
   }
+
 
   /**
    * Verifica si el usuario está autenticado.

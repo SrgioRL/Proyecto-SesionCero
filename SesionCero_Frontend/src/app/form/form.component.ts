@@ -11,6 +11,7 @@ import { PersonajeService } from '../services/personaje.service';
 import { Personaje } from '../interfaces/personaje.interface';
 import { HabilidadService } from '../services/habilidad.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 /**
  * Este es el componente encargado de manejar la vista para crear o editar personajes.
@@ -555,7 +556,7 @@ export class FormComponent implements OnInit {
       this.personajeService.altaPersonaje(personaje).subscribe(
         (response) => {
           console.log('Personaje creado con éxito', response);
-          this.router.navigate(['/personaje/idJugador']);
+          this.router.navigate(['/todos/idJugador']);
         },
         (error) => console.error('Error al crear el personaje', error)
       );

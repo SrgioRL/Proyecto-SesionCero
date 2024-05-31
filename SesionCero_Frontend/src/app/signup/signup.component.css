@@ -16,15 +16,16 @@ body {
   width: 400px;
   margin: auto;
 }
-
 .btn {
   color: #ffffff !important;
+  font-family: Modesto !important;
   background-color: #2d8a9c !important;
   border-radius: 25px !important;
   padding: 10px 20px !important;
   font-weight: 500 !important;
   transition: all 0.3s ease !important;
-  font-family: "Roboto", sans-serif !important;
+  width: 200px;
+
 }
 
 .btn:hover {
@@ -44,10 +45,24 @@ body {
   text-decoration: underline !important;
   color: #ce8821 !important;
 }
-
 #logoLogin {
   width: 200px;
   height: auto;
+  transition: transform 1.5s; 
+}
+
+#logoLogin:hover {
+  cursor: pointer;
+  animation: diceFall 3s ease-in-out forwards; 
+}
+
+@keyframes diceFall {
+  0% {
+    transform: perspective(600px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateY(0);
+  }
+  100% {
+    transform: perspective(600px) rotateX(360deg) rotateY(360deg) rotateZ(360deg) translateY(-40px);
+  }
 }
 
 p {
@@ -60,9 +75,6 @@ p {
   color: #ffffff;
 }
 
-#logoLogin:hover {
-  cursor: pointer; 
-}
 
 
 

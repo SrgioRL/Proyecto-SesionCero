@@ -86,7 +86,7 @@ main{
 
 
 .btn {
-    background-color: #2d8a9c !important;
+background-color: #2d8a9c important;
    color: rgb(255, 255, 255) !important;
    border-radius: 25px !important;
    font-weight: 500 !important;
@@ -96,26 +96,38 @@ main{
     background-color: #1f5e6a !important;
 }
 
+#noPersonaje  {
+width: 100%;
+text-align: center;
+}
+
 #noPersonaje h1 {
     font-family: "Modesto", sans-serif;
     color: #fff;
-    margin-bottom: 20px;
+    margin-top: -10px;
     max-width: 100%; 
-    width: auto;
+    width: 400px;
+    display: inline-block; 
 }
 
 #noPersonaje img {
-    max-width: 250px;
-    max-height: 250px;
+    max-width: 500px;
+    max-height: 500px;
     border-radius: 50%;
-    margin-bottom: 20px;
+   
 }
 
 #noPersonaje .btn {
-    background-color: #2d8a9c !important;
-    color: rgb(255, 255, 255) !important;
-    border-radius: 25px !important;
-    font-weight: 500 !important;
+    color: white !important;
+    border-radius: 50px !important;
+    background-color:  #CE8821; 
+    border:none;
+    font-family: Modesto;
+    padding: 6px 20px;
+    letter-spacing: 3px;
+    word-spacing: 6px;
+    font-size: 30px;
+    margin-top: -20;
 }
 
 #noPersonaje .btn:hover {

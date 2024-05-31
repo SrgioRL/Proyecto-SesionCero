@@ -101,6 +101,13 @@ h2 {
   padding: 8px 20px;
   margin-top: -40px;
   transition: background-color 0.2s ease;
+  font-family: Modesto;
+  width: 200px;
+  margin-left: -150px;
+  letter-spacing: 2px ;
+  word-spacing: 4px;
+  font-size: 20px;
+
 }
 
 .send:hover {

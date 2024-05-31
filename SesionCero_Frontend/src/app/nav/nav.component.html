@@ -24,7 +24,7 @@
       [ngClass]="{ show: isMenuOpen }"
       id="navbarText"
     >
-      <ul class="navbar-nav mr-auto">
+      <ul *ngIf="isAuthenticated" class="navbar-nav mr-auto">
         <li class="nav-item active">
           <a class="nav-link" routerLink="/" (click)="toggleMenu()">
             Home <span class="sr-only">(current)</span>
