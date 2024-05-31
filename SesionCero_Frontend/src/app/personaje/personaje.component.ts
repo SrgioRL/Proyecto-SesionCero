@@ -17,8 +17,8 @@ import {
   styleUrls: ['./personaje.component.css'],
 })
 export class PersonajeComponent implements OnInit {
-  public personaje: Personaje | undefined;
-  public idPersonaje: number | undefined;
+  public personaje!: Personaje;
+  public idPersonaje!: number;
   public retratoUrl: string | undefined;
   public habilidadesFijas: string[] = [];
   public habilidadesAdicionales: string[] = [];
@@ -76,10 +76,10 @@ export class PersonajeComponent implements OnInit {
 
   /**
    * Establece las habilidades del personaje según su clase.
-   * 
-   * Este método configura las habilidades fijas y adicionales del personaje 
+   *
+   * Este método configura las habilidades fijas y adicionales del personaje
    * basado en su clase, y las actualiza en el servicio `HabilidadService`.
-   * 
+   *
    * @param {string} clase - La clase del personaje.
    */
   setHabilidades(clase: string): void {
@@ -96,7 +96,7 @@ export class PersonajeComponent implements OnInit {
 
   /**
    * Navega a la página para crear un nuevo personaje.
-   * 
+   *
    * Este método redirige al usuario a la página de creación de personajes.
    */
   crearPersonaje(): void {
@@ -105,14 +105,43 @@ export class PersonajeComponent implements OnInit {
 
   /**
    * Calcula el modificador de una característica según su valor.
-   * 
-   * Este método toma el valor de una característica (como fuerza o destreza) 
+   *
+   * Este método toma el valor de una característica (como fuerza o destreza)
    * y calcula su modificador.
-   * 
+   *
    * @param {number} valor - El valor de la característica.
    * @returns {number} - El modificador calculado.
    */
   calcularModificador(valor: number): number {
     return Math.floor((valor - 10) / 2);
+  }
+
+  /**
+   * Elimina un personaje por su ID.
+   *
+   * Este método elimina el personaje con el ID proporcionado.
+   * Si la eliminación es exitosa, obtiene el ID del jugador logueado desde el almacenamiento local.
+   * Luego redirige al usuario a la lista de personajes del jugador.
+   * Si no se puede obtener el ID del jugador desde el almacenamiento local, muestra un mensaje de error.
+   * En caso de error al eliminar el personaje, se muestra un mensaje de error en la consola.
+   *
+   * @param {number} idPersonaje - El ID del personaje a eliminar.
+   */
+  eliminarPersonaje(idPersonaje: number) {
+    this.personajeService.eliminarPersonaje(idPersonaje).subscribe(
+      (response) => {
+        console.log('Personaje eliminado con éxito', response);
+        const idJugador = localStorage.getItem('idJugador');
+        console.log('ID del jugador obtenido:', idJugador);
+        if (idJugador) {
+          this.router.navigate(['/todos', idJugador]);
+        } else {
+          console.error('No se pudo obtener el ID del jugador logueado');
+        }
+      },
+      (error) => {
+        console.error('Error eliminando personaje', error);
+      }// TODO: da error pero elimina bien en la BBDD
+    );
   }
 }

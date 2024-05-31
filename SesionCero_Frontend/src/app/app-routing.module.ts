@@ -40,7 +40,6 @@ const routes: Routes = [
   },
   { path: 'error', component: ErrorComponent },
   { path: 'logout', component: CerrarSesionComponent },
-
 ];
 
 @NgModule({
